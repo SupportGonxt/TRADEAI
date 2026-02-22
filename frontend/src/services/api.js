@@ -1572,4 +1572,55 @@ export const executiveKpiService = {
   },
 };
 
+export const auditComplianceService = {
+  getSummary: async () => {
+    const response = await api.get('/audit-compliance/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/audit-compliance/options');
+    return response.data;
+  },
+  getEvents: async (params) => {
+    const response = await api.get('/audit-compliance/events', { params });
+    return response.data;
+  },
+  createEvent: async (data) => {
+    const response = await api.post('/audit-compliance/events', data);
+    return response.data;
+  },
+  deleteEvent: async (id) => {
+    const response = await api.delete(`/audit-compliance/events/${id}`);
+    return response.data;
+  },
+  getPolicies: async (params) => {
+    const response = await api.get('/audit-compliance/policies', { params });
+    return response.data;
+  },
+  createPolicy: async (data) => {
+    const response = await api.post('/audit-compliance/policies', data);
+    return response.data;
+  },
+  updatePolicy: async (id, data) => {
+    const response = await api.put(`/audit-compliance/policies/${id}`, data);
+    return response.data;
+  },
+  deletePolicy: async (id) => {
+    const response = await api.delete(`/audit-compliance/policies/${id}`);
+    return response.data;
+  },
+  getAccessLogs: async (params) => {
+    const response = await api.get('/audit-compliance/access-logs', { params });
+    return response.data;
+  },
+  createAccessLog: async (data) => {
+    const response = await api.post('/audit-compliance/access-logs', data);
+    return response.data;
+  },
+  deleteAccessLog: async (id) => {
+    const response = await api.delete(`/audit-compliance/access-logs/${id}`);
+    return response.data;
+  },
+};
+
 export default api;

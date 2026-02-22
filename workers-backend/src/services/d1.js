@@ -67,7 +67,10 @@ const TABLE_MAP = {
   kpi_definitions: 'kpi_definitions',
   kpi_targets: 'kpi_targets',
   kpi_actuals: 'kpi_actuals',
-  executive_scorecards: 'executive_scorecards'
+  executive_scorecards: 'executive_scorecards',
+  audit_events: 'audit_events',
+  compliance_policies: 'compliance_policies',
+  data_access_logs: 'data_access_logs'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -578,7 +581,33 @@ const COLUMN_MAP = {
   amberCount: 'amber_count',
   redCount: 'red_count',
   publishedAt: 'published_at',
-  publishedBy: 'published_by'
+  publishedBy: 'published_by',
+  entityType: 'entity_type',
+  entityId: 'entity_id',
+  entityName: 'entity_name',
+  actionType: 'action_type',
+  actionLabel: 'action_label',
+  severity: 'severity',
+  source: 'source',
+  requestId: 'request_id',
+  beforeData: 'before_data',
+  afterData: 'after_data',
+  changedFields: 'changed_fields',
+  actorUserId: 'actor_user_id',
+  actorName: 'actor_name',
+  ipAddress: 'ip_address',
+  userAgent: 'user_agent',
+  policyType: 'policy_type',
+  appliesTo: 'applies_to',
+  enforcementLevel: 'enforcement_level',
+  effectiveFrom: 'effective_from',
+  effectiveTo: 'effective_to',
+  lastReviewedAt: 'last_reviewed_at',
+  nextReviewAt: 'next_review_at',
+  accessType: 'access_type',
+  resourceType: 'resource_type',
+  resourceId: 'resource_id',
+  resourceName: 'resource_name'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -670,7 +699,10 @@ const TABLE_COLUMNS = {
   kpi_definitions: ['id', 'company_id', 'name', 'description', 'kpi_type', 'category', 'unit', 'format', 'calculation_method', 'data_source', 'source_table', 'source_column', 'aggregation', 'frequency', 'direction', 'threshold_red', 'threshold_amber', 'threshold_green', 'weight', 'sort_order', 'is_active', 'owner', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_targets: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'target_value', 'stretch_target', 'floor_value', 'prior_year_value', 'budget_value', 'status', 'approved_by', 'approved_at', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_actuals: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'actual_value', 'target_value', 'variance', 'variance_pct', 'achievement_pct', 'trend_direction', 'prior_period_value', 'prior_year_value', 'yoy_growth_pct', 'mom_growth_pct', 'ytd_actual', 'ytd_target', 'ytd_achievement_pct', 'rag_status', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
-  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
+  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  audit_events: ['id', 'company_id', 'entity_type', 'entity_id', 'entity_name', 'action_type', 'action_label', 'severity', 'source', 'request_id', 'before_data', 'after_data', 'changed_fields', 'actor_user_id', 'actor_name', 'ip_address', 'user_agent', 'notes', 'data', 'created_at'],
+  compliance_policies: ['id', 'company_id', 'name', 'description', 'policy_type', 'applies_to', 'enforcement_level', 'status', 'version', 'owner', 'effective_from', 'effective_to', 'last_reviewed_at', 'next_review_at', 'rules', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
+  data_access_logs: ['id', 'company_id', 'resource_type', 'resource_id', 'resource_name', 'access_type', 'outcome', 'reason', 'actor_user_id', 'actor_name', 'ip_address', 'user_agent', 'request_id', 'notes', 'data', 'created_at']
 };
 
 // Generate a UUID for new records
