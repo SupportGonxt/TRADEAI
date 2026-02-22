@@ -38,6 +38,12 @@ import {
   ReceiptLong as ClaimsIcon,
   RemoveCircle as DeductionsIcon,
   TrendingUp as ForecastingIcon,
+  Notifications as NotifIcon,
+  Description as DocsIcon,
+  Hub as HubIcon,
+  Security as RolesIcon,
+  AccountTree as WorkflowIcon,
+  Settings as ConfigIcon,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
@@ -150,6 +156,60 @@ const helpSections = [
     path: '/help/forecasting',
     topics: ['Forecast types', 'Methods', 'Variance analysis', 'AI predictions'],
   },
+  {
+    id: 'notifications',
+    title: 'Notification Center',
+    icon: NotifIcon,
+    color: '#7C3AED',
+    description: 'Manage alerts, rules, and notification preferences',
+    path: '/help/notifications',
+    topics: ['Alert rules', 'Notification inbox', 'Multi-channel delivery', 'Alert history'],
+  },
+  {
+    id: 'documents',
+    title: 'Document Management',
+    icon: DocsIcon,
+    color: '#0288d1',
+    description: 'Store, version, and manage trade documents',
+    path: '/help/documents',
+    topics: ['Upload documents', 'Version control', 'Access control', 'Audit trail'],
+  },
+  {
+    id: 'integrations',
+    title: 'Integration Hub',
+    icon: HubIcon,
+    color: '#ed6c02',
+    description: 'Connect external systems and manage data sync',
+    path: '/help/integrations',
+    topics: ['ERP/CRM sync', 'Connection setup', 'Sync logs', 'Troubleshooting'],
+  },
+  {
+    id: 'roles',
+    title: 'Role Management',
+    icon: RolesIcon,
+    color: '#388e3c',
+    description: 'Configure roles, permissions, and user access',
+    path: '/help/roles',
+    topics: ['Creating roles', 'Permission groups', 'User assignments', 'Approval limits'],
+  },
+  {
+    id: 'workflows',
+    title: 'Workflow Engine',
+    icon: WorkflowIcon,
+    color: '#7b1fa2',
+    description: 'Design, run, and track approval workflows',
+    path: '/help/workflows',
+    topics: ['Workflow templates', 'Instances', 'SLA tracking', 'Escalation'],
+  },
+  {
+    id: 'system-config',
+    title: 'System Configuration',
+    icon: ConfigIcon,
+    color: '#616161',
+    description: 'Manage system settings and tenant configuration',
+    path: '/help/system-config',
+    topics: ['Settings management', 'Tenant setup', 'Feature flags', 'Security'],
+  },
 ];
 
 const quickStartGuides = [
@@ -199,6 +259,30 @@ const quickStartGuides = [
     title: 'Approval Workflow Overview',
     duration: '6 min',
     description: 'Review pending approvals, approve or reject with one click, and track audit trails from the Approvals page',
+    type: 'video',
+  },
+  {
+    title: 'Setting Up Notifications & Alerts',
+    duration: '8 min',
+    description: 'Configure alert rules for budget thresholds, claim deadlines, and promotion milestones — receive alerts in-app, email, or SMS',
+    type: 'guide',
+  },
+  {
+    title: 'Managing Documents & Versions',
+    duration: '6 min',
+    description: 'Upload contracts, invoices, and reports — track versions, set expiry dates, and link documents to promotions or customers',
+    type: 'guide',
+  },
+  {
+    title: 'Connecting External Systems',
+    duration: '10 min',
+    description: 'Set up integrations with SAP, Salesforce, or file-based imports — configure sync schedules and monitor logs',
+    type: 'guide',
+  },
+  {
+    title: 'Configuring Roles & Workflows',
+    duration: '12 min',
+    description: 'Create custom roles with fine-grained permissions, design multi-step approval workflows with SLA tracking and escalation',
     type: 'video',
   },
 ];
@@ -251,6 +335,22 @@ const faqs = [
   {
     question: 'Can I use TRADEAI on my phone?',
     answer: 'Yes! The platform is fully responsive. On mobile, the sidebar is replaced by a slide-out navigation drawer. All pages, forms, and dashboards adapt to smaller screens. Tap the menu icon in the top-left corner to navigate.',
+  },
+  {
+    question: 'How do I set up alert rules?',
+    answer: 'Go to the Notification Center (bell icon in sidebar), click the Alert Rules tab, then Add Rule. Choose the entity type, metric, operator, and threshold. Set severity and delivery channels (in-app, email, SMS).',
+  },
+  {
+    question: 'How does document versioning work?',
+    answer: 'Every time you update a document, a new version is created automatically. Previous versions are always accessible from the version history. Each version records who uploaded it, when, and a change summary.',
+  },
+  {
+    question: 'How do I connect my ERP system?',
+    answer: 'Go to the Integration Hub (hub icon in sidebar), click Add Integration, select your provider (SAP, Oracle, Salesforce, etc.), enter connection details and credentials, set sync frequency, then test the connection.',
+  },
+  {
+    question: 'What are workflow templates vs instances?',
+    answer: 'Templates define the blueprint (steps, approvers, SLAs, escalation rules). Instances are live executions of a template — each promotion or claim that needs approval creates a new instance from the relevant template.',
   },
 ];
 
