@@ -25,6 +25,7 @@ import {
   BarChart as  InsightsIcon,
   Person as CustomerIcon,
   Assessment as ReportingIcon,
+  TrendingUp as RGMIcon,
   Storage as DataIcon,
   Settings as SettingsIcon,
   HelpOutline as HelpIcon,
@@ -50,6 +51,7 @@ const navItems = [
   { key: 'pnl', label: 'P&L', icon: <InsightsIcon />, path: '/pnl' },
   { key: 'customer360', label: 'Customer 360', icon: <CustomerIcon />, path: '/customer-360' },
   { key: 'reporting', label: 'Reports', icon: <ReportingIcon />, path: '/advanced-reporting' },
+  { key: 'rgm', label: 'RGM', icon: <RGMIcon />, path: '/revenue-growth' },
   { key: 'data', label: 'Master Data', icon: <DataIcon />, path: '/customers' },
 ];
 

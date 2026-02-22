@@ -61,6 +61,7 @@ import { scenarioRoutes } from './routes/scenarios.js';
 import { promotionOptimizerRoutes } from './routes/promotionOptimizer.js';
 import { customer360Routes } from './routes/customer360.js';
 import { advancedReportingRoutes } from './routes/advancedReporting.js';
+import { revenueGrowthRoutes } from './routes/revenueGrowth.js';
 
 const app = new Hono();
 
@@ -164,6 +165,7 @@ app.route('/api/scenarios', scenarioRoutes);
 app.route('/api/promotion-optimizer', promotionOptimizerRoutes);
 app.route('/api/customer-360', customer360Routes);
 app.route('/api/advanced-reporting', advancedReportingRoutes);
+app.route('/api/revenue-growth', revenueGrowthRoutes);
 
 // 404 handler
 app.notFound((c) => {

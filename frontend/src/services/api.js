@@ -1426,4 +1426,79 @@ export const advancedReportingService = {
   },
 };
 
+export const revenueGrowthService = {
+  getSummary: async () => {
+    const response = await api.get('/revenue-growth/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/revenue-growth/options');
+    return response.data;
+  },
+  getInitiatives: async (params) => {
+    const response = await api.get('/revenue-growth/initiatives', { params });
+    return response.data;
+  },
+  getInitiativeById: async (id) => {
+    const response = await api.get(`/revenue-growth/initiatives/${id}`);
+    return response.data;
+  },
+  createInitiative: async (data) => {
+    const response = await api.post('/revenue-growth/initiatives', data);
+    return response.data;
+  },
+  updateInitiative: async (id, data) => {
+    const response = await api.put(`/revenue-growth/initiatives/${id}`, data);
+    return response.data;
+  },
+  deleteInitiative: async (id) => {
+    const response = await api.delete(`/revenue-growth/initiatives/${id}`);
+    return response.data;
+  },
+  getPricing: async (params) => {
+    const response = await api.get('/revenue-growth/pricing', { params });
+    return response.data;
+  },
+  getPricingById: async (id) => {
+    const response = await api.get(`/revenue-growth/pricing/${id}`);
+    return response.data;
+  },
+  createPricing: async (data) => {
+    const response = await api.post('/revenue-growth/pricing', data);
+    return response.data;
+  },
+  updatePricing: async (id, data) => {
+    const response = await api.put(`/revenue-growth/pricing/${id}`, data);
+    return response.data;
+  },
+  deletePricing: async (id) => {
+    const response = await api.delete(`/revenue-growth/pricing/${id}`);
+    return response.data;
+  },
+  getMixAnalyses: async (params) => {
+    const response = await api.get('/revenue-growth/mix', { params });
+    return response.data;
+  },
+  createMixAnalysis: async (data) => {
+    const response = await api.post('/revenue-growth/mix', data);
+    return response.data;
+  },
+  deleteMixAnalysis: async (id) => {
+    const response = await api.delete(`/revenue-growth/mix/${id}`);
+    return response.data;
+  },
+  getGrowthTracking: async (params) => {
+    const response = await api.get('/revenue-growth/growth-tracking', { params });
+    return response.data;
+  },
+  createGrowthTracker: async (data) => {
+    const response = await api.post('/revenue-growth/growth-tracking', data);
+    return response.data;
+  },
+  deleteGrowthTracker: async (id) => {
+    const response = await api.delete(`/revenue-growth/growth-tracking/${id}`);
+    return response.data;
+  },
+};
+
 export default api;

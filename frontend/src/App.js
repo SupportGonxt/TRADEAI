@@ -71,6 +71,7 @@ import SimulationStudioNew from './pages/simulation/SimulationStudio';
 import PromotionsTimelineNew from './pages/timeline/PromotionsTimeline';
 import Customer360New from './pages/customer360/Customer360';
 import AdvancedReportingManagement from './pages/advanced-reporting/AdvancedReportingManagement';
+import RevenueGrowthManagement from './pages/revenue-growth/RevenueGrowthManagement';
 import BudgetConsoleNew from './pages/budgetconsole/BudgetConsole';
 import PromotionPlannerNew from './pages/promotions/PromotionPlanner';
 
@@ -1277,6 +1278,30 @@ function App() {
             isAuthenticated ? (
               <Layout user={user} onLogout={handleLogout}>
                 <AdvancedReportingManagement />
+              </Layout>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/revenue-growth"
+          element={
+            isAuthenticated ? (
+              <Layout user={user} onLogout={handleLogout}>
+                <RevenueGrowthManagement />
+              </Layout>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/revenue-growth/:id"
+          element={
+            isAuthenticated ? (
+              <Layout user={user} onLogout={handleLogout}>
+                <RevenueGrowthManagement />
               </Layout>
             ) : (
               <Navigate to="/" replace />
