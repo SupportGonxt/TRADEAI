@@ -72,6 +72,7 @@ import PromotionsTimelineNew from './pages/timeline/PromotionsTimeline';
 import Customer360New from './pages/customer360/Customer360';
 import AdvancedReportingManagement from './pages/advanced-reporting/AdvancedReportingManagement';
 import RevenueGrowthManagement from './pages/revenue-growth/RevenueGrowthManagement';
+import ExecutiveKpiDashboard from './pages/executive-kpi/ExecutiveKpiDashboard';
 import BudgetConsoleNew from './pages/budgetconsole/BudgetConsole';
 import PromotionPlannerNew from './pages/promotions/PromotionPlanner';
 
@@ -1309,7 +1310,31 @@ function App() {
           } 
         />
         <Route 
-          path="/forecasting" 
+          path="/executive-kpi"
+          element={
+            isAuthenticated ? (
+              <Layout user={user} onLogout={handleLogout}>
+                <ExecutiveKpiDashboard />
+              </Layout>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/executive-kpi/:id"
+          element={
+            isAuthenticated ? (
+              <Layout user={user} onLogout={handleLogout}>
+                <ExecutiveKpiDashboard />
+              </Layout>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/forecasting"
           element={
             isAuthenticated ? (
               <Layout user={user} onLogout={handleLogout}>

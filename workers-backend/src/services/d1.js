@@ -63,7 +63,11 @@ const TABLE_MAP = {
   rgm_initiatives: 'rgm_initiatives',
   rgm_pricing_strategies: 'rgm_pricing_strategies',
   rgm_mix_analyses: 'rgm_mix_analyses',
-  rgm_growth_trackers: 'rgm_growth_trackers'
+  rgm_growth_trackers: 'rgm_growth_trackers',
+  kpi_definitions: 'kpi_definitions',
+  kpi_targets: 'kpi_targets',
+  kpi_actuals: 'kpi_actuals',
+  executive_scorecards: 'executive_scorecards'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -533,7 +537,48 @@ const COLUMN_MAP = {
   variancePct: 'variance_pct',
   growthPct: 'growth_pct',
   contributionPct: 'contribution_pct',
-  trendDirection: 'trend_direction'
+  trendDirection: 'trend_direction',
+  kpiType: 'kpi_type',
+  calculationMethod: 'calculation_method',
+  dataSource: 'data_source',
+  sourceTable: 'source_table',
+  sourceColumn: 'source_column',
+  thresholdRed: 'threshold_red',
+  thresholdAmber: 'threshold_amber',
+  thresholdGreen: 'threshold_green',
+  sortOrder: 'sort_order',
+  isActive: 'is_active',
+  kpiId: 'kpi_id',
+  kpiName: 'kpi_name',
+  periodStart: 'period_start',
+  periodEnd: 'period_end',
+  targetValue: 'target_value',
+  stretchTarget: 'stretch_target',
+  floorValue: 'floor_value',
+  priorYearValue: 'prior_year_value',
+  budgetValue: 'budget_value',
+  actualValue: 'actual_value',
+  achievementPct: 'achievement_pct',
+  priorPeriodValue: 'prior_period_value',
+  yoyGrowthPct: 'yoy_growth_pct',
+  momGrowthPct: 'mom_growth_pct',
+  ytdActual: 'ytd_actual',
+  ytdTarget: 'ytd_target',
+  ytdAchievementPct: 'ytd_achievement_pct',
+  ragStatus: 'rag_status',
+  scorecardType: 'scorecard_type',
+  overallScore: 'overall_score',
+  overallRag: 'overall_rag',
+  financialScore: 'financial_score',
+  operationalScore: 'operational_score',
+  customerScore: 'customer_score',
+  growthScore: 'growth_score',
+  totalKpis: 'total_kpis',
+  greenCount: 'green_count',
+  amberCount: 'amber_count',
+  redCount: 'red_count',
+  publishedAt: 'published_at',
+  publishedBy: 'published_by'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -621,7 +666,11 @@ const TABLE_COLUMNS = {
   rgm_initiatives: ['id', 'company_id', 'name', 'description', 'initiative_type', 'status', 'priority', 'category', 'customer_id', 'customer_name', 'product_id', 'product_name', 'channel', 'region', 'brand', 'start_date', 'end_date', 'target_revenue', 'target_margin_pct', 'target_growth_pct', 'actual_revenue', 'actual_margin_pct', 'actual_growth_pct', 'baseline_revenue', 'baseline_margin_pct', 'investment_amount', 'roi', 'confidence_score', 'risk_level', 'owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_pricing_strategies: ['id', 'company_id', 'initiative_id', 'name', 'description', 'strategy_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'current_price', 'recommended_price', 'price_change_pct', 'current_margin_pct', 'projected_margin_pct', 'price_elasticity', 'volume_impact_pct', 'revenue_impact', 'margin_impact', 'competitor_price', 'price_index', 'effective_date', 'end_date', 'approved_by', 'approved_at', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_mix_analyses: ['id', 'company_id', 'initiative_id', 'name', 'description', 'analysis_type', 'status', 'dimension', 'period_start', 'period_end', 'total_revenue', 'total_volume', 'total_margin', 'avg_margin_pct', 'mix_score', 'opportunity_value', 'items', 'recommendations', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
-  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at']
+  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at'],
+  kpi_definitions: ['id', 'company_id', 'name', 'description', 'kpi_type', 'category', 'unit', 'format', 'calculation_method', 'data_source', 'source_table', 'source_column', 'aggregation', 'frequency', 'direction', 'threshold_red', 'threshold_amber', 'threshold_green', 'weight', 'sort_order', 'is_active', 'owner', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  kpi_targets: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'target_value', 'stretch_target', 'floor_value', 'prior_year_value', 'budget_value', 'status', 'approved_by', 'approved_at', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  kpi_actuals: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'actual_value', 'target_value', 'variance', 'variance_pct', 'achievement_pct', 'trend_direction', 'prior_period_value', 'prior_year_value', 'yoy_growth_pct', 'mom_growth_pct', 'ytd_actual', 'ytd_target', 'ytd_achievement_pct', 'rag_status', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records

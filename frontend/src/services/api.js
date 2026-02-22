@@ -1501,4 +1501,75 @@ export const revenueGrowthService = {
   },
 };
 
+export const executiveKpiService = {
+  getSummary: async () => {
+    const response = await api.get('/executive-kpi/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/executive-kpi/options');
+    return response.data;
+  },
+  getDefinitions: async (params) => {
+    const response = await api.get('/executive-kpi/definitions', { params });
+    return response.data;
+  },
+  createDefinition: async (data) => {
+    const response = await api.post('/executive-kpi/definitions', data);
+    return response.data;
+  },
+  updateDefinition: async (id, data) => {
+    const response = await api.put(`/executive-kpi/definitions/${id}`, data);
+    return response.data;
+  },
+  deleteDefinition: async (id) => {
+    const response = await api.delete(`/executive-kpi/definitions/${id}`);
+    return response.data;
+  },
+  getTargets: async (params) => {
+    const response = await api.get('/executive-kpi/targets', { params });
+    return response.data;
+  },
+  createTarget: async (data) => {
+    const response = await api.post('/executive-kpi/targets', data);
+    return response.data;
+  },
+  deleteTarget: async (id) => {
+    const response = await api.delete(`/executive-kpi/targets/${id}`);
+    return response.data;
+  },
+  getActuals: async (params) => {
+    const response = await api.get('/executive-kpi/actuals', { params });
+    return response.data;
+  },
+  createActual: async (data) => {
+    const response = await api.post('/executive-kpi/actuals', data);
+    return response.data;
+  },
+  deleteActual: async (id) => {
+    const response = await api.delete(`/executive-kpi/actuals/${id}`);
+    return response.data;
+  },
+  getScorecards: async (params) => {
+    const response = await api.get('/executive-kpi/scorecards', { params });
+    return response.data;
+  },
+  getScorecardById: async (id) => {
+    const response = await api.get(`/executive-kpi/scorecards/${id}`);
+    return response.data;
+  },
+  createScorecard: async (data) => {
+    const response = await api.post('/executive-kpi/scorecards', data);
+    return response.data;
+  },
+  updateScorecard: async (id, data) => {
+    const response = await api.put(`/executive-kpi/scorecards/${id}`, data);
+    return response.data;
+  },
+  deleteScorecard: async (id) => {
+    const response = await api.delete(`/executive-kpi/scorecards/${id}`);
+    return response.data;
+  },
+};
+
 export default api;
