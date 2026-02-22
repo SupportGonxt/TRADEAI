@@ -67,7 +67,10 @@ const TABLE_MAP = {
   kpi_definitions: 'kpi_definitions',
   kpi_targets: 'kpi_targets',
   kpi_actuals: 'kpi_actuals',
-  executive_scorecards: 'executive_scorecards'
+  executive_scorecards: 'executive_scorecards',
+  notifications: 'notifications',
+  alert_rules: 'alert_rules',
+  alert_history: 'alert_history'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -670,7 +673,10 @@ const TABLE_COLUMNS = {
   kpi_definitions: ['id', 'company_id', 'name', 'description', 'kpi_type', 'category', 'unit', 'format', 'calculation_method', 'data_source', 'source_table', 'source_column', 'aggregation', 'frequency', 'direction', 'threshold_red', 'threshold_amber', 'threshold_green', 'weight', 'sort_order', 'is_active', 'owner', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_targets: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'target_value', 'stretch_target', 'floor_value', 'prior_year_value', 'budget_value', 'status', 'approved_by', 'approved_at', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_actuals: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'actual_value', 'target_value', 'variance', 'variance_pct', 'achievement_pct', 'trend_direction', 'prior_period_value', 'prior_year_value', 'yoy_growth_pct', 'mom_growth_pct', 'ytd_actual', 'ytd_target', 'ytd_achievement_pct', 'rag_status', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
-  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
+  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  notifications: ['id', 'company_id', 'user_id', 'title', 'message', 'notification_type', 'category', 'priority', 'status', 'source_entity_type', 'source_entity_id', 'source_entity_name', 'action_url', 'action_label', 'read_at', 'dismissed_at', 'expires_at', 'channel', 'sent_via_email', 'sent_via_sms', 'notes', 'data', 'created_at'],
+  alert_rules: ['id', 'company_id', 'name', 'description', 'rule_type', 'category', 'entity_type', 'metric', 'operator', 'threshold_value', 'threshold_unit', 'severity', 'is_active', 'frequency', 'cooldown_minutes', 'last_triggered_at', 'trigger_count', 'recipients', 'channels', 'conditions', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  alert_history: ['id', 'company_id', 'rule_id', 'rule_name', 'alert_type', 'severity', 'title', 'message', 'entity_type', 'entity_id', 'entity_name', 'metric_value', 'threshold_value', 'status', 'acknowledged_by', 'acknowledged_at', 'resolved_by', 'resolved_at', 'notes', 'data', 'created_at']
 };
 
 // Generate a UUID for new records

@@ -31,6 +31,7 @@ import {
   Settings as SettingsIcon,
   HelpOutline as HelpIcon,
   Logout as LogoutIcon,
+  Notifications as NotifIcon,
 } from '@mui/icons-material';
 
 const SIDEBAR_WIDTH = 72;
@@ -54,6 +55,7 @@ const navItems = [
   { key: 'reporting', label: 'Reports', icon: <ReportingIcon />, path: '/advanced-reporting' },
   { key: 'rgm', label: 'RGM', icon: <RGMIcon />, path: '/revenue-growth' },
   { key: 'kpi', label: 'KPIs', icon: <KpiIcon />, path: '/executive-kpi' },
+  { key: 'notifications', label: 'Alerts', icon: <NotifIcon />, path: '/notification-center' },
   { key: 'data', label: 'Master Data', icon: <DataIcon />, path: '/customers' },
 ];
 
