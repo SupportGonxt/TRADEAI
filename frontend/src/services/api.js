@@ -1501,4 +1501,75 @@ export const revenueGrowthService = {
   },
 };
 
+export const supplyChainService = {
+  getSummary: async () => {
+    const response = await api.get('/supply-chain/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/supply-chain/options');
+    return response.data;
+  },
+  getSuppliers: async (params) => {
+    const response = await api.get('/supply-chain/suppliers', { params });
+    return response.data;
+  },
+  getSupplierById: async (id) => {
+    const response = await api.get(`/supply-chain/suppliers/${id}`);
+    return response.data;
+  },
+  createSupplier: async (data) => {
+    const response = await api.post('/supply-chain/suppliers', data);
+    return response.data;
+  },
+  updateSupplier: async (id, data) => {
+    const response = await api.put(`/supply-chain/suppliers/${id}`, data);
+    return response.data;
+  },
+  deleteSupplier: async (id) => {
+    const response = await api.delete(`/supply-chain/suppliers/${id}`);
+    return response.data;
+  },
+  getInventory: async (params) => {
+    const response = await api.get('/supply-chain/inventory', { params });
+    return response.data;
+  },
+  createInventory: async (data) => {
+    const response = await api.post('/supply-chain/inventory', data);
+    return response.data;
+  },
+  deleteInventory: async (id) => {
+    const response = await api.delete(`/supply-chain/inventory/${id}`);
+    return response.data;
+  },
+  getShipments: async (params) => {
+    const response = await api.get('/supply-chain/shipments', { params });
+    return response.data;
+  },
+  createShipment: async (data) => {
+    const response = await api.post('/supply-chain/shipments', data);
+    return response.data;
+  },
+  deleteShipment: async (id) => {
+    const response = await api.delete(`/supply-chain/shipments/${id}`);
+    return response.data;
+  },
+  getAlerts: async (params) => {
+    const response = await api.get('/supply-chain/alerts', { params });
+    return response.data;
+  },
+  createAlert: async (data) => {
+    const response = await api.post('/supply-chain/alerts', data);
+    return response.data;
+  },
+  updateAlert: async (id, data) => {
+    const response = await api.put(`/supply-chain/alerts/${id}`, data);
+    return response.data;
+  },
+  deleteAlert: async (id) => {
+    const response = await api.delete(`/supply-chain/alerts/${id}`);
+    return response.data;
+  },
+};
+
 export default api;

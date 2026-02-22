@@ -63,7 +63,11 @@ const TABLE_MAP = {
   rgm_initiatives: 'rgm_initiatives',
   rgm_pricing_strategies: 'rgm_pricing_strategies',
   rgm_mix_analyses: 'rgm_mix_analyses',
-  rgm_growth_trackers: 'rgm_growth_trackers'
+  rgm_growth_trackers: 'rgm_growth_trackers',
+  suppliers: 'suppliers',
+  inventory_levels: 'inventory_levels',
+  shipments: 'shipments',
+  supply_chain_alerts: 'supply_chain_alerts'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -533,7 +537,57 @@ const COLUMN_MAP = {
   variancePct: 'variance_pct',
   growthPct: 'growth_pct',
   contributionPct: 'contribution_pct',
-  trendDirection: 'trend_direction'
+  trendDirection: 'trend_direction',
+  supplierType: 'supplier_type',
+  contactName: 'contact_name',
+  contactEmail: 'contact_email',
+  contactPhone: 'contact_phone',
+  leadTimeDays: 'lead_time_days',
+  reliabilityScore: 'reliability_score',
+  qualityScore: 'quality_score',
+  costRating: 'cost_rating',
+  annualSpend: 'annual_spend',
+  paymentTerms: 'payment_terms',
+  warehouseId: 'warehouse_id',
+  warehouseName: 'warehouse_name',
+  currentQty: 'current_qty',
+  reservedQty: 'reserved_qty',
+  availableQty: 'available_qty',
+  reorderPoint: 'reorder_point',
+  reorderQty: 'reorder_qty',
+  safetyStock: 'safety_stock',
+  maxStock: 'max_stock',
+  unitCost: 'unit_cost',
+  totalValue: 'total_value',
+  daysOfSupply: 'days_of_supply',
+  turnoverRate: 'turnover_rate',
+  stockStatus: 'stock_status',
+  lastReceivedAt: 'last_received_at',
+  lastCountedAt: 'last_counted_at',
+  shipmentNumber: 'shipment_number',
+  orderNumber: 'order_number',
+  shipmentType: 'shipment_type',
+  trackingNumber: 'tracking_number',
+  shipDate: 'ship_date',
+  expectedDelivery: 'expected_delivery',
+  actualDelivery: 'actual_delivery',
+  totalWeight: 'total_weight',
+  totalVolume: 'total_volume',
+  totalItems: 'total_items',
+  shippingCost: 'shipping_cost',
+  insuranceCost: 'insurance_cost',
+  onTime: 'on_time',
+  damageReported: 'damage_reported',
+  alertType: 'alert_type',
+  sourceType: 'source_type',
+  sourceId: 'source_id',
+  sourceName: 'source_name',
+  impactValue: 'impact_value',
+  impactDescription: 'impact_description',
+  recommendedAction: 'recommended_action',
+  resolvedAt: 'resolved_at',
+  resolvedBy: 'resolved_by',
+  resolutionNotes: 'resolution_notes'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -621,7 +675,11 @@ const TABLE_COLUMNS = {
   rgm_initiatives: ['id', 'company_id', 'name', 'description', 'initiative_type', 'status', 'priority', 'category', 'customer_id', 'customer_name', 'product_id', 'product_name', 'channel', 'region', 'brand', 'start_date', 'end_date', 'target_revenue', 'target_margin_pct', 'target_growth_pct', 'actual_revenue', 'actual_margin_pct', 'actual_growth_pct', 'baseline_revenue', 'baseline_margin_pct', 'investment_amount', 'roi', 'confidence_score', 'risk_level', 'owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_pricing_strategies: ['id', 'company_id', 'initiative_id', 'name', 'description', 'strategy_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'current_price', 'recommended_price', 'price_change_pct', 'current_margin_pct', 'projected_margin_pct', 'price_elasticity', 'volume_impact_pct', 'revenue_impact', 'margin_impact', 'competitor_price', 'price_index', 'effective_date', 'end_date', 'approved_by', 'approved_at', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_mix_analyses: ['id', 'company_id', 'initiative_id', 'name', 'description', 'analysis_type', 'status', 'dimension', 'period_start', 'period_end', 'total_revenue', 'total_volume', 'total_margin', 'avg_margin_pct', 'mix_score', 'opportunity_value', 'items', 'recommendations', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
-  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at']
+  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at'],
+  suppliers: ['id', 'company_id', 'name', 'description', 'supplier_type', 'status', 'contact_name', 'contact_email', 'contact_phone', 'address', 'city', 'country', 'lead_time_days', 'reliability_score', 'quality_score', 'cost_rating', 'annual_spend', 'payment_terms', 'certifications', 'categories', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  inventory_levels: ['id', 'company_id', 'product_id', 'product_name', 'warehouse_id', 'warehouse_name', 'sku', 'category', 'current_qty', 'reserved_qty', 'available_qty', 'reorder_point', 'reorder_qty', 'safety_stock', 'max_stock', 'unit_cost', 'total_value', 'days_of_supply', 'turnover_rate', 'stock_status', 'last_received_at', 'last_counted_at', 'supplier_id', 'supplier_name', 'notes', 'data', 'created_at', 'updated_at'],
+  shipments: ['id', 'company_id', 'shipment_number', 'order_id', 'order_number', 'supplier_id', 'supplier_name', 'customer_id', 'customer_name', 'shipment_type', 'status', 'origin', 'destination', 'carrier', 'tracking_number', 'ship_date', 'expected_delivery', 'actual_delivery', 'total_weight', 'total_volume', 'total_items', 'shipping_cost', 'insurance_cost', 'total_cost', 'on_time', 'damage_reported', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  supply_chain_alerts: ['id', 'company_id', 'alert_type', 'severity', 'status', 'title', 'description', 'source_type', 'source_id', 'source_name', 'product_id', 'product_name', 'supplier_id', 'supplier_name', 'impact_value', 'impact_description', 'recommended_action', 'resolved_at', 'resolved_by', 'resolution_notes', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
