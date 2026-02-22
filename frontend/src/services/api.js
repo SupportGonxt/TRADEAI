@@ -1501,4 +1501,71 @@ export const revenueGrowthService = {
   },
 };
 
+export const marketIntelligenceService = {
+  getSummary: async () => {
+    const response = await api.get('/market-intelligence/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/market-intelligence/options');
+    return response.data;
+  },
+  getCompetitors: async (params) => {
+    const response = await api.get('/market-intelligence/competitors', { params });
+    return response.data;
+  },
+  getCompetitorById: async (id) => {
+    const response = await api.get(`/market-intelligence/competitors/${id}`);
+    return response.data;
+  },
+  createCompetitor: async (data) => {
+    const response = await api.post('/market-intelligence/competitors', data);
+    return response.data;
+  },
+  updateCompetitor: async (id, data) => {
+    const response = await api.put(`/market-intelligence/competitors/${id}`, data);
+    return response.data;
+  },
+  deleteCompetitor: async (id) => {
+    const response = await api.delete(`/market-intelligence/competitors/${id}`);
+    return response.data;
+  },
+  getMarketShare: async (params) => {
+    const response = await api.get('/market-intelligence/market-share', { params });
+    return response.data;
+  },
+  createMarketShare: async (data) => {
+    const response = await api.post('/market-intelligence/market-share', data);
+    return response.data;
+  },
+  deleteMarketShare: async (id) => {
+    const response = await api.delete(`/market-intelligence/market-share/${id}`);
+    return response.data;
+  },
+  getPrices: async (params) => {
+    const response = await api.get('/market-intelligence/prices', { params });
+    return response.data;
+  },
+  createPrice: async (data) => {
+    const response = await api.post('/market-intelligence/prices', data);
+    return response.data;
+  },
+  deletePrice: async (id) => {
+    const response = await api.delete(`/market-intelligence/prices/${id}`);
+    return response.data;
+  },
+  getTrends: async (params) => {
+    const response = await api.get('/market-intelligence/trends', { params });
+    return response.data;
+  },
+  createTrend: async (data) => {
+    const response = await api.post('/market-intelligence/trends', data);
+    return response.data;
+  },
+  deleteTrend: async (id) => {
+    const response = await api.delete(`/market-intelligence/trends/${id}`);
+    return response.data;
+  },
+};
+
 export default api;

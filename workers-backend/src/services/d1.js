@@ -63,7 +63,11 @@ const TABLE_MAP = {
   rgm_initiatives: 'rgm_initiatives',
   rgm_pricing_strategies: 'rgm_pricing_strategies',
   rgm_mix_analyses: 'rgm_mix_analyses',
-  rgm_growth_trackers: 'rgm_growth_trackers'
+  rgm_growth_trackers: 'rgm_growth_trackers',
+  competitors: 'competitors',
+  market_share_data: 'market_share_data',
+  competitive_prices: 'competitive_prices',
+  market_trends: 'market_trends'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -533,7 +537,32 @@ const COLUMN_MAP = {
   variancePct: 'variance_pct',
   growthPct: 'growth_pct',
   contributionPct: 'contribution_pct',
-  trendDirection: 'trend_direction'
+  trendDirection: 'trend_direction',
+  competitorType: 'competitor_type',
+  annualRevenue: 'annual_revenue',
+  employeeCount: 'employee_count',
+  keyBrands: 'key_brands',
+  keyCategories: 'key_categories',
+  keyChannels: 'key_channels',
+  threatLevel: 'threat_level',
+  companySharePct: 'company_share_pct',
+  companyRevenue: 'company_revenue',
+  competitorSharePct: 'competitor_share_pct',
+  competitorRevenue: 'competitor_revenue',
+  shareChangePct: 'share_change_pct',
+  volumeSharePct: 'volume_share_pct',
+  valueSharePct: 'value_share_pct',
+  growthRatePct: 'growth_rate_pct',
+  marketRank: 'market_rank',
+  ourPrice: 'our_price',
+  priceGapPct: 'price_gap_pct',
+  promoDepthPct: 'promo_depth_pct',
+  shelfPrice: 'shelf_price',
+  observedDate: 'observed_date',
+  trendType: 'trend_type',
+  affectedCategories: 'affected_categories',
+  affectedBrands: 'affected_brands',
+  recommendedActions: 'recommended_actions'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -621,7 +650,11 @@ const TABLE_COLUMNS = {
   rgm_initiatives: ['id', 'company_id', 'name', 'description', 'initiative_type', 'status', 'priority', 'category', 'customer_id', 'customer_name', 'product_id', 'product_name', 'channel', 'region', 'brand', 'start_date', 'end_date', 'target_revenue', 'target_margin_pct', 'target_growth_pct', 'actual_revenue', 'actual_margin_pct', 'actual_growth_pct', 'baseline_revenue', 'baseline_margin_pct', 'investment_amount', 'roi', 'confidence_score', 'risk_level', 'owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_pricing_strategies: ['id', 'company_id', 'initiative_id', 'name', 'description', 'strategy_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'current_price', 'recommended_price', 'price_change_pct', 'current_margin_pct', 'projected_margin_pct', 'price_elasticity', 'volume_impact_pct', 'revenue_impact', 'margin_impact', 'competitor_price', 'price_index', 'effective_date', 'end_date', 'approved_by', 'approved_at', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_mix_analyses: ['id', 'company_id', 'initiative_id', 'name', 'description', 'analysis_type', 'status', 'dimension', 'period_start', 'period_end', 'total_revenue', 'total_volume', 'total_margin', 'avg_margin_pct', 'mix_score', 'opportunity_value', 'items', 'recommendations', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
-  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at']
+  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at'],
+  competitors: ['id', 'company_id', 'name', 'description', 'competitor_type', 'status', 'website', 'headquarters', 'annual_revenue', 'market_share_pct', 'employee_count', 'strengths', 'weaknesses', 'key_brands', 'key_categories', 'key_channels', 'threat_level', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  market_share_data: ['id', 'company_id', 'competitor_id', 'competitor_name', 'period', 'period_start', 'period_end', 'category', 'brand', 'channel', 'region', 'market_size', 'company_share_pct', 'company_revenue', 'competitor_share_pct', 'competitor_revenue', 'share_change_pct', 'volume_share_pct', 'value_share_pct', 'growth_rate_pct', 'market_rank', 'source', 'notes', 'data', 'created_at', 'updated_at'],
+  competitive_prices: ['id', 'company_id', 'competitor_id', 'competitor_name', 'product_id', 'product_name', 'category', 'brand', 'channel', 'region', 'our_price', 'competitor_price', 'price_index', 'price_gap_pct', 'promo_price', 'promo_depth_pct', 'shelf_price', 'observed_date', 'source', 'confidence_score', 'notes', 'data', 'created_at', 'updated_at'],
+  market_trends: ['id', 'company_id', 'name', 'description', 'trend_type', 'category', 'channel', 'region', 'period', 'period_start', 'period_end', 'direction', 'magnitude', 'impact_score', 'confidence_score', 'affected_categories', 'affected_brands', 'opportunities', 'risks', 'recommended_actions', 'source', 'status', 'created_by', 'notes', 'data', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
