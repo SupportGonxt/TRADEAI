@@ -1572,4 +1572,55 @@ export const executiveKpiService = {
   },
 };
 
+export const tradeSpendWaterfallService = {
+  getSummary: async () => {
+    const response = await api.get('/trade-spend-waterfall/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/trade-spend-waterfall/options');
+    return response.data;
+  },
+  getAnalyses: async (params) => {
+    const response = await api.get('/trade-spend-waterfall/analyses', { params });
+    return response.data;
+  },
+  createAnalysis: async (data) => {
+    const response = await api.post('/trade-spend-waterfall/analyses', data);
+    return response.data;
+  },
+  updateAnalysis: async (id, data) => {
+    const response = await api.put(`/trade-spend-waterfall/analyses/${id}`, data);
+    return response.data;
+  },
+  deleteAnalysis: async (id) => {
+    const response = await api.delete(`/trade-spend-waterfall/analyses/${id}`);
+    return response.data;
+  },
+  getSteps: async (params) => {
+    const response = await api.get('/trade-spend-waterfall/steps', { params });
+    return response.data;
+  },
+  createStep: async (data) => {
+    const response = await api.post('/trade-spend-waterfall/steps', data);
+    return response.data;
+  },
+  deleteStep: async (id) => {
+    const response = await api.delete(`/trade-spend-waterfall/steps/${id}`);
+    return response.data;
+  },
+  getDecompositions: async (params) => {
+    const response = await api.get('/trade-spend-waterfall/decompositions', { params });
+    return response.data;
+  },
+  createDecomposition: async (data) => {
+    const response = await api.post('/trade-spend-waterfall/decompositions', data);
+    return response.data;
+  },
+  deleteDecomposition: async (id) => {
+    const response = await api.delete(`/trade-spend-waterfall/decompositions/${id}`);
+    return response.data;
+  },
+};
+
 export default api;

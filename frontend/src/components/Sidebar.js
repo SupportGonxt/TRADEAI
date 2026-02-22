@@ -54,6 +54,7 @@ const navItems = [
   { key: 'reporting', label: 'Reports', icon: <ReportingIcon />, path: '/advanced-reporting' },
   { key: 'rgm', label: 'RGM', icon: <RGMIcon />, path: '/revenue-growth' },
   { key: 'kpi', label: 'KPIs', icon: <KpiIcon />, path: '/executive-kpi' },
+  { key: 'waterfall', label: 'Waterfall', icon: <InsightsIcon />, path: '/trade-spend-waterfall' },
   { key: 'data', label: 'Master Data', icon: <DataIcon />, path: '/customers' },
 ];
 
