@@ -26,6 +26,7 @@ import {
   Person as CustomerIcon,
   Assessment as ReportingIcon,
   TrendingUp as RGMIcon,
+  CurrencyExchange as CurrencyMarketIcon,
   Storage as DataIcon,
   Settings as SettingsIcon,
   HelpOutline as HelpIcon,
@@ -52,6 +53,7 @@ const navItems = [
   { key: 'customer360', label: 'Customer 360', icon: <CustomerIcon />, path: '/customer-360' },
   { key: 'reporting', label: 'Reports', icon: <ReportingIcon />, path: '/advanced-reporting' },
   { key: 'rgm', label: 'RGM', icon: <RGMIcon />, path: '/revenue-growth' },
+  { key: 'multicurrency', label: 'Markets', icon: <CurrencyMarketIcon />, path: '/multi-currency' },
   { key: 'data', label: 'Master Data', icon: <DataIcon />, path: '/customers' },
 ];
 

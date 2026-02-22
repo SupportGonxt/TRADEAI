@@ -1501,4 +1501,75 @@ export const revenueGrowthService = {
   },
 };
 
+export const multiCurrencyService = {
+  getSummary: async () => {
+    const response = await api.get('/multi-currency/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/multi-currency/options');
+    return response.data;
+  },
+  getCurrencies: async (params) => {
+    const response = await api.get('/multi-currency/currencies', { params });
+    return response.data;
+  },
+  createCurrency: async (data) => {
+    const response = await api.post('/multi-currency/currencies', data);
+    return response.data;
+  },
+  updateCurrency: async (id, data) => {
+    const response = await api.put(`/multi-currency/currencies/${id}`, data);
+    return response.data;
+  },
+  deleteCurrency: async (id) => {
+    const response = await api.delete(`/multi-currency/currencies/${id}`);
+    return response.data;
+  },
+  getExchangeRates: async (params) => {
+    const response = await api.get('/multi-currency/exchange-rates', { params });
+    return response.data;
+  },
+  createExchangeRate: async (data) => {
+    const response = await api.post('/multi-currency/exchange-rates', data);
+    return response.data;
+  },
+  deleteExchangeRate: async (id) => {
+    const response = await api.delete(`/multi-currency/exchange-rates/${id}`);
+    return response.data;
+  },
+  getMarkets: async (params) => {
+    const response = await api.get('/multi-currency/markets', { params });
+    return response.data;
+  },
+  getMarketById: async (id) => {
+    const response = await api.get(`/multi-currency/markets/${id}`);
+    return response.data;
+  },
+  createMarket: async (data) => {
+    const response = await api.post('/multi-currency/markets', data);
+    return response.data;
+  },
+  updateMarket: async (id, data) => {
+    const response = await api.put(`/multi-currency/markets/${id}`, data);
+    return response.data;
+  },
+  deleteMarket: async (id) => {
+    const response = await api.delete(`/multi-currency/markets/${id}`);
+    return response.data;
+  },
+  getPricing: async (params) => {
+    const response = await api.get('/multi-currency/pricing', { params });
+    return response.data;
+  },
+  createPricing: async (data) => {
+    const response = await api.post('/multi-currency/pricing', data);
+    return response.data;
+  },
+  deletePricing: async (id) => {
+    const response = await api.delete(`/multi-currency/pricing/${id}`);
+    return response.data;
+  },
+};
+
 export default api;
