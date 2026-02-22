@@ -67,7 +67,10 @@ const TABLE_MAP = {
   kpi_definitions: 'kpi_definitions',
   kpi_targets: 'kpi_targets',
   kpi_actuals: 'kpi_actuals',
-  executive_scorecards: 'executive_scorecards'
+  executive_scorecards: 'executive_scorecards',
+  cannibalization_analyses: 'cannibalization_analyses',
+  product_effects: 'product_effects',
+  halo_matrices: 'halo_matrices'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -578,7 +581,41 @@ const COLUMN_MAP = {
   amberCount: 'amber_count',
   redCount: 'red_count',
   publishedAt: 'published_at',
-  publishedBy: 'published_by'
+  publishedBy: 'published_by',
+  focalProductId: 'focal_product_id',
+  focalProductName: 'focal_product_name',
+  focalCategory: 'focal_category',
+  focalBrand: 'focal_brand',
+  totalProductsAnalyzed: 'total_products_analyzed',
+  cannibalizedCount: 'cannibalized_count',
+  haloCount: 'halo_count',
+  neutralCount: 'neutral_count',
+  netImpact: 'net_impact',
+  netImpactPct: 'net_impact_pct',
+  confidenceScore: 'confidence_score',
+  effectType: 'effect_type',
+  baselineSales: 'baseline_sales',
+  actualSales: 'actual_sales',
+  salesChange: 'sales_change',
+  salesChangePct: 'sales_change_pct',
+  baselineVolume: 'baseline_volume',
+  actualVolume: 'actual_volume',
+  volumeChange: 'volume_change',
+  volumeChangePct: 'volume_change_pct',
+  priceElasticity: 'price_elasticity',
+  crossElasticity: 'cross_elasticity',
+  substitutionRate: 'substitution_rate',
+  complementarityRate: 'complementarity_rate',
+  statisticalSignificance: 'statistical_significance',
+  matrixType: 'matrix_type',
+  rowId: 'row_id',
+  rowName: 'row_name',
+  colId: 'col_id',
+  colName: 'col_name',
+  liftCoefficient: 'lift_coefficient',
+  interactionType: 'interaction_type',
+  sampleSize: 'sample_size',
+  pValue: 'p_value'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -670,7 +707,10 @@ const TABLE_COLUMNS = {
   kpi_definitions: ['id', 'company_id', 'name', 'description', 'kpi_type', 'category', 'unit', 'format', 'calculation_method', 'data_source', 'source_table', 'source_column', 'aggregation', 'frequency', 'direction', 'threshold_red', 'threshold_amber', 'threshold_green', 'weight', 'sort_order', 'is_active', 'owner', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_targets: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'target_value', 'stretch_target', 'floor_value', 'prior_year_value', 'budget_value', 'status', 'approved_by', 'approved_at', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_actuals: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'actual_value', 'target_value', 'variance', 'variance_pct', 'achievement_pct', 'trend_direction', 'prior_period_value', 'prior_year_value', 'yoy_growth_pct', 'mom_growth_pct', 'ytd_actual', 'ytd_target', 'ytd_achievement_pct', 'rag_status', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
-  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
+  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  cannibalization_analyses: ['id', 'company_id', 'name', 'description', 'analysis_type', 'promotion_id', 'promotion_name', 'period_start', 'period_end', 'focal_product_id', 'focal_product_name', 'focal_category', 'focal_brand', 'total_products_analyzed', 'cannibalized_count', 'halo_count', 'neutral_count', 'net_impact', 'net_impact_pct', 'confidence_score', 'methodology', 'status', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  product_effects: ['id', 'company_id', 'analysis_id', 'product_id', 'product_name', 'category', 'brand', 'effect_type', 'baseline_sales', 'actual_sales', 'sales_change', 'sales_change_pct', 'baseline_volume', 'actual_volume', 'volume_change', 'volume_change_pct', 'price_elasticity', 'cross_elasticity', 'substitution_rate', 'complementarity_rate', 'confidence', 'statistical_significance', 'notes', 'data', 'created_at', 'updated_at'],
+  halo_matrices: ['id', 'company_id', 'analysis_id', 'name', 'matrix_type', 'period_start', 'period_end', 'dimension', 'row_id', 'row_name', 'col_id', 'col_name', 'correlation', 'lift_coefficient', 'interaction_type', 'sample_size', 'p_value', 'notes', 'data', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records

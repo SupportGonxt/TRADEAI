@@ -1572,4 +1572,55 @@ export const executiveKpiService = {
   },
 };
 
+export const cannibalizationHaloService = {
+  getSummary: async () => {
+    const response = await api.get('/cannibalization-halo/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/cannibalization-halo/options');
+    return response.data;
+  },
+  getAnalyses: async (params) => {
+    const response = await api.get('/cannibalization-halo/analyses', { params });
+    return response.data;
+  },
+  createAnalysis: async (data) => {
+    const response = await api.post('/cannibalization-halo/analyses', data);
+    return response.data;
+  },
+  updateAnalysis: async (id, data) => {
+    const response = await api.put(`/cannibalization-halo/analyses/${id}`, data);
+    return response.data;
+  },
+  deleteAnalysis: async (id) => {
+    const response = await api.delete(`/cannibalization-halo/analyses/${id}`);
+    return response.data;
+  },
+  getEffects: async (params) => {
+    const response = await api.get('/cannibalization-halo/effects', { params });
+    return response.data;
+  },
+  createEffect: async (data) => {
+    const response = await api.post('/cannibalization-halo/effects', data);
+    return response.data;
+  },
+  deleteEffect: async (id) => {
+    const response = await api.delete(`/cannibalization-halo/effects/${id}`);
+    return response.data;
+  },
+  getMatrices: async (params) => {
+    const response = await api.get('/cannibalization-halo/matrices', { params });
+    return response.data;
+  },
+  createMatrix: async (data) => {
+    const response = await api.post('/cannibalization-halo/matrices', data);
+    return response.data;
+  },
+  deleteMatrix: async (id) => {
+    const response = await api.delete(`/cannibalization-halo/matrices/${id}`);
+    return response.data;
+  },
+};
+
 export default api;
