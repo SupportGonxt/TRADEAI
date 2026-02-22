@@ -31,6 +31,11 @@ import {
   Settings as SettingsIcon,
   HelpOutline as HelpIcon,
   Logout as LogoutIcon,
+  Notifications as NotifIcon,
+  Description as DocsIcon,
+  Hub as HubIcon,
+  Security as RolesIcon,
+  AccountTree as WorkflowIcon,
 } from '@mui/icons-material';
 
 const SIDEBAR_WIDTH = 72;
@@ -55,10 +60,15 @@ const navItems = [
   { key: 'rgm', label: 'RGM', icon: <RGMIcon />, path: '/revenue-growth' },
   { key: 'kpi', label: 'KPIs', icon: <KpiIcon />, path: '/executive-kpi' },
   { key: 'data', label: 'Master Data', icon: <DataIcon />, path: '/customers' },
+  { key: 'notifications', label: 'Alerts', icon: <NotifIcon />, path: '/notification-center' },
+  { key: 'docs', label: 'Documents', icon: <DocsIcon />, path: '/document-management' },
+  { key: 'integrations', label: 'Integrations', icon: <HubIcon />, path: '/integration-hub' },
+  { key: 'roles', label: 'Roles', icon: <RolesIcon />, path: '/role-management' },
+  { key: 'workflows', label: 'Workflows', icon: <WorkflowIcon />, path: '/workflow-engine' },
 ];
 
 const bottomItems = [
-  { key: 'settings', label: 'Settings', icon: <SettingsIcon />, path: '/settings' },
+  { key: 'sysconfig', label: 'System Config', icon: <SettingsIcon />, path: '/system-config' },
   { key: 'help', label: 'Help', icon: <HelpIcon />, path: '/help' },
 ];
 

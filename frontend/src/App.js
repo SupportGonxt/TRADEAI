@@ -198,6 +198,14 @@ import ScenarioPlanningManagement from './pages/scenarios/ScenarioPlanningManage
 // Promotion Optimization Engine
 import PromotionOptimizerManagement from './pages/promotion-optimizer/PromotionOptimizerManagement';
 
+// Phase 5-6 Features
+import NotificationCenter from './pages/notification-center/NotificationCenter';
+import DocumentManagement from './pages/document-management/DocumentManagement';
+import IntegrationHub from './pages/integration-hub/IntegrationHub';
+import RoleManagement from './pages/role-management/RoleManagement';
+import SystemConfig from './pages/system-config/SystemConfig';
+import WorkflowEngine from './pages/workflow-engine/WorkflowEngine';
+
 // Help & Training Pages
 import {
   HelpCenter,
@@ -2112,6 +2120,12 @@ function App() {
                   )
                 } 
               />
+              <Route path="/notification-center" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><NotificationCenter /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/document-management" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><DocumentManagement /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/integration-hub" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><IntegrationHub /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/role-management" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><RoleManagement /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/system-config" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><SystemConfig /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/workflow-engine" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><WorkflowEngine /></Layout>) : (<Navigate to="/" replace />)} />
               <Route path="*" element={<NotFound />} />
             </Routes>
                 </UserSkillProvider>

@@ -1572,4 +1572,91 @@ export const executiveKpiService = {
   },
 };
 
+export const notificationCenterService = {
+  getSummary: async () => { const r = await api.get('/notification-center/summary'); return r.data; },
+  getOptions: async () => { const r = await api.get('/notification-center/options'); return r.data; },
+  getNotifications: async (params) => { const r = await api.get('/notification-center/notifications', { params }); return r.data; },
+  createNotification: async (data) => { const r = await api.post('/notification-center/notifications', data); return r.data; },
+  markRead: async (id) => { const r = await api.put(`/notification-center/notifications/${id}/read`); return r.data; },
+  dismiss: async (id) => { const r = await api.put(`/notification-center/notifications/${id}/dismiss`); return r.data; },
+  markAllRead: async () => { const r = await api.put('/notification-center/notifications/mark-all-read'); return r.data; },
+  deleteNotification: async (id) => { const r = await api.delete(`/notification-center/notifications/${id}`); return r.data; },
+  getRules: async (params) => { const r = await api.get('/notification-center/rules', { params }); return r.data; },
+  createRule: async (data) => { const r = await api.post('/notification-center/rules', data); return r.data; },
+  updateRule: async (id, data) => { const r = await api.put(`/notification-center/rules/${id}`, data); return r.data; },
+  deleteRule: async (id) => { const r = await api.delete(`/notification-center/rules/${id}`); return r.data; },
+  getHistory: async (params) => { const r = await api.get('/notification-center/history', { params }); return r.data; },
+  createAlert: async (data) => { const r = await api.post('/notification-center/history', data); return r.data; },
+  acknowledgeAlert: async (id) => { const r = await api.put(`/notification-center/history/${id}/acknowledge`); return r.data; },
+  resolveAlert: async (id) => { const r = await api.put(`/notification-center/history/${id}/resolve`); return r.data; },
+  deleteAlert: async (id) => { const r = await api.delete(`/notification-center/history/${id}`); return r.data; },
+};
+
+export const documentManagementService = {
+  getSummary: async () => { const r = await api.get('/document-management/summary'); return r.data; },
+  getOptions: async () => { const r = await api.get('/document-management/options'); return r.data; },
+  getDocuments: async (params) => { const r = await api.get('/document-management', { params }); return r.data; },
+  getDocument: async (id) => { const r = await api.get(`/document-management/${id}`); return r.data; },
+  createDocument: async (data) => { const r = await api.post('/document-management', data); return r.data; },
+  updateDocument: async (id, data) => { const r = await api.put(`/document-management/${id}`, data); return r.data; },
+  deleteDocument: async (id) => { const r = await api.delete(`/document-management/${id}`); return r.data; },
+  getVersions: async (docId) => { const r = await api.get(`/document-management/${docId}/versions`); return r.data; },
+  createVersion: async (docId, data) => { const r = await api.post(`/document-management/${docId}/versions`, data); return r.data; },
+};
+
+export const integrationHubService = {
+  getSummary: async () => { const r = await api.get('/integration-hub/summary'); return r.data; },
+  getOptions: async () => { const r = await api.get('/integration-hub/options'); return r.data; },
+  getIntegrations: async (params) => { const r = await api.get('/integration-hub', { params }); return r.data; },
+  getIntegration: async (id) => { const r = await api.get(`/integration-hub/${id}`); return r.data; },
+  createIntegration: async (data) => { const r = await api.post('/integration-hub', data); return r.data; },
+  updateIntegration: async (id, data) => { const r = await api.put(`/integration-hub/${id}`, data); return r.data; },
+  deleteIntegration: async (id) => { const r = await api.delete(`/integration-hub/${id}`); return r.data; },
+  syncIntegration: async (id) => { const r = await api.post(`/integration-hub/${id}/sync`); return r.data; },
+  getLogs: async (id, params) => { const r = await api.get(`/integration-hub/${id}/logs`, { params }); return r.data; },
+};
+
+export const roleManagementService = {
+  getSummary: async () => { const r = await api.get('/role-management/summary'); return r.data; },
+  getOptions: async () => { const r = await api.get('/role-management/options'); return r.data; },
+  getRoles: async (params) => { const r = await api.get('/role-management', { params }); return r.data; },
+  getRole: async (id) => { const r = await api.get(`/role-management/${id}`); return r.data; },
+  createRole: async (data) => { const r = await api.post('/role-management', data); return r.data; },
+  updateRole: async (id, data) => { const r = await api.put(`/role-management/${id}`, data); return r.data; },
+  deleteRole: async (id) => { const r = await api.delete(`/role-management/${id}`); return r.data; },
+  getAssignments: async (params) => { const r = await api.get('/role-management/assignments/list', { params }); return r.data; },
+  createAssignment: async (data) => { const r = await api.post('/role-management/assignments', data); return r.data; },
+  deleteAssignment: async (id) => { const r = await api.delete(`/role-management/assignments/${id}`); return r.data; },
+  getPermissionGroups: async () => { const r = await api.get('/role-management/permission-groups/list'); return r.data; },
+  createPermissionGroup: async (data) => { const r = await api.post('/role-management/permission-groups', data); return r.data; },
+};
+
+export const systemConfigService = {
+  getSummary: async () => { const r = await api.get('/system-config/summary'); return r.data; },
+  getOptions: async () => { const r = await api.get('/system-config/options'); return r.data; },
+  getConfigs: async (params) => { const r = await api.get('/system-config/configs', { params }); return r.data; },
+  createConfig: async (data) => { const r = await api.post('/system-config/configs', data); return r.data; },
+  updateConfig: async (id, data) => { const r = await api.put(`/system-config/configs/${id}`, data); return r.data; },
+  deleteConfig: async (id) => { const r = await api.delete(`/system-config/configs/${id}`); return r.data; },
+  getTenants: async (params) => { const r = await api.get('/system-config/tenants', { params }); return r.data; },
+  createTenant: async (data) => { const r = await api.post('/system-config/tenants', data); return r.data; },
+  updateTenant: async (id, data) => { const r = await api.put(`/system-config/tenants/${id}`, data); return r.data; },
+  deleteTenant: async (id) => { const r = await api.delete(`/system-config/tenants/${id}`); return r.data; },
+};
+
+export const workflowEngineService = {
+  getSummary: async () => { const r = await api.get('/workflow-engine/summary'); return r.data; },
+  getOptions: async () => { const r = await api.get('/workflow-engine/options'); return r.data; },
+  getTemplates: async (params) => { const r = await api.get('/workflow-engine/templates', { params }); return r.data; },
+  getTemplate: async (id) => { const r = await api.get(`/workflow-engine/templates/${id}`); return r.data; },
+  createTemplate: async (data) => { const r = await api.post('/workflow-engine/templates', data); return r.data; },
+  updateTemplate: async (id, data) => { const r = await api.put(`/workflow-engine/templates/${id}`, data); return r.data; },
+  deleteTemplate: async (id) => { const r = await api.delete(`/workflow-engine/templates/${id}`); return r.data; },
+  getInstances: async (params) => { const r = await api.get('/workflow-engine/instances', { params }); return r.data; },
+  getInstance: async (id) => { const r = await api.get(`/workflow-engine/instances/${id}`); return r.data; },
+  createInstance: async (data) => { const r = await api.post('/workflow-engine/instances', data); return r.data; },
+  completeStep: async (id, data) => { const r = await api.put(`/workflow-engine/steps/${id}/complete`, data); return r.data; },
+  rejectStep: async (id, data) => { const r = await api.put(`/workflow-engine/steps/${id}/reject`, data); return r.data; },
+};
+
 export default api;
