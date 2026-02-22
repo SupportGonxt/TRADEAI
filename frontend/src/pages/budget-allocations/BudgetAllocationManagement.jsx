@@ -815,25 +815,25 @@ const BudgetAllocationManagement = () => {
           ) : detailAllocation ? (
             <Box>
               <Grid container spacing={2} sx={{ mb: 3 }}>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={12} sm={6} sm={3}>
                   <Typography variant="caption" color="text.secondary">Source Amount</Typography>
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>
                     {formatCurrency(detailAllocation.sourceAmount || detailAllocation.source_amount)}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={12} sm={6} sm={3}>
                   <Typography variant="caption" color="text.secondary">Allocated</Typography>
                   <Typography variant="h6" sx={{ fontWeight: 700, color: '#2563EB' }}>
                     {formatCurrency(detailAllocation.allocatedAmount || detailAllocation.allocated_amount)}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={12} sm={6} sm={3}>
                   <Typography variant="caption" color="text.secondary">Utilized</Typography>
                   <Typography variant="h6" sx={{ fontWeight: 700, color: '#059669' }}>
                     {formatCurrency(detailAllocation.utilizedAmount || detailAllocation.utilized_amount)}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={12} sm={6} sm={3}>
                   <Typography variant="caption" color="text.secondary">Remaining</Typography>
                   <Typography variant="h6" sx={{ fontWeight: 700, color: '#D97706' }}>
                     {formatCurrency(detailAllocation.remainingAmount || detailAllocation.remaining_amount)}

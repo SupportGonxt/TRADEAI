@@ -438,22 +438,22 @@ const TradeCalendarManagement = () => {
       {loading && <LinearProgress sx={{ mb: 2, borderRadius: 1 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Total Events" value={summary?.events?.total || 0}
             subtitle={`${summary?.events?.active || 0} active`}
             icon={<CalendarIcon />} color="#7C3AED" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Upcoming" value={summary?.events?.upcoming || 0}
             subtitle="planned / approved"
             icon={<TimelineIcon />} color="#2563EB" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Planned Spend" value={formatCurrency(summary?.events?.totalPlannedSpend)}
             subtitle={`Actual: ${formatCurrency(summary?.events?.totalActualSpend)}`}
             icon={<CalendarIcon />} color="#059669" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Active Constraints" value={summary?.constraints?.active || 0}
             subtitle={`${summary?.constraints?.blackouts || 0} blackouts`}
             icon={<BlockIcon />} color="#DC2626" />
@@ -677,21 +677,21 @@ const TradeCalendarManagement = () => {
               <TextField fullWidth size="small" label="Description" multiline rows={2}
                 value={eventForm.description} onChange={(e) => setEventForm(prev => ({ ...prev, description: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Start Date" type="date" InputLabelProps={{ shrink: true }} required
                 value={eventForm.startDate} onChange={(e) => setEventForm(prev => ({ ...prev, startDate: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="End Date" type="date" InputLabelProps={{ shrink: true }} required
                 value={eventForm.endDate} onChange={(e) => setEventForm(prev => ({ ...prev, endDate: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField select fullWidth size="small" label="Status"
                 value={eventForm.status} onChange={(e) => setEventForm(prev => ({ ...prev, status: e.target.value }))}>
                 {statuses.map(s => <MenuItem key={s.value} value={s.value}>{s.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField select fullWidth size="small" label="Priority"
                 value={eventForm.priority} onChange={(e) => setEventForm(prev => ({ ...prev, priority: e.target.value }))}>
                 {priorities.map(p => <MenuItem key={p.value} value={p.value}>{p.label}</MenuItem>)}
@@ -718,23 +718,23 @@ const TradeCalendarManagement = () => {
                 {promotions.map(p => <MenuItem key={p.id} value={p.id}>{p.name}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Channel"
                 value={eventForm.channel} onChange={(e) => setEventForm(prev => ({ ...prev, channel: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Region"
                 value={eventForm.region} onChange={(e) => setEventForm(prev => ({ ...prev, region: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField fullWidth size="small" label="Planned Spend (R)" type="number"
                 value={eventForm.plannedSpend} onChange={(e) => setEventForm(prev => ({ ...prev, plannedSpend: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField fullWidth size="small" label="Planned Volume" type="number"
                 value={eventForm.plannedVolume} onChange={(e) => setEventForm(prev => ({ ...prev, plannedVolume: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField fullWidth size="small" label="Planned Revenue (R)" type="number"
                 value={eventForm.plannedRevenue} onChange={(e) => setEventForm(prev => ({ ...prev, plannedRevenue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
@@ -799,53 +799,53 @@ const TradeCalendarManagement = () => {
               <TextField fullWidth size="small" label="Description" multiline rows={2}
                 value={constraintForm.description} onChange={(e) => setConstraintForm(prev => ({ ...prev, description: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField select fullWidth size="small" label="Scope"
                 value={constraintForm.scope} onChange={(e) => setConstraintForm(prev => ({ ...prev, scope: e.target.value }))}>
                 {scopes.map(s => <MenuItem key={s.value} value={s.value}>{s.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField select fullWidth size="small" label="Priority"
                 value={constraintForm.priority} onChange={(e) => setConstraintForm(prev => ({ ...prev, priority: e.target.value }))}>
                 {priorities.map(p => <MenuItem key={p.value} value={p.value}>{p.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField select fullWidth size="small" label="Violation Action"
                 value={constraintForm.violationAction} onChange={(e) => setConstraintForm(prev => ({ ...prev, violationAction: e.target.value }))}>
                 {violationActions.map(a => <MenuItem key={a.value} value={a.value}>{a.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Start Date" type="date" InputLabelProps={{ shrink: true }}
                 value={constraintForm.startDate} onChange={(e) => setConstraintForm(prev => ({ ...prev, startDate: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="End Date" type="date" InputLabelProps={{ shrink: true }}
                 value={constraintForm.endDate} onChange={(e) => setConstraintForm(prev => ({ ...prev, endDate: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Max Concurrent Promos" type="number"
                 value={constraintForm.maxConcurrentPromotions} onChange={(e) => setConstraintForm(prev => ({ ...prev, maxConcurrentPromotions: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Max Spend (R)" type="number"
                 value={constraintForm.maxSpendAmount} onChange={(e) => setConstraintForm(prev => ({ ...prev, maxSpendAmount: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Min Gap (days)" type="number"
                 value={constraintForm.minGapDays} onChange={(e) => setConstraintForm(prev => ({ ...prev, minGapDays: parseInt(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Max Discount (%)" type="number"
                 value={constraintForm.maxDiscountPct} onChange={(e) => setConstraintForm(prev => ({ ...prev, maxDiscountPct: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Min Lead Time (days)" type="number"
                 value={constraintForm.minLeadTimeDays} onChange={(e) => setConstraintForm(prev => ({ ...prev, minLeadTimeDays: parseInt(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField select fullWidth size="small" label="Status"
                 value={constraintForm.status} onChange={(e) => setConstraintForm(prev => ({ ...prev, status: e.target.value }))}>
                 <MenuItem value="active">Active</MenuItem>
@@ -906,53 +906,53 @@ const TradeCalendarManagement = () => {
                 <StatusChip status={detailEvent.status} />
                 <Box sx={{ mt: 1 }}><PriorityChip priority={detailEvent.priority} /></Box>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Type</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   {eventTypes.find(t => t.value === (detailEvent.eventType || detailEvent.event_type))?.label || detailEvent.eventType || detailEvent.event_type}
                 </Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Start Date</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{formatDate(detailEvent.startDate || detailEvent.start_date)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>End Date</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{formatDate(detailEvent.endDate || detailEvent.end_date)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Customer</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{detailEvent.customerName || detailEvent.customer_name || '-'}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Planned Spend</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 700, color: '#7C3AED' }}>{formatCurrency(detailEvent.plannedSpend || detailEvent.planned_spend)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Actual Spend</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 700, color: '#059669' }}>{formatCurrency(detailEvent.actualSpend || detailEvent.actual_spend)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Planned Revenue</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{formatCurrency(detailEvent.plannedRevenue || detailEvent.planned_revenue)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Actual Revenue</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{formatCurrency(detailEvent.actualRevenue || detailEvent.actual_revenue)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>ROI</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{(detailEvent.roi || 0).toFixed(1)}%</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Lift</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{(detailEvent.liftPct || detailEvent.lift_pct || 0).toFixed(1)}%</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Channel</Typography>
                 <Typography variant="body2">{detailEvent.channel || '-'}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Region</Typography>
                 <Typography variant="body2">{detailEvent.region || '-'}</Typography>
               </Grid>

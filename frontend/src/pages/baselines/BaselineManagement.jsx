@@ -263,7 +263,7 @@ const BaselineManagement = () => {
         <TextField fullWidth label="Description" multiline rows={2} value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Baseline Type" value={form.baselineType}
           onChange={(e) => setForm({ ...form, baselineType: e.target.value })}>
           {(options?.baselineTypes || [
@@ -273,7 +273,7 @@ const BaselineManagement = () => {
           ]).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Calculation Method" value={form.calculationMethod}
           onChange={(e) => setForm({ ...form, calculationMethod: e.target.value })}>
           {(options?.calculationMethods || [
@@ -286,7 +286,7 @@ const BaselineManagement = () => {
           ]).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Granularity" value={form.granularity}
           onChange={(e) => setForm({ ...form, granularity: e.target.value })}>
           {(options?.granularities || [
@@ -297,30 +297,30 @@ const BaselineManagement = () => {
           ]).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Base Year" type="number" value={form.baseYear}
           onChange={(e) => setForm({ ...form, baseYear: parseInt(e.target.value) })} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Customer" value={form.customerId}
           onChange={(e) => setForm({ ...form, customerId: e.target.value })}>
           <MenuItem value="">All Customers</MenuItem>
           {customers.map(c => <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Product" value={form.productId}
           onChange={(e) => setForm({ ...form, productId: e.target.value })}>
           <MenuItem value="">All Products</MenuItem>
           {products.map(p => <MenuItem key={p.id} value={p.id}>{p.name}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Start Date" type="date" value={form.startDate}
           onChange={(e) => setForm({ ...form, startDate: e.target.value })}
           InputLabelProps={{ shrink: true }} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="End Date" type="date" value={form.endDate}
           onChange={(e) => setForm({ ...form, endDate: e.target.value })}
           InputLabelProps={{ shrink: true }} />
@@ -692,7 +692,7 @@ const BaselineManagement = () => {
 
           {detailTab === 2 && (
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Paper sx={{ p: 2 }}>
                   <Typography variant="subtitle2" gutterBottom>Calculation Settings</Typography>
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -704,7 +704,7 @@ const BaselineManagement = () => {
                   </Box>
                 </Paper>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Paper sx={{ p: 2 }}>
                   <Typography variant="subtitle2" gutterBottom>Statistical Settings</Typography>
                   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -818,25 +818,25 @@ const BaselineManagement = () => {
                 ))}
               </TextField>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth label="Cannibalization Rate" type="number"
                 value={decomposeForm.cannibalizationRate}
                 onChange={(e) => setDecomposeForm({ ...decomposeForm, cannibalizationRate: parseFloat(e.target.value) })}
                 inputProps={{ step: 0.01, min: 0, max: 1 }} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth label="Pantry Loading Rate" type="number"
                 value={decomposeForm.pantryLoadingRate}
                 onChange={(e) => setDecomposeForm({ ...decomposeForm, pantryLoadingRate: parseFloat(e.target.value) })}
                 inputProps={{ step: 0.01, min: 0, max: 1 }} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth label="Halo Rate" type="number"
                 value={decomposeForm.haloRate}
                 onChange={(e) => setDecomposeForm({ ...decomposeForm, haloRate: parseFloat(e.target.value) })}
                 inputProps={{ step: 0.01, min: 0, max: 1 }} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth label="Pull-Forward Rate" type="number"
                 value={decomposeForm.pullForwardRate}
                 onChange={(e) => setDecomposeForm({ ...decomposeForm, pullForwardRate: parseFloat(e.target.value) })}

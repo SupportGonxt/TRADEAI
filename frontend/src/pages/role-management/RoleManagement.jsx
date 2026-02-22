@@ -99,10 +99,10 @@ export default function RoleManagement() {
       {loading && <LinearProgress sx={{ mb: 2 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={6} sm={3}><SummaryCard title="Total Roles" value={summary.roles?.total} /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Active Roles" value={summary.roles?.active} color="#059669" /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Users Assigned" value={summary.assignments?.users} color="#2563EB" /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Permission Groups" value={summary.permissionGroups?.total} color="#D97706" /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Total Roles" value={summary.roles?.total} /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Active Roles" value={summary.roles?.active} color="#059669" /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Users Assigned" value={summary.assignments?.users} color="#2563EB" /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Permission Groups" value={summary.permissionGroups?.total} color="#D97706" /></Grid>
       </Grid>
 
       <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>
@@ -198,8 +198,8 @@ export default function RoleManagement() {
           <TextField label="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} fullWidth required size="small" />
           <TextField label="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} fullWidth multiline rows={2} size="small" />
           <Grid container spacing={2}>
-            <Grid item xs={6}><TextField select label="Type" value={form.role_type} onChange={(e) => setForm({ ...form, role_type: e.target.value })} fullWidth size="small">{(options.roleTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
-            <Grid item xs={6}><TextField label="Level" type="number" value={form.level} onChange={(e) => setForm({ ...form, level: parseInt(e.target.value) || 0 })} fullWidth size="small" /></Grid>
+            <Grid item xs={12} sm={6}><TextField select label="Type" value={form.role_type} onChange={(e) => setForm({ ...form, role_type: e.target.value })} fullWidth size="small">{(options.roleTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
+            <Grid item xs={12} sm={6}><TextField label="Level" type="number" value={form.level} onChange={(e) => setForm({ ...form, level: parseInt(e.target.value) || 0 })} fullWidth size="small" /></Grid>
           </Grid>
           <TextField label="Max Approval Amount (R)" type="number" value={form.max_approval_amount} onChange={(e) => setForm({ ...form, max_approval_amount: e.target.value })} fullWidth size="small" />
           <TextField label="Notes" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} fullWidth multiline rows={2} size="small" />

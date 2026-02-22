@@ -363,7 +363,7 @@ const AccrualManagement = () => {
         <TextField fullWidth label="Description" multiline rows={2} value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Accrual Type" value={form.accrualType}
           onChange={(e) => setForm({ ...form, accrualType: e.target.value })}>
           {(options?.accrualTypes || [
@@ -376,7 +376,7 @@ const AccrualManagement = () => {
           ]).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Calculation Method" value={form.calculationMethod}
           onChange={(e) => setForm({ ...form, calculationMethod: e.target.value })}>
           {(options?.calculationMethods || [
@@ -388,7 +388,7 @@ const AccrualManagement = () => {
           ]).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Frequency" value={form.frequency}
           onChange={(e) => setForm({ ...form, frequency: e.target.value })}>
           {(options?.frequencies || [
@@ -399,7 +399,7 @@ const AccrualManagement = () => {
           ]).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Rate Type" value={form.rateType}
           onChange={(e) => setForm({ ...form, rateType: e.target.value })}>
           {(options?.rateTypes || [
@@ -409,50 +409,50 @@ const AccrualManagement = () => {
           ]).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Rate" type="number" value={form.rate}
           onChange={(e) => setForm({ ...form, rate: parseFloat(e.target.value) || 0 })}
           inputProps={{ step: 0.01 }}
           helperText={form.rateType === 'percentage' ? 'e.g. 5 for 5%' : 'Amount in ZAR'} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Base Amount (for lump sum)" type="number" value={form.baseAmount}
           onChange={(e) => setForm({ ...form, baseAmount: parseFloat(e.target.value) || 0 })} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Customer" value={form.customerId}
           onChange={(e) => setForm({ ...form, customerId: e.target.value })}>
           <MenuItem value="">All Customers</MenuItem>
           {customers.map(c => <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Product" value={form.productId}
           onChange={(e) => setForm({ ...form, productId: e.target.value })}>
           <MenuItem value="">All Products</MenuItem>
           {products.map(p => <MenuItem key={p.id} value={p.id}>{p.name}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Promotion" value={form.promotionId}
           onChange={(e) => setForm({ ...form, promotionId: e.target.value })}>
           <MenuItem value="">None</MenuItem>
           {promotions.map(p => <MenuItem key={p.id} value={p.id}>{p.name}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Baseline (for lift calc)" value={form.baselineId}
           onChange={(e) => setForm({ ...form, baselineId: e.target.value })}>
           <MenuItem value="">None</MenuItem>
           {baselines.map(b => <MenuItem key={b.id} value={b.id}>{b.name}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Start Date" type="date" value={form.startDate}
           onChange={(e) => setForm({ ...form, startDate: e.target.value })}
           InputLabelProps={{ shrink: true }} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="End Date" type="date" value={form.endDate}
           onChange={(e) => setForm({ ...form, endDate: e.target.value })}
           InputLabelProps={{ shrink: true }} />
@@ -461,12 +461,12 @@ const AccrualManagement = () => {
         <Divider sx={{ my: 1 }} />
         <Typography variant="subtitle2" sx={{ mb: 1 }}>GL Configuration</Typography>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="GL Account (Debit)" value={form.glAccount}
           onChange={(e) => setForm({ ...form, glAccount: e.target.value })}
           placeholder="e.g. Trade Promotion Expense" />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Cost Center (Credit)" value={form.costCenter}
           onChange={(e) => setForm({ ...form, costCenter: e.target.value })}
           placeholder="e.g. Trade Accrual Liability" />
@@ -687,35 +687,35 @@ const AccrualManagement = () => {
 
           {detailTab === 2 && (
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">Type</Typography>
                 <Typography variant="body2">{(a.accrualType || a.accrual_type || '').replace(/_/g, ' ')}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">Calculation Method</Typography>
                 <Typography variant="body2">{(a.calculationMethod || a.calculation_method || '').replace(/_/g, ' ')}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">Frequency</Typography>
                 <Typography variant="body2" sx={{ textTransform: 'capitalize' }}>{a.frequency}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">Rate</Typography>
                 <Typography variant="body2">{a.rate}{(a.rateType || a.rate_type) === 'percentage' ? '%' : ` ${a.rateType || a.rate_type}`}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">GL Account (Debit)</Typography>
                 <Typography variant="body2">{a.glAccount || a.gl_account || 'Not set'}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">Cost Center (Credit)</Typography>
                 <Typography variant="body2">{a.costCenter || a.cost_center || 'Not set'}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">Start Date</Typography>
                 <Typography variant="body2">{a.startDate || a.start_date || '-'}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">End Date</Typography>
                 <Typography variant="body2">{a.endDate || a.end_date || '-'}</Typography>
               </Grid>

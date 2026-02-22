@@ -111,10 +111,10 @@ export default function SystemConfig() {
       {loading && <LinearProgress sx={{ mb: 2 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={6} sm={3}><SummaryCard title="Config Items" value={summary.config?.total} /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Categories" value={summary.config?.categories} color="#2563EB" /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Total Tenants" value={summary.tenants?.total} color="#059669" /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Active Tenants" value={summary.tenants?.active} color="#D97706" /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Config Items" value={summary.config?.total} /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Categories" value={summary.config?.categories} color="#2563EB" /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Total Tenants" value={summary.tenants?.total} color="#059669" /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Active Tenants" value={summary.tenants?.active} color="#D97706" /></Grid>
       </Grid>
 
       <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>
@@ -195,28 +195,28 @@ export default function SystemConfig() {
             <TextField label="Key" value={configForm.config_key} onChange={(e) => setConfigForm({ ...configForm, config_key: e.target.value })} fullWidth required size="small" disabled={!!editItem} />
             <TextField label="Value" value={configForm.config_value} onChange={(e) => setConfigForm({ ...configForm, config_value: e.target.value })} fullWidth size="small" />
             <Grid container spacing={2}>
-              <Grid item xs={6}><TextField select label="Type" value={configForm.config_type} onChange={(e) => setConfigForm({ ...configForm, config_type: e.target.value })} fullWidth size="small">{(options.configTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
-              <Grid item xs={6}><TextField select label="Category" value={configForm.category} onChange={(e) => setConfigForm({ ...configForm, category: e.target.value })} fullWidth size="small">{(options.categories || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
+              <Grid item xs={12} sm={6}><TextField select label="Type" value={configForm.config_type} onChange={(e) => setConfigForm({ ...configForm, config_type: e.target.value })} fullWidth size="small">{(options.configTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
+              <Grid item xs={12} sm={6}><TextField select label="Category" value={configForm.category} onChange={(e) => setConfigForm({ ...configForm, category: e.target.value })} fullWidth size="small">{(options.categories || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
             </Grid>
             <TextField label="Module" value={configForm.module} onChange={(e) => setConfigForm({ ...configForm, module: e.target.value })} fullWidth size="small" />
             <TextField label="Description" value={configForm.description} onChange={(e) => setConfigForm({ ...configForm, description: e.target.value })} fullWidth multiline rows={2} size="small" />
           </>) : (<>
             <TextField label="Name" value={tenantForm.name} onChange={(e) => setTenantForm({ ...tenantForm, name: e.target.value })} fullWidth required size="small" />
             <Grid container spacing={2}>
-              <Grid item xs={6}><TextField label="Code" value={tenantForm.code} onChange={(e) => setTenantForm({ ...tenantForm, code: e.target.value })} fullWidth size="small" /></Grid>
-              <Grid item xs={6}><TextField label="Domain" value={tenantForm.domain} onChange={(e) => setTenantForm({ ...tenantForm, domain: e.target.value })} fullWidth size="small" /></Grid>
+              <Grid item xs={12} sm={6}><TextField label="Code" value={tenantForm.code} onChange={(e) => setTenantForm({ ...tenantForm, code: e.target.value })} fullWidth size="small" /></Grid>
+              <Grid item xs={12} sm={6}><TextField label="Domain" value={tenantForm.domain} onChange={(e) => setTenantForm({ ...tenantForm, domain: e.target.value })} fullWidth size="small" /></Grid>
             </Grid>
             <Grid container spacing={2}>
-              <Grid item xs={6}><TextField select label="Plan" value={tenantForm.plan} onChange={(e) => setTenantForm({ ...tenantForm, plan: e.target.value })} fullWidth size="small">{(options.plans || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
-              <Grid item xs={6}><TextField select label="Status" value={tenantForm.status} onChange={(e) => setTenantForm({ ...tenantForm, status: e.target.value })} fullWidth size="small"><MenuItem value="active">Active</MenuItem><MenuItem value="inactive">Inactive</MenuItem><MenuItem value="suspended">Suspended</MenuItem></TextField></Grid>
+              <Grid item xs={12} sm={6}><TextField select label="Plan" value={tenantForm.plan} onChange={(e) => setTenantForm({ ...tenantForm, plan: e.target.value })} fullWidth size="small">{(options.plans || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
+              <Grid item xs={12} sm={6}><TextField select label="Status" value={tenantForm.status} onChange={(e) => setTenantForm({ ...tenantForm, status: e.target.value })} fullWidth size="small"><MenuItem value="active">Active</MenuItem><MenuItem value="inactive">Inactive</MenuItem><MenuItem value="suspended">Suspended</MenuItem></TextField></Grid>
             </Grid>
             <Grid container spacing={2}>
-              <Grid item xs={6}><TextField label="Max Users" type="number" value={tenantForm.max_users} onChange={(e) => setTenantForm({ ...tenantForm, max_users: parseInt(e.target.value) || 50 })} fullWidth size="small" /></Grid>
-              <Grid item xs={6}><TextField label="Currency" value={tenantForm.currency} onChange={(e) => setTenantForm({ ...tenantForm, currency: e.target.value })} fullWidth size="small" /></Grid>
+              <Grid item xs={12} sm={6}><TextField label="Max Users" type="number" value={tenantForm.max_users} onChange={(e) => setTenantForm({ ...tenantForm, max_users: parseInt(e.target.value) || 50 })} fullWidth size="small" /></Grid>
+              <Grid item xs={12} sm={6}><TextField label="Currency" value={tenantForm.currency} onChange={(e) => setTenantForm({ ...tenantForm, currency: e.target.value })} fullWidth size="small" /></Grid>
             </Grid>
             <Grid container spacing={2}>
-              <Grid item xs={6}><TextField label="Contact Name" value={tenantForm.contact_name} onChange={(e) => setTenantForm({ ...tenantForm, contact_name: e.target.value })} fullWidth size="small" /></Grid>
-              <Grid item xs={6}><TextField label="Contact Email" value={tenantForm.contact_email} onChange={(e) => setTenantForm({ ...tenantForm, contact_email: e.target.value })} fullWidth size="small" /></Grid>
+              <Grid item xs={12} sm={6}><TextField label="Contact Name" value={tenantForm.contact_name} onChange={(e) => setTenantForm({ ...tenantForm, contact_name: e.target.value })} fullWidth size="small" /></Grid>
+              <Grid item xs={12} sm={6}><TextField label="Contact Email" value={tenantForm.contact_email} onChange={(e) => setTenantForm({ ...tenantForm, contact_email: e.target.value })} fullWidth size="small" /></Grid>
             </Grid>
             <TextField label="Notes" value={tenantForm.notes} onChange={(e) => setTenantForm({ ...tenantForm, notes: e.target.value })} fullWidth multiline rows={2} size="small" />
           </>)}

@@ -107,10 +107,10 @@ export default function DocumentManagement() {
       {loading && <LinearProgress sx={{ mb: 2 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={6} sm={3}><SummaryCard title="Total Documents" value={summary.total} /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Active" value={summary.active} color="#059669" /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Pending Approval" value={summary.pending} color="#D97706" /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Total Size (KB)" value={summary.total_size ? Math.round(summary.total_size / 1024) : 0} color="#2563EB" /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Total Documents" value={summary.total} /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Active" value={summary.active} color="#059669" /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Pending Approval" value={summary.pending} color="#D97706" /></Grid>
+        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Total Size (KB)" value={summary.total_size ? Math.round(summary.total_size / 1024) : 0} color="#2563EB" /></Grid>
       </Grid>
 
       <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>
@@ -166,12 +166,12 @@ export default function DocumentManagement() {
           <TextField label="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} fullWidth required size="small" />
           <TextField label="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} fullWidth multiline rows={2} size="small" />
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select label="Type" value={form.document_type} onChange={(e) => setForm({ ...form, document_type: e.target.value })} fullWidth size="small">
                 {(options.documentTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select label="Category" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} fullWidth size="small">
                 {(options.categories || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
               </TextField>
@@ -180,10 +180,10 @@ export default function DocumentManagement() {
           <TextField label="File Name" value={form.file_name} onChange={(e) => setForm({ ...form, file_name: e.target.value })} fullWidth size="small" />
           <TextField label="File URL" value={form.file_url} onChange={(e) => setForm({ ...form, file_url: e.target.value })} fullWidth size="small" />
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField label="Entity Type" value={form.entity_type} onChange={(e) => setForm({ ...form, entity_type: e.target.value })} fullWidth size="small" />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField label="Entity Name" value={form.entity_name} onChange={(e) => setForm({ ...form, entity_name: e.target.value })} fullWidth size="small" />
             </Grid>
           </Grid>

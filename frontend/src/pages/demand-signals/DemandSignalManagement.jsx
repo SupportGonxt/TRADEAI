@@ -401,22 +401,22 @@ const DemandSignalManagement = () => {
       {loading && <LinearProgress sx={{ mb: 2, borderRadius: 1 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Total Signals" value={formatNumber(summary?.signals?.total)}
             subtitle={`${summary?.signals?.sourceCount || 0} sources`}
             icon={<SignalIcon />} color="#7C3AED" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Total Revenue" value={formatCurrency(summary?.signals?.totalRevenue)}
             subtitle={`${formatNumber(summary?.signals?.totalUnits)} units`}
             icon={<TrendUpIcon />} color="#059669" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Incremental Revenue" value={formatCurrency(summary?.signals?.totalIncrementalRevenue)}
             subtitle={`Avg lift: ${summary?.signals?.avgLift || 0}%`}
             icon={<TrendUpIcon />} color="#2563EB" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Anomalies" value={summary?.signals?.anomalyCount || 0}
             subtitle={`${summary?.signals?.oosCount || 0} out-of-stock`}
             icon={<WarningIcon />} color="#DC2626" />
@@ -665,17 +665,17 @@ const DemandSignalManagement = () => {
         </DialogTitle>
         <DialogContent dividers>
           <Grid container spacing={2} sx={{ mt: 0.5 }}>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField select fullWidth size="small" label="Signal Type"
                 value={signalForm.signalType} onChange={(e) => setSignalForm(prev => ({ ...prev, signalType: e.target.value }))}>
                 {signalTypes.map(t => <MenuItem key={t.value} value={t.value}>{t.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField fullWidth size="small" label="Signal Date" type="date" InputLabelProps={{ shrink: true }} required
                 value={signalForm.signalDate} onChange={(e) => setSignalForm(prev => ({ ...prev, signalDate: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField select fullWidth size="small" label="Granularity"
                 value={signalForm.granularity} onChange={(e) => setSignalForm(prev => ({ ...prev, granularity: e.target.value }))}>
                 {granularities.map(g => <MenuItem key={g.value} value={g.value}>{g.label}</MenuItem>)}
@@ -695,19 +695,19 @@ const DemandSignalManagement = () => {
                 {products.map(p => <MenuItem key={p.id} value={p.id}>{p.name}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Channel" value={signalForm.channel}
                 onChange={(e) => setSignalForm(prev => ({ ...prev, channel: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Region" value={signalForm.region}
                 onChange={(e) => setSignalForm(prev => ({ ...prev, region: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Category" value={signalForm.category}
                 onChange={(e) => setSignalForm(prev => ({ ...prev, category: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField select fullWidth size="small" label="Source"
                 value={signalForm.sourceId} onChange={(e) => handleSourceSelect(e.target.value)}>
                 <MenuItem value="">None</MenuItem>
@@ -716,55 +716,55 @@ const DemandSignalManagement = () => {
             </Grid>
 
             <Grid item xs={12}><Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#374151' }}>Sales Data</Typography></Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Units Sold" type="number"
                 value={signalForm.unitsSold} onChange={(e) => setSignalForm(prev => ({ ...prev, unitsSold: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Revenue (R)" type="number"
                 value={signalForm.revenue} onChange={(e) => setSignalForm(prev => ({ ...prev, revenue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Avg Price (R)" type="number"
                 value={signalForm.avgPrice} onChange={(e) => setSignalForm(prev => ({ ...prev, avgPrice: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Volume" type="number"
                 value={signalForm.volume} onChange={(e) => setSignalForm(prev => ({ ...prev, volume: parseFloat(e.target.value) || 0 }))} />
             </Grid>
 
             <Grid item xs={12}><Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#374151' }}>Baseline & Lift</Typography></Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Baseline Units" type="number"
                 value={signalForm.baselineUnits} onChange={(e) => setSignalForm(prev => ({ ...prev, baselineUnits: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Baseline Revenue (R)" type="number"
                 value={signalForm.baselineRevenue} onChange={(e) => setSignalForm(prev => ({ ...prev, baselineRevenue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Incremental Units" type="number"
                 value={signalForm.incrementalUnits} onChange={(e) => setSignalForm(prev => ({ ...prev, incrementalUnits: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Lift %" type="number"
                 value={signalForm.liftPct} onChange={(e) => setSignalForm(prev => ({ ...prev, liftPct: parseFloat(e.target.value) || 0 }))} />
             </Grid>
 
             <Grid item xs={12}><Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#374151' }}>Market Intelligence</Typography></Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Market Share %" type="number"
                 value={signalForm.marketSharePct} onChange={(e) => setSignalForm(prev => ({ ...prev, marketSharePct: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Competitor Price (R)" type="number"
                 value={signalForm.competitorPrice} onChange={(e) => setSignalForm(prev => ({ ...prev, competitorPrice: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Distribution %" type="number"
                 value={signalForm.distributionPct} onChange={(e) => setSignalForm(prev => ({ ...prev, distributionPct: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField select fullWidth size="small" label="Trend Direction"
                 value={signalForm.trendDirection} onChange={(e) => setSignalForm(prev => ({ ...prev, trendDirection: e.target.value }))}>
                 <MenuItem value="">None</MenuItem>
@@ -803,23 +803,23 @@ const DemandSignalManagement = () => {
               <TextField fullWidth size="small" label="Description" multiline rows={2}
                 value={sourceForm.description} onChange={(e) => setSourceForm(prev => ({ ...prev, description: e.target.value }))} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth size="small" label="Source Type"
                 value={sourceForm.sourceType} onChange={(e) => setSourceForm(prev => ({ ...prev, sourceType: e.target.value }))}>
                 {sourceTypes.map(t => <MenuItem key={t.value} value={t.value}>{t.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth size="small" label="Provider"
                 value={sourceForm.provider} onChange={(e) => setSourceForm(prev => ({ ...prev, provider: e.target.value }))} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth size="small" label="Frequency"
                 value={sourceForm.frequency} onChange={(e) => setSourceForm(prev => ({ ...prev, frequency: e.target.value }))}>
                 {frequencies.map(f => <MenuItem key={f.value} value={f.value}>{f.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth size="small" label="Status"
                 value={sourceForm.status} onChange={(e) => setSourceForm(prev => ({ ...prev, status: e.target.value }))}>
                 <MenuItem value="active">Active</MenuItem>
@@ -846,53 +846,53 @@ const DemandSignalManagement = () => {
         <DialogContent dividers>
           {detailSignal && (
             <Grid container spacing={2}>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Signal Type</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   {signalTypes.find(t => t.value === (detailSignal.signalType || detailSignal.signal_type))?.label || detailSignal.signalType || detailSignal.signal_type}
                 </Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Date</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{formatDate(detailSignal.signalDate || detailSignal.signal_date)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Customer</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{detailSignal.customerName || detailSignal.customer_name || '-'}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Product</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{detailSignal.productName || detailSignal.product_name || '-'}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Units Sold</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(detailSignal.unitsSold || detailSignal.units_sold)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Revenue</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 700, color: '#7C3AED' }}>{formatCurrency(detailSignal.revenue)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Baseline Revenue</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{formatCurrency(detailSignal.baselineRevenue || detailSignal.baseline_revenue)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Incremental Revenue</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 700, color: '#059669' }}>{formatCurrency(detailSignal.incrementalRevenue || detailSignal.incremental_revenue)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Lift %</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{(detailSignal.liftPct || detailSignal.lift_pct || 0).toFixed(1)}%</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Market Share</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{(detailSignal.marketSharePct || detailSignal.market_share_pct || 0).toFixed(1)}%</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Competitor Price</Typography>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>{formatCurrency(detailSignal.competitorPrice || detailSignal.competitor_price)}</Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Typography variant="caption" sx={{ color: '#6B7280' }}>Trend</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                   <TrendIcon direction={detailSignal.trendDirection || detailSignal.trend_direction} />

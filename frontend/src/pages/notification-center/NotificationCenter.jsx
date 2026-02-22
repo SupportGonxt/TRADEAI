@@ -118,10 +118,10 @@ export default function NotificationCenter() {
       {loading && <LinearProgress sx={{ mb: 2, borderRadius: 1 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={6} md={3}><SummaryCard title="Total Notifications" value={ns.total} subtitle={`${ns.unread || 0} unread`} /></Grid>
-        <Grid item xs={6} md={3}><SummaryCard title="High Priority" value={ns.high_priority} color="#F59E0B" /></Grid>
-        <Grid item xs={6} md={3}><SummaryCard title="Alert Rules" value={rs.total} subtitle={`${rs.active || 0} active`} color="#10B981" /></Grid>
-        <Grid item xs={6} md={3}><SummaryCard title="Alerts Triggered" value={as.total} subtitle={`${as.triggered || 0} open`} color="#EF4444" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Total Notifications" value={ns.total} subtitle={`${ns.unread || 0} unread`} /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="High Priority" value={ns.high_priority} color="#F59E0B" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Alert Rules" value={rs.total} subtitle={`${rs.active || 0} active`} color="#10B981" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Alerts Triggered" value={as.total} subtitle={`${as.triggered || 0} open`} color="#EF4444" /></Grid>
       </Grid>
 
       <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ mb: 2 }}>
