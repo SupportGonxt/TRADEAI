@@ -22,8 +22,9 @@ import {
   AccountBalanceWallet as AccrueIcon,
   Receipt as SettleIcon,
   CheckCircle as ApprovalsIcon,
-  BarChart as InsightsIcon,
+  BarChart as  InsightsIcon,
   Person as CustomerIcon,
+  Assessment as ReportingIcon,
   Storage as DataIcon,
   Settings as SettingsIcon,
   HelpOutline as HelpIcon,
@@ -48,6 +49,7 @@ const navItems = [
   { key: 'approvals', label: 'Approve', icon: <ApprovalsIcon />, path: '/approvals' },
   { key: 'pnl', label: 'P&L', icon: <InsightsIcon />, path: '/pnl' },
   { key: 'customer360', label: 'Customer 360', icon: <CustomerIcon />, path: '/customer-360' },
+  { key: 'reporting', label: 'Reports', icon: <ReportingIcon />, path: '/advanced-reporting' },
   { key: 'data', label: 'Master Data', icon: <DataIcon />, path: '/customers' },
 ];
 

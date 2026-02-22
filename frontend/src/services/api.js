@@ -1347,4 +1347,83 @@ export const customer360Service = {
   },
 };
 
+export const advancedReportingService = {
+  getSummary: async () => {
+    const response = await api.get('/advanced-reporting/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/advanced-reporting/options');
+    return response.data;
+  },
+  getTemplates: async (params) => {
+    const response = await api.get('/advanced-reporting/templates', { params });
+    return response.data;
+  },
+  getTemplateById: async (id) => {
+    const response = await api.get(`/advanced-reporting/templates/${id}`);
+    return response.data;
+  },
+  createTemplate: async (data) => {
+    const response = await api.post('/advanced-reporting/templates', data);
+    return response.data;
+  },
+  updateTemplate: async (id, data) => {
+    const response = await api.put(`/advanced-reporting/templates/${id}`, data);
+    return response.data;
+  },
+  deleteTemplate: async (id) => {
+    const response = await api.delete(`/advanced-reporting/templates/${id}`);
+    return response.data;
+  },
+  runTemplate: async (id, data) => {
+    const response = await api.post(`/advanced-reporting/templates/${id}/run`, data || {});
+    return response.data;
+  },
+  getReports: async (params) => {
+    const response = await api.get('/advanced-reporting/reports', { params });
+    return response.data;
+  },
+  getReportById: async (id) => {
+    const response = await api.get(`/advanced-reporting/reports/${id}`);
+    return response.data;
+  },
+  updateReport: async (id, data) => {
+    const response = await api.put(`/advanced-reporting/reports/${id}`, data);
+    return response.data;
+  },
+  deleteReport: async (id) => {
+    const response = await api.delete(`/advanced-reporting/reports/${id}`);
+    return response.data;
+  },
+  toggleFavorite: async (id) => {
+    const response = await api.post(`/advanced-reporting/reports/${id}/toggle-favorite`);
+    return response.data;
+  },
+  getSchedules: async (params) => {
+    const response = await api.get('/advanced-reporting/schedules', { params });
+    return response.data;
+  },
+  getScheduleById: async (id) => {
+    const response = await api.get(`/advanced-reporting/schedules/${id}`);
+    return response.data;
+  },
+  createSchedule: async (data) => {
+    const response = await api.post('/advanced-reporting/schedules', data);
+    return response.data;
+  },
+  updateSchedule: async (id, data) => {
+    const response = await api.put(`/advanced-reporting/schedules/${id}`, data);
+    return response.data;
+  },
+  deleteSchedule: async (id) => {
+    const response = await api.delete(`/advanced-reporting/schedules/${id}`);
+    return response.data;
+  },
+  getCrossModuleReport: async (params) => {
+    const response = await api.get('/advanced-reporting/cross-module', { params });
+    return response.data;
+  },
+};
+
 export default api;

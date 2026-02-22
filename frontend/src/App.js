@@ -70,6 +70,7 @@ import ActivityGridCalendar from './pages/activitygrid/ActivityGridCalendar';
 import SimulationStudioNew from './pages/simulation/SimulationStudio';
 import PromotionsTimelineNew from './pages/timeline/PromotionsTimeline';
 import Customer360New from './pages/customer360/Customer360';
+import AdvancedReportingManagement from './pages/advanced-reporting/AdvancedReportingManagement';
 import BudgetConsoleNew from './pages/budgetconsole/BudgetConsole';
 import PromotionPlannerNew from './pages/promotions/PromotionPlanner';
 
@@ -1252,6 +1253,30 @@ function App() {
             isAuthenticated ? (
               <Layout user={user} onLogout={handleLogout}>
                 <Customer360New />
+              </Layout>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/advanced-reporting"
+          element={
+            isAuthenticated ? (
+              <Layout user={user} onLogout={handleLogout}>
+                <AdvancedReportingManagement />
+              </Layout>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/advanced-reporting/:id"
+          element={
+            isAuthenticated ? (
+              <Layout user={user} onLogout={handleLogout}>
+                <AdvancedReportingManagement />
               </Layout>
             ) : (
               <Navigate to="/" replace />
