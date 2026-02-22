@@ -63,7 +63,11 @@ const TABLE_MAP = {
   rgm_initiatives: 'rgm_initiatives',
   rgm_pricing_strategies: 'rgm_pricing_strategies',
   rgm_mix_analyses: 'rgm_mix_analyses',
-  rgm_growth_trackers: 'rgm_growth_trackers'
+  rgm_growth_trackers: 'rgm_growth_trackers',
+  currency_configs: 'currency_configs',
+  exchange_rates: 'exchange_rates',
+  market_configs: 'market_configs',
+  market_pricing: 'market_pricing'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -533,7 +537,43 @@ const COLUMN_MAP = {
   variancePct: 'variance_pct',
   growthPct: 'growth_pct',
   contributionPct: 'contribution_pct',
-  trendDirection: 'trend_direction'
+  trendDirection: 'trend_direction',
+  currencyCode: 'currency_code',
+  currencyName: 'currency_name',
+  decimalPlaces: 'decimal_places',
+  isBaseCurrency: 'is_base_currency',
+  roundingMethod: 'rounding_method',
+  displayFormat: 'display_format',
+  fromCurrency: 'from_currency',
+  toCurrency: 'to_currency',
+  inverseRate: 'inverse_rate',
+  rateType: 'rate_type',
+  effectiveDate: 'effective_date',
+  expiryDate: 'expiry_date',
+  variancePct: 'variance_pct',
+  priorRate: 'prior_rate',
+  marketCode: 'market_code',
+  marketName: 'market_name',
+  marketType: 'market_type',
+  baseCurrency: 'base_currency',
+  taxRate: 'tax_rate',
+  vatRate: 'vat_rate',
+  regulatoryRequirements: 'regulatory_requirements',
+  tradePolicies: 'trade_policies',
+  fiscalYearStart: 'fiscal_year_start',
+  dateFormat: 'date_format',
+  numberFormat: 'number_format',
+  marketSize: 'market_size',
+  listPrice: 'list_price',
+  localPrice: 'local_price',
+  baseCurrencyPrice: 'base_currency_price',
+  exchangeRate: 'exchange_rate',
+  taxAmount: 'tax_amount',
+  dutyAmount: 'duty_amount',
+  landedCost: 'landed_cost',
+  localMarginPct: 'local_margin_pct',
+  priceIndex: 'price_index',
+  competitorPrice: 'competitor_price'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -621,7 +661,11 @@ const TABLE_COLUMNS = {
   rgm_initiatives: ['id', 'company_id', 'name', 'description', 'initiative_type', 'status', 'priority', 'category', 'customer_id', 'customer_name', 'product_id', 'product_name', 'channel', 'region', 'brand', 'start_date', 'end_date', 'target_revenue', 'target_margin_pct', 'target_growth_pct', 'actual_revenue', 'actual_margin_pct', 'actual_growth_pct', 'baseline_revenue', 'baseline_margin_pct', 'investment_amount', 'roi', 'confidence_score', 'risk_level', 'owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_pricing_strategies: ['id', 'company_id', 'initiative_id', 'name', 'description', 'strategy_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'current_price', 'recommended_price', 'price_change_pct', 'current_margin_pct', 'projected_margin_pct', 'price_elasticity', 'volume_impact_pct', 'revenue_impact', 'margin_impact', 'competitor_price', 'price_index', 'effective_date', 'end_date', 'approved_by', 'approved_at', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_mix_analyses: ['id', 'company_id', 'initiative_id', 'name', 'description', 'analysis_type', 'status', 'dimension', 'period_start', 'period_end', 'total_revenue', 'total_volume', 'total_margin', 'avg_margin_pct', 'mix_score', 'opportunity_value', 'items', 'recommendations', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
-  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at']
+  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at'],
+  currency_configs: ['id', 'company_id', 'currency_code', 'currency_name', 'symbol', 'decimal_places', 'is_base_currency', 'status', 'country', 'region', 'rounding_method', 'display_format', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  exchange_rates: ['id', 'company_id', 'from_currency', 'to_currency', 'rate', 'inverse_rate', 'rate_type', 'effective_date', 'expiry_date', 'source', 'variance_pct', 'prior_rate', 'status', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  market_configs: ['id', 'company_id', 'market_code', 'market_name', 'description', 'market_type', 'status', 'country', 'region', 'timezone', 'base_currency', 'languages', 'tax_rate', 'vat_rate', 'regulatory_requirements', 'trade_policies', 'fiscal_year_start', 'date_format', 'number_format', 'population', 'gdp', 'market_size', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  market_pricing: ['id', 'company_id', 'market_id', 'market_name', 'product_id', 'product_name', 'category', 'brand', 'currency', 'list_price', 'local_price', 'base_currency_price', 'exchange_rate', 'tax_amount', 'duty_amount', 'landed_cost', 'local_margin_pct', 'price_index', 'competitor_price', 'effective_date', 'expiry_date', 'status', 'approved_by', 'approved_at', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
