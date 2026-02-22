@@ -26,6 +26,7 @@ import {
   Person as CustomerIcon,
   Assessment as ReportingIcon,
   TrendingUp as RGMIcon,
+  Storefront as CollabIcon,
   Storage as DataIcon,
   Settings as SettingsIcon,
   HelpOutline as HelpIcon,
@@ -52,6 +53,7 @@ const navItems = [
   { key: 'customer360', label: 'Customer 360', icon: <CustomerIcon />, path: '/customer-360' },
   { key: 'reporting', label: 'Reports', icon: <ReportingIcon />, path: '/advanced-reporting' },
   { key: 'rgm', label: 'RGM', icon: <RGMIcon />, path: '/revenue-growth' },
+  { key: 'collab', label: 'Collaborate', icon: <CollabIcon />, path: '/retailer-collaboration' },
   { key: 'data', label: 'Master Data', icon: <DataIcon />, path: '/customers' },
 ];
 

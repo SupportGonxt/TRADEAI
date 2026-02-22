@@ -63,7 +63,11 @@ const TABLE_MAP = {
   rgm_initiatives: 'rgm_initiatives',
   rgm_pricing_strategies: 'rgm_pricing_strategies',
   rgm_mix_analyses: 'rgm_mix_analyses',
-  rgm_growth_trackers: 'rgm_growth_trackers'
+  rgm_growth_trackers: 'rgm_growth_trackers',
+  retailer_portals: 'retailer_portals',
+  collaboration_plans: 'collaboration_plans',
+  shared_promotions: 'shared_promotions',
+  collaboration_messages: 'collaboration_messages'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -533,7 +537,46 @@ const COLUMN_MAP = {
   variancePct: 'variance_pct',
   growthPct: 'growth_pct',
   contributionPct: 'contribution_pct',
-  trendDirection: 'trend_direction'
+  trendDirection: 'trend_direction',
+  retailerId: 'retailer_id',
+  retailerName: 'retailer_name',
+  retailerCode: 'retailer_code',
+  portalStatus: 'portal_status',
+  accessLevel: 'access_level',
+  primaryContactName: 'primary_contact_name',
+  primaryContactEmail: 'primary_contact_email',
+  primaryContactPhone: 'primary_contact_phone',
+  onboardedAt: 'onboarded_at',
+  lastLoginAt: 'last_login_at',
+  totalSharedPromotions: 'total_shared_promotions',
+  totalJointPlans: 'total_joint_plans',
+  totalMessages: 'total_messages',
+  collaborationScore: 'collaboration_score',
+  planType: 'plan_type',
+  fiscalYear: 'fiscal_year',
+  totalInvestment: 'total_investment',
+  projectedRevenue: 'projected_revenue',
+  projectedGrowthPct: 'projected_growth_pct',
+  retailerOwner: 'retailer_owner',
+  promotionId: 'promotion_id',
+  promotionName: 'promotion_name',
+  shareStatus: 'share_status',
+  retailerFeedback: 'retailer_feedback',
+  retailerRating: 'retailer_rating',
+  retailerApproved: 'retailer_approved',
+  retailerApprovedAt: 'retailer_approved_at',
+  retailerNotes: 'retailer_notes',
+  manufacturerNotes: 'manufacturer_notes',
+  sharedBy: 'shared_by',
+  sharedAt: 'shared_at',
+  expiresAt: 'expires_at',
+  senderType: 'sender_type',
+  senderName: 'sender_name',
+  senderEmail: 'sender_email',
+  messageType: 'message_type',
+  isRead: 'is_read',
+  readAt: 'read_at',
+  parentId: 'parent_id'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -621,7 +664,11 @@ const TABLE_COLUMNS = {
   rgm_initiatives: ['id', 'company_id', 'name', 'description', 'initiative_type', 'status', 'priority', 'category', 'customer_id', 'customer_name', 'product_id', 'product_name', 'channel', 'region', 'brand', 'start_date', 'end_date', 'target_revenue', 'target_margin_pct', 'target_growth_pct', 'actual_revenue', 'actual_margin_pct', 'actual_growth_pct', 'baseline_revenue', 'baseline_margin_pct', 'investment_amount', 'roi', 'confidence_score', 'risk_level', 'owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_pricing_strategies: ['id', 'company_id', 'initiative_id', 'name', 'description', 'strategy_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'current_price', 'recommended_price', 'price_change_pct', 'current_margin_pct', 'projected_margin_pct', 'price_elasticity', 'volume_impact_pct', 'revenue_impact', 'margin_impact', 'competitor_price', 'price_index', 'effective_date', 'end_date', 'approved_by', 'approved_at', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_mix_analyses: ['id', 'company_id', 'initiative_id', 'name', 'description', 'analysis_type', 'status', 'dimension', 'period_start', 'period_end', 'total_revenue', 'total_volume', 'total_margin', 'avg_margin_pct', 'mix_score', 'opportunity_value', 'items', 'recommendations', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
-  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at']
+  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at'],
+  retailer_portals: ['id', 'company_id', 'retailer_id', 'retailer_name', 'retailer_code', 'portal_status', 'access_level', 'primary_contact_name', 'primary_contact_email', 'primary_contact_phone', 'onboarded_at', 'last_login_at', 'total_shared_promotions', 'total_joint_plans', 'total_messages', 'collaboration_score', 'notes', 'data', 'created_at', 'updated_at'],
+  collaboration_plans: ['id', 'company_id', 'retailer_id', 'retailer_name', 'name', 'description', 'plan_type', 'status', 'fiscal_year', 'quarter', 'start_date', 'end_date', 'total_investment', 'projected_revenue', 'projected_growth_pct', 'actual_revenue', 'actual_growth_pct', 'objectives', 'kpis', 'milestones', 'owner', 'retailer_owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
+  shared_promotions: ['id', 'company_id', 'retailer_id', 'retailer_name', 'plan_id', 'promotion_id', 'promotion_name', 'share_status', 'visibility', 'retailer_feedback', 'retailer_rating', 'retailer_approved', 'retailer_approved_at', 'retailer_notes', 'manufacturer_notes', 'shared_by', 'shared_at', 'expires_at', 'notes', 'data', 'created_at', 'updated_at'],
+  collaboration_messages: ['id', 'company_id', 'retailer_id', 'plan_id', 'promotion_id', 'sender_type', 'sender_name', 'sender_email', 'message_type', 'subject', 'body', 'is_read', 'read_at', 'parent_id', 'attachments', 'notes', 'data', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
