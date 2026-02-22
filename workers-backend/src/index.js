@@ -62,6 +62,7 @@ import { promotionOptimizerRoutes } from './routes/promotionOptimizer.js';
 import { customer360Routes } from './routes/customer360.js';
 import { advancedReportingRoutes } from './routes/advancedReporting.js';
 import { revenueGrowthRoutes } from './routes/revenueGrowth.js';
+import { marketIntelligenceRoutes } from './routes/marketIntelligence.js';
 
 const app = new Hono();
 
@@ -166,6 +167,7 @@ app.route('/api/promotion-optimizer', promotionOptimizerRoutes);
 app.route('/api/customer-360', customer360Routes);
 app.route('/api/advanced-reporting', advancedReportingRoutes);
 app.route('/api/revenue-growth', revenueGrowthRoutes);
+app.route('/api/market-intelligence', marketIntelligenceRoutes);
 
 // 404 handler
 app.notFound((c) => {
