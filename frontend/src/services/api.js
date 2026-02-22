@@ -1501,4 +1501,71 @@ export const revenueGrowthService = {
   },
 };
 
+export const pricingMarginService = {
+  getSummary: async () => {
+    const response = await api.get('/pricing-margin/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/pricing-margin/options');
+    return response.data;
+  },
+  getModels: async (params) => {
+    const response = await api.get('/pricing-margin/models', { params });
+    return response.data;
+  },
+  getModelById: async (id) => {
+    const response = await api.get(`/pricing-margin/models/${id}`);
+    return response.data;
+  },
+  createModel: async (data) => {
+    const response = await api.post('/pricing-margin/models', data);
+    return response.data;
+  },
+  updateModel: async (id, data) => {
+    const response = await api.put(`/pricing-margin/models/${id}`, data);
+    return response.data;
+  },
+  deleteModel: async (id) => {
+    const response = await api.delete(`/pricing-margin/models/${id}`);
+    return response.data;
+  },
+  getAnalyses: async (params) => {
+    const response = await api.get('/pricing-margin/analyses', { params });
+    return response.data;
+  },
+  createAnalysis: async (data) => {
+    const response = await api.post('/pricing-margin/analyses', data);
+    return response.data;
+  },
+  deleteAnalysis: async (id) => {
+    const response = await api.delete(`/pricing-margin/analyses/${id}`);
+    return response.data;
+  },
+  getWaterfall: async (params) => {
+    const response = await api.get('/pricing-margin/waterfall', { params });
+    return response.data;
+  },
+  createWaterfallItem: async (data) => {
+    const response = await api.post('/pricing-margin/waterfall', data);
+    return response.data;
+  },
+  deleteWaterfallItem: async (id) => {
+    const response = await api.delete(`/pricing-margin/waterfall/${id}`);
+    return response.data;
+  },
+  getRecommendations: async (params) => {
+    const response = await api.get('/pricing-margin/recommendations', { params });
+    return response.data;
+  },
+  createRecommendation: async (data) => {
+    const response = await api.post('/pricing-margin/recommendations', data);
+    return response.data;
+  },
+  deleteRecommendation: async (id) => {
+    const response = await api.delete(`/pricing-margin/recommendations/${id}`);
+    return response.data;
+  },
+};
+
 export default api;

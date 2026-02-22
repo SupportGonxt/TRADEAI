@@ -63,7 +63,11 @@ const TABLE_MAP = {
   rgm_initiatives: 'rgm_initiatives',
   rgm_pricing_strategies: 'rgm_pricing_strategies',
   rgm_mix_analyses: 'rgm_mix_analyses',
-  rgm_growth_trackers: 'rgm_growth_trackers'
+  rgm_growth_trackers: 'rgm_growth_trackers',
+  pricing_models: 'pricing_models',
+  margin_analyses: 'margin_analyses',
+  price_waterfall_items: 'price_waterfall_items',
+  pricing_recommendations: 'pricing_recommendations'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -533,7 +537,39 @@ const COLUMN_MAP = {
   variancePct: 'variance_pct',
   growthPct: 'growth_pct',
   contributionPct: 'contribution_pct',
-  trendDirection: 'trend_direction'
+  trendDirection: 'trend_direction',
+  modelType: 'model_type',
+  baseCost: 'base_cost',
+  listPrice: 'list_price',
+  netPrice: 'net_price',
+  floorPrice: 'floor_price',
+  ceilingPrice: 'ceiling_price',
+  volumeSensitivity: 'volume_sensitivity',
+  competitorAvgPrice: 'competitor_avg_price',
+  marketPosition: 'market_position',
+  lastOptimizedAt: 'last_optimized_at',
+  optimizationScore: 'optimization_score',
+  tradeMarginPct: 'trade_margin_pct',
+  contributionMargin: 'contribution_margin',
+  contributionMarginPct: 'contribution_margin_pct',
+  operatingMargin: 'operating_margin',
+  operatingMarginPct: 'operating_margin_pct',
+  avgSellingPrice: 'avg_selling_price',
+  avgCost: 'avg_cost',
+  marginTrend: 'margin_trend',
+  marginVsTarget: 'margin_vs_target',
+  improvementOpportunity: 'improvement_opportunity',
+  analysisId: 'analysis_id',
+  pricingModelId: 'pricing_model_id',
+  stepOrder: 'step_order',
+  stepName: 'step_name',
+  stepType: 'step_type',
+  pctOfList: 'pct_of_list',
+  runningTotal: 'running_total',
+  runningMarginPct: 'running_margin_pct',
+  benchmarkAmount: 'benchmark_amount',
+  modelId: 'model_id',
+  appliedBy: 'applied_by'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -621,7 +657,11 @@ const TABLE_COLUMNS = {
   rgm_initiatives: ['id', 'company_id', 'name', 'description', 'initiative_type', 'status', 'priority', 'category', 'customer_id', 'customer_name', 'product_id', 'product_name', 'channel', 'region', 'brand', 'start_date', 'end_date', 'target_revenue', 'target_margin_pct', 'target_growth_pct', 'actual_revenue', 'actual_margin_pct', 'actual_growth_pct', 'baseline_revenue', 'baseline_margin_pct', 'investment_amount', 'roi', 'confidence_score', 'risk_level', 'owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_pricing_strategies: ['id', 'company_id', 'initiative_id', 'name', 'description', 'strategy_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'current_price', 'recommended_price', 'price_change_pct', 'current_margin_pct', 'projected_margin_pct', 'price_elasticity', 'volume_impact_pct', 'revenue_impact', 'margin_impact', 'competitor_price', 'price_index', 'effective_date', 'end_date', 'approved_by', 'approved_at', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_mix_analyses: ['id', 'company_id', 'initiative_id', 'name', 'description', 'analysis_type', 'status', 'dimension', 'period_start', 'period_end', 'total_revenue', 'total_volume', 'total_margin', 'avg_margin_pct', 'mix_score', 'opportunity_value', 'items', 'recommendations', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
-  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at']
+  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at'],
+  pricing_models: ['id', 'company_id', 'name', 'description', 'model_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'region', 'base_cost', 'target_margin_pct', 'list_price', 'net_price', 'floor_price', 'ceiling_price', 'current_price', 'recommended_price', 'price_elasticity', 'volume_sensitivity', 'competitor_avg_price', 'market_position', 'currency', 'effective_date', 'end_date', 'last_optimized_at', 'optimization_score', 'confidence_score', 'owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
+  margin_analyses: ['id', 'company_id', 'name', 'description', 'analysis_type', 'status', 'dimension', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'region', 'period_start', 'period_end', 'gross_sales', 'trade_spend', 'net_sales', 'cogs', 'gross_profit', 'gross_margin_pct', 'trade_margin_pct', 'net_margin_pct', 'contribution_margin', 'contribution_margin_pct', 'operating_margin', 'operating_margin_pct', 'volume', 'avg_selling_price', 'avg_cost', 'margin_trend', 'margin_vs_target', 'target_margin_pct', 'improvement_opportunity', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
+  price_waterfall_items: ['id', 'company_id', 'analysis_id', 'pricing_model_id', 'product_id', 'product_name', 'customer_id', 'customer_name', 'period', 'step_order', 'step_name', 'step_type', 'amount', 'pct_of_list', 'running_total', 'running_margin_pct', 'benchmark_amount', 'variance', 'notes', 'data', 'created_at', 'updated_at'],
+  pricing_recommendations: ['id', 'company_id', 'model_id', 'recommendation_type', 'priority', 'status', 'product_id', 'product_name', 'customer_id', 'customer_name', 'channel', 'current_price', 'recommended_price', 'price_change_pct', 'current_margin_pct', 'projected_margin_pct', 'revenue_impact', 'margin_impact', 'volume_impact_pct', 'confidence_score', 'risk_level', 'rationale', 'action_taken', 'applied_at', 'applied_by', 'created_by', 'notes', 'data', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
