@@ -5,7 +5,7 @@ import { authMiddleware } from '../middleware/auth.js';
 const executiveKpiRoutes = new Hono();
 executiveKpiRoutes.use('*', authMiddleware);
 
-const getClient = (c) => getD1Client(c.env.DB);
+const getClient = (c) => getD1Client(c);
 
 executiveKpiRoutes.get('/options', async (c) => {
   return c.json({

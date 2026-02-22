@@ -186,7 +186,7 @@ pnl.get('/live-by-customer', async (c) => {
     const customerClaims = await db.prepare(`
       SELECT
         customer_id,
-        SUM(amount) as total_claims
+        SUM(claimed_amount) as total_claims
       FROM claims
       WHERE company_id = ?
       GROUP BY customer_id
@@ -195,7 +195,7 @@ pnl.get('/live-by-customer', async (c) => {
     const customerDeductions = await db.prepare(`
       SELECT
         customer_id,
-        SUM(amount) as total_deductions
+        SUM(deduction_amount) as total_deductions
       FROM deductions
       WHERE company_id = ?
       GROUP BY customer_id
@@ -613,11 +613,11 @@ pnl.post('/:id/generate', async (c) => {
         ).bind(companyId, custId).first();
 
         const claimData = await db.prepare(
-          'SELECT SUM(amount) as total FROM claims WHERE company_id = ? AND customer_id = ?'
+          'SELECT SUM(claimed_amount) as total FROM claims WHERE company_id = ? AND customer_id = ?'
         ).bind(companyId, custId).first();
 
         const deductionData = await db.prepare(
-          'SELECT SUM(amount) as total FROM deductions WHERE company_id = ? AND customer_id = ?'
+          'SELECT SUM(deduction_amount) as total FROM deductions WHERE company_id = ? AND customer_id = ?'
         ).bind(companyId, custId).first();
 
         const budgetData = await db.prepare(
