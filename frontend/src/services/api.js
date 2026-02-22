@@ -1501,4 +1501,83 @@ export const revenueGrowthService = {
   },
 };
 
+export const retailerCollaborationService = {
+  getSummary: async () => {
+    const response = await api.get('/retailer-collaboration/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/retailer-collaboration/options');
+    return response.data;
+  },
+  getPortals: async (params) => {
+    const response = await api.get('/retailer-collaboration/portals', { params });
+    return response.data;
+  },
+  getPortalById: async (id) => {
+    const response = await api.get(`/retailer-collaboration/portals/${id}`);
+    return response.data;
+  },
+  createPortal: async (data) => {
+    const response = await api.post('/retailer-collaboration/portals', data);
+    return response.data;
+  },
+  updatePortal: async (id, data) => {
+    const response = await api.put(`/retailer-collaboration/portals/${id}`, data);
+    return response.data;
+  },
+  deletePortal: async (id) => {
+    const response = await api.delete(`/retailer-collaboration/portals/${id}`);
+    return response.data;
+  },
+  getPlans: async (params) => {
+    const response = await api.get('/retailer-collaboration/plans', { params });
+    return response.data;
+  },
+  getPlanById: async (id) => {
+    const response = await api.get(`/retailer-collaboration/plans/${id}`);
+    return response.data;
+  },
+  createPlan: async (data) => {
+    const response = await api.post('/retailer-collaboration/plans', data);
+    return response.data;
+  },
+  updatePlan: async (id, data) => {
+    const response = await api.put(`/retailer-collaboration/plans/${id}`, data);
+    return response.data;
+  },
+  deletePlan: async (id) => {
+    const response = await api.delete(`/retailer-collaboration/plans/${id}`);
+    return response.data;
+  },
+  getSharedPromotions: async (params) => {
+    const response = await api.get('/retailer-collaboration/shared-promotions', { params });
+    return response.data;
+  },
+  createSharedPromotion: async (data) => {
+    const response = await api.post('/retailer-collaboration/shared-promotions', data);
+    return response.data;
+  },
+  updateSharedPromotion: async (id, data) => {
+    const response = await api.put(`/retailer-collaboration/shared-promotions/${id}`, data);
+    return response.data;
+  },
+  deleteSharedPromotion: async (id) => {
+    const response = await api.delete(`/retailer-collaboration/shared-promotions/${id}`);
+    return response.data;
+  },
+  getMessages: async (params) => {
+    const response = await api.get('/retailer-collaboration/messages', { params });
+    return response.data;
+  },
+  createMessage: async (data) => {
+    const response = await api.post('/retailer-collaboration/messages', data);
+    return response.data;
+  },
+  deleteMessage: async (id) => {
+    const response = await api.delete(`/retailer-collaboration/messages/${id}`);
+    return response.data;
+  },
+};
+
 export default api;
