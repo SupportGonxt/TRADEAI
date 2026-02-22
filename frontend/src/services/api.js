@@ -1572,4 +1572,63 @@ export const executiveKpiService = {
   },
 };
 
+export const calendarHeatmapService = {
+  getSummary: async () => {
+    const response = await api.get('/calendar-heatmap/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/calendar-heatmap/options');
+    return response.data;
+  },
+  getEvents: async (params) => {
+    const response = await api.get('/calendar-heatmap/events', { params });
+    return response.data;
+  },
+  createEvent: async (data) => {
+    const response = await api.post('/calendar-heatmap/events', data);
+    return response.data;
+  },
+  updateEvent: async (id, data) => {
+    const response = await api.put(`/calendar-heatmap/events/${id}`, data);
+    return response.data;
+  },
+  deleteEvent: async (id) => {
+    const response = await api.delete(`/calendar-heatmap/events/${id}`);
+    return response.data;
+  },
+  getHeatmap: async (params) => {
+    const response = await api.get('/calendar-heatmap/heatmap', { params });
+    return response.data;
+  },
+  getConflicts: async (params) => {
+    const response = await api.get('/calendar-heatmap/conflicts', { params });
+    return response.data;
+  },
+  createConflict: async (data) => {
+    const response = await api.post('/calendar-heatmap/conflicts', data);
+    return response.data;
+  },
+  updateConflict: async (id, data) => {
+    const response = await api.put(`/calendar-heatmap/conflicts/${id}`, data);
+    return response.data;
+  },
+  deleteConflict: async (id) => {
+    const response = await api.delete(`/calendar-heatmap/conflicts/${id}`);
+    return response.data;
+  },
+  getCoverage: async (params) => {
+    const response = await api.get('/calendar-heatmap/coverage', { params });
+    return response.data;
+  },
+  createCoverage: async (data) => {
+    const response = await api.post('/calendar-heatmap/coverage', data);
+    return response.data;
+  },
+  deleteCoverage: async (id) => {
+    const response = await api.delete(`/calendar-heatmap/coverage/${id}`);
+    return response.data;
+  },
+};
+
 export default api;
