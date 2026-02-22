@@ -73,6 +73,7 @@ import Customer360New from './pages/customer360/Customer360';
 import AdvancedReportingManagement from './pages/advanced-reporting/AdvancedReportingManagement';
 import RevenueGrowthManagement from './pages/revenue-growth/RevenueGrowthManagement';
 import ExecutiveKpiDashboard from './pages/executive-kpi/ExecutiveKpiDashboard';
+import PromotionCalendarHeatmap from './pages/calendar-heatmap/PromotionCalendarHeatmap';
 import BudgetConsoleNew from './pages/budgetconsole/BudgetConsole';
 import PromotionPlannerNew from './pages/promotions/PromotionPlanner';
 
@@ -1327,6 +1328,30 @@ function App() {
             isAuthenticated ? (
               <Layout user={user} onLogout={handleLogout}>
                 <ExecutiveKpiDashboard />
+              </Layout>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/promotion-calendar"
+          element={
+            isAuthenticated ? (
+              <Layout user={user} onLogout={handleLogout}>
+                <PromotionCalendarHeatmap />
+              </Layout>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/promotion-calendar/:id"
+          element={
+            isAuthenticated ? (
+              <Layout user={user} onLogout={handleLogout}>
+                <PromotionCalendarHeatmap />
               </Layout>
             ) : (
               <Navigate to="/" replace />

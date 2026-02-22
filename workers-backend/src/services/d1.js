@@ -67,7 +67,10 @@ const TABLE_MAP = {
   kpi_definitions: 'kpi_definitions',
   kpi_targets: 'kpi_targets',
   kpi_actuals: 'kpi_actuals',
-  executive_scorecards: 'executive_scorecards'
+  executive_scorecards: 'executive_scorecards',
+  calendar_events: 'calendar_events',
+  calendar_conflicts: 'calendar_conflicts',
+  calendar_coverage: 'calendar_coverage'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -578,7 +581,37 @@ const COLUMN_MAP = {
   amberCount: 'amber_count',
   redCount: 'red_count',
   publishedAt: 'published_at',
-  publishedBy: 'published_by'
+  publishedBy: 'published_by',
+  promotionId: 'promotion_id',
+  promotionName: 'promotion_name',
+  eventType: 'event_type',
+  durationDays: 'duration_days',
+  expectedLift: 'expected_lift',
+  actualLift: 'actual_lift',
+  isRecurring: 'is_recurring',
+  recurrencePattern: 'recurrence_pattern',
+  overlapCount: 'overlap_count',
+  eventAId: 'event_a_id',
+  eventATitle: 'event_a_title',
+  eventBId: 'event_b_id',
+  eventBTitle: 'event_b_title',
+  conflictType: 'conflict_type',
+  overlapStart: 'overlap_start',
+  overlapEnd: 'overlap_end',
+  overlapDays: 'overlap_days',
+  sharedCustomer: 'shared_customer',
+  sharedProduct: 'shared_product',
+  sharedChannel: 'shared_channel',
+  impactDescription: 'impact_description',
+  resolvedBy: 'resolved_by',
+  resolvedAt: 'resolved_at',
+  analysisPeriod: 'analysis_period',
+  coveredDays: 'covered_days',
+  coveragePct: 'coverage_pct',
+  gapDays: 'gap_days',
+  avgDailySpend: 'avg_daily_spend',
+  peakDay: 'peak_day',
+  peakCount: 'peak_count'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -670,7 +703,10 @@ const TABLE_COLUMNS = {
   kpi_definitions: ['id', 'company_id', 'name', 'description', 'kpi_type', 'category', 'unit', 'format', 'calculation_method', 'data_source', 'source_table', 'source_column', 'aggregation', 'frequency', 'direction', 'threshold_red', 'threshold_amber', 'threshold_green', 'weight', 'sort_order', 'is_active', 'owner', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_targets: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'target_value', 'stretch_target', 'floor_value', 'prior_year_value', 'budget_value', 'status', 'approved_by', 'approved_at', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_actuals: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'actual_value', 'target_value', 'variance', 'variance_pct', 'achievement_pct', 'trend_direction', 'prior_period_value', 'prior_year_value', 'yoy_growth_pct', 'mom_growth_pct', 'ytd_actual', 'ytd_target', 'ytd_achievement_pct', 'rag_status', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
-  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
+  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  calendar_events: ['id', 'company_id', 'promotion_id', 'promotion_name', 'event_type', 'title', 'description', 'start_date', 'end_date', 'duration_days', 'customer_id', 'customer_name', 'product_id', 'product_name', 'category', 'brand', 'channel', 'region', 'mechanic', 'status', 'budget', 'expected_lift', 'actual_lift', 'priority', 'color', 'is_recurring', 'recurrence_pattern', 'overlap_count', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  calendar_conflicts: ['id', 'company_id', 'event_a_id', 'event_a_title', 'event_b_id', 'event_b_title', 'conflict_type', 'severity', 'overlap_start', 'overlap_end', 'overlap_days', 'shared_customer', 'shared_product', 'shared_channel', 'impact_description', 'resolution', 'resolved_by', 'resolved_at', 'status', 'notes', 'data', 'created_at', 'updated_at'],
+  calendar_coverage: ['id', 'company_id', 'analysis_period', 'period_start', 'period_end', 'dimension', 'dimension_id', 'dimension_name', 'total_days', 'covered_days', 'coverage_pct', 'gap_days', 'overlap_days', 'event_count', 'total_budget', 'avg_daily_spend', 'peak_day', 'peak_count', 'gaps', 'recommendations', 'notes', 'data', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
