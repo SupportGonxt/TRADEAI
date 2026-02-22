@@ -63,6 +63,12 @@ import { customer360Routes } from './routes/customer360.js';
 import { advancedReportingRoutes } from './routes/advancedReporting.js';
 import { revenueGrowthRoutes } from './routes/revenueGrowth.js';
 import { executiveKpiRoutes } from './routes/executiveKpi.js';
+import { notificationCenterRoutes } from './routes/notificationCenter.js';
+import { documentManagementRoutes } from './routes/documentManagement.js';
+import { integrationHubRoutes } from './routes/integrationHub.js';
+import { roleManagementRoutes } from './routes/roleManagement.js';
+import { systemConfigRoutes } from './routes/systemConfig.js';
+import { workflowEngineRoutes } from './routes/workflowEngine.js';
 
 const app = new Hono();
 
@@ -168,6 +174,12 @@ app.route('/api/customer-360', customer360Routes);
 app.route('/api/advanced-reporting', advancedReportingRoutes);
 app.route('/api/revenue-growth', revenueGrowthRoutes);
 app.route('/api/executive-kpi', executiveKpiRoutes);
+app.route('/api/notification-center', notificationCenterRoutes);
+app.route('/api/document-management', documentManagementRoutes);
+app.route('/api/integration-hub', integrationHubRoutes);
+app.route('/api/role-management', roleManagementRoutes);
+app.route('/api/system-config', systemConfigRoutes);
+app.route('/api/workflow-engine', workflowEngineRoutes);
 
 // 404 handler
 app.notFound((c) => {

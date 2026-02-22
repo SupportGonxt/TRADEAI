@@ -67,7 +67,22 @@ const TABLE_MAP = {
   kpi_definitions: 'kpi_definitions',
   kpi_targets: 'kpi_targets',
   kpi_actuals: 'kpi_actuals',
-  executive_scorecards: 'executive_scorecards'
+  executive_scorecards: 'executive_scorecards',
+  notifications: 'notifications',
+  alert_rules: 'alert_rules',
+  alert_history: 'alert_history',
+  documents: 'documents',
+  document_versions: 'document_versions',
+  integrations: 'integrations',
+  integration_logs: 'integration_logs',
+  roles: 'roles',
+  user_roles: 'user_roles',
+  permission_groups: 'permission_groups',
+  system_config: 'system_config',
+  tenants: 'tenants',
+  workflow_templates: 'workflow_templates',
+  workflow_instances: 'workflow_instances',
+  workflow_steps: 'workflow_steps'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -670,7 +685,22 @@ const TABLE_COLUMNS = {
   kpi_definitions: ['id', 'company_id', 'name', 'description', 'kpi_type', 'category', 'unit', 'format', 'calculation_method', 'data_source', 'source_table', 'source_column', 'aggregation', 'frequency', 'direction', 'threshold_red', 'threshold_amber', 'threshold_green', 'weight', 'sort_order', 'is_active', 'owner', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_targets: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'target_value', 'stretch_target', 'floor_value', 'prior_year_value', 'budget_value', 'status', 'approved_by', 'approved_at', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_actuals: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'actual_value', 'target_value', 'variance', 'variance_pct', 'achievement_pct', 'trend_direction', 'prior_period_value', 'prior_year_value', 'yoy_growth_pct', 'mom_growth_pct', 'ytd_actual', 'ytd_target', 'ytd_achievement_pct', 'rag_status', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
-  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
+  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  notifications: ['id', 'company_id', 'user_id', 'title', 'message', 'notification_type', 'category', 'priority', 'status', 'source_entity_type', 'source_entity_id', 'source_entity_name', 'action_url', 'action_label', 'read_at', 'dismissed_at', 'expires_at', 'channel', 'sent_via_email', 'sent_via_sms', 'notes', 'data', 'created_at'],
+  alert_rules: ['id', 'company_id', 'name', 'description', 'rule_type', 'category', 'entity_type', 'metric', 'operator', 'threshold_value', 'threshold_unit', 'severity', 'is_active', 'frequency', 'cooldown_minutes', 'last_triggered_at', 'trigger_count', 'recipients', 'channels', 'conditions', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  alert_history: ['id', 'company_id', 'rule_id', 'rule_name', 'alert_type', 'severity', 'title', 'message', 'entity_type', 'entity_id', 'entity_name', 'metric_value', 'threshold_value', 'status', 'acknowledged_by', 'acknowledged_at', 'resolved_by', 'resolved_at', 'notes', 'data', 'created_at'],
+  documents: ['id', 'company_id', 'name', 'description', 'document_type', 'category', 'file_name', 'file_url', 'file_size', 'mime_type', 'version', 'status', 'entity_type', 'entity_id', 'entity_name', 'tags', 'uploaded_by', 'approved_by', 'approved_at', 'expires_at', 'notes', 'data', 'created_at', 'updated_at'],
+  document_versions: ['id', 'company_id', 'document_id', 'version_number', 'file_name', 'file_url', 'file_size', 'mime_type', 'change_summary', 'uploaded_by', 'data', 'created_at'],
+  integrations: ['id', 'company_id', 'name', 'description', 'integration_type', 'provider', 'category', 'status', 'config', 'credentials', 'endpoint_url', 'auth_type', 'sync_frequency', 'last_sync_at', 'next_sync_at', 'sync_status', 'record_count', 'error_count', 'last_error', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
+  integration_logs: ['id', 'company_id', 'integration_id', 'log_type', 'action', 'status', 'records_processed', 'records_failed', 'duration_ms', 'request_data', 'response_data', 'error_message', 'created_at'],
+  roles: ['id', 'company_id', 'name', 'description', 'role_type', 'is_system', 'is_active', 'permissions', 'parent_role_id', 'level', 'max_approval_amount', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
+  user_roles: ['id', 'company_id', 'user_id', 'role_id', 'role_name', 'assigned_by', 'valid_from', 'valid_until', 'status', 'data', 'created_at'],
+  permission_groups: ['id', 'company_id', 'name', 'description', 'module', 'permissions', 'is_system', 'created_by', 'data', 'created_at', 'updated_at'],
+  system_config: ['id', 'company_id', 'config_key', 'config_value', 'config_type', 'category', 'module', 'description', 'is_sensitive', 'is_readonly', 'default_value', 'validation_rules', 'updated_by', 'data', 'created_at', 'updated_at'],
+  tenants: ['id', 'name', 'code', 'domain', 'status', 'plan', 'max_users', 'max_storage_gb', 'features', 'branding', 'contact_name', 'contact_email', 'contact_phone', 'billing_email', 'country', 'currency', 'timezone', 'trial_ends_at', 'subscription_starts_at', 'subscription_ends_at', 'notes', 'data', 'created_at', 'updated_at'],
+  workflow_templates: ['id', 'company_id', 'name', 'description', 'workflow_type', 'entity_type', 'trigger_event', 'status', 'is_system', 'version', 'steps', 'conditions', 'escalation_rules', 'sla_hours', 'auto_approve_below', 'requires_all_approvers', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
+  workflow_instances: ['id', 'company_id', 'template_id', 'template_name', 'entity_type', 'entity_id', 'entity_name', 'status', 'current_step', 'total_steps', 'initiated_by', 'initiated_at', 'completed_at', 'completed_by', 'outcome', 'duration_hours', 'escalated', 'escalated_to', 'escalated_at', 'notes', 'data', 'created_at', 'updated_at'],
+  workflow_steps: ['id', 'company_id', 'instance_id', 'step_number', 'step_name', 'step_type', 'assignee_id', 'assignee_name', 'status', 'action', 'comments', 'started_at', 'completed_at', 'due_at', 'sla_hours', 'is_overdue', 'data', 'created_at']
 };
 
 // Generate a UUID for new records
