@@ -118,7 +118,8 @@ aiCopilotRoutes.post('/suggest-actions', async (c) => {
   try {
     const user = c.get('user');
     const db = getD1Client(c);
-    const { page } = await c.req.json();
+    let page = 'dashboard';
+    try { const body = await c.req.json(); page = body.page || 'dashboard'; } catch { }
 
     const [budgets, approvals, claims, promotions] = await Promise.all([
       db.find('budgets', { company_id: user.companyId, status: 'active' }),

@@ -12,6 +12,29 @@ const getCompanyId = (c) => {
   return id;
 };
 
+hierarchy.get('/', async (c) => {
+  try {
+    const db = c.env.DB;
+    const companyId = getCompanyId(c);
+    const [regions, districts, stores] = await Promise.all([
+      db.prepare('SELECT COUNT(*) as count FROM regions WHERE company_id = ?').bind(companyId).first(),
+      db.prepare('SELECT COUNT(*) as count FROM districts WHERE company_id = ?').bind(companyId).first(),
+      db.prepare('SELECT COUNT(*) as count FROM stores WHERE company_id = ?').bind(companyId).first(),
+    ]);
+    return c.json({
+      success: true,
+      data: {
+        regions: regions?.count || 0,
+        districts: districts?.count || 0,
+        stores: stores?.count || 0,
+        levels: ['Region', 'District', 'Store']
+      }
+    });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
 hierarchy.get('/regions', async (c) => {
   try {
     const db = c.env.DB;

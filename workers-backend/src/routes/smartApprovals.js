@@ -27,6 +27,31 @@ function calculateRiskScore(item, historicalData) {
   return Math.max(0, Math.min(100, score));
 }
 
+smartApprovalsRoutes.get('/queue', async (c) => {
+  try {
+    const user = c.get('user');
+    const db = getD1Client(c);
+    const pending = await db.find('approvals', { company_id: user.companyId, status: 'pending' }, { limit: 50 });
+    const historical = await db.find('approvals', { company_id: user.companyId, status: 'approved' }, { limit: 100 });
+    const queue = pending.map(item => {
+      const riskScore = calculateRiskScore(item, historical);
+      return {
+        id: item.id,
+        entityType: item.entity_type,
+        entityId: item.entity_id,
+        amount: item.amount,
+        status: item.status,
+        riskScore,
+        recommendation: riskScore <= 20 ? 'auto_approve' : riskScore <= 40 ? 'fast_track' : riskScore <= 70 ? 'standard' : 'escalate',
+        createdAt: item.created_at
+      };
+    });
+    return c.json({ success: true, data: queue, total: queue.length });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
 smartApprovalsRoutes.post('/evaluate', async (c) => {
   try {
     const user = c.get('user');

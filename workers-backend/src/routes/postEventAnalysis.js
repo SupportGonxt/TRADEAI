@@ -5,6 +5,30 @@ import { getD1Client } from '../services/d1.js';
 const postEventAnalysisRoutes = new Hono();
 postEventAnalysisRoutes.use('*', authMiddleware);
 
+postEventAnalysisRoutes.get('/', async (c) => {
+  try {
+    const user = c.get('user');
+    const db = getD1Client(c);
+    const promotions = await db.find('promotions', { company_id: user.companyId }, { limit: 50, sort: { created_at: -1 } });
+    const analyses = promotions.map(p => {
+      const pData = typeof p.data === 'string' ? JSON.parse(p.data || '{}') : (p.data || {});
+      const perf = pData.performance || {};
+      return {
+        promotionId: p.id,
+        promotionName: p.name,
+        type: p.promotion_type,
+        status: p.status,
+        roi: perf.roi || 0,
+        uplift: perf.uplift || 0,
+        score: Math.min(100, Math.round(((perf.roi || 0) * 25) + ((perf.uplift || 0) * 1.5) + 30))
+      };
+    });
+    return c.json({ success: true, data: analyses, total: analyses.length });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
 postEventAnalysisRoutes.get('/:promotionId', async (c) => {
   try {
     const user = c.get('user');

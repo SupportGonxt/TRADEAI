@@ -6,6 +6,17 @@ export const exportRoutes = new Hono();
 
 exportRoutes.use('*', authMiddleware);
 
+exportRoutes.get('/formats', async (c) => {
+  return c.json({
+    success: true,
+    data: [
+      { id: 'csv', name: 'CSV', extension: '.csv', mimeType: 'text/csv' },
+      { id: 'json', name: 'JSON', extension: '.json', mimeType: 'application/json' },
+      { id: 'xlsx', name: 'Excel', extension: '.xlsx', mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
+    ]
+  });
+});
+
 exportRoutes.get('/', async (c) => {
   return c.json({
     success: true,
