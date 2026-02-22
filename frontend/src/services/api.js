@@ -1501,4 +1501,75 @@ export const revenueGrowthService = {
   },
 };
 
+export const contractManagementService = {
+  getSummary: async () => {
+    const response = await api.get('/contracts/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/contracts/options');
+    return response.data;
+  },
+  getContracts: async (params) => {
+    const response = await api.get('/contracts/contracts', { params });
+    return response.data;
+  },
+  getContractById: async (id) => {
+    const response = await api.get(`/contracts/contracts/${id}`);
+    return response.data;
+  },
+  createContract: async (data) => {
+    const response = await api.post('/contracts/contracts', data);
+    return response.data;
+  },
+  updateContract: async (id, data) => {
+    const response = await api.put(`/contracts/contracts/${id}`, data);
+    return response.data;
+  },
+  deleteContract: async (id) => {
+    const response = await api.delete(`/contracts/contracts/${id}`);
+    return response.data;
+  },
+  getTerms: async (params) => {
+    const response = await api.get('/contracts/terms', { params });
+    return response.data;
+  },
+  createTerm: async (data) => {
+    const response = await api.post('/contracts/terms', data);
+    return response.data;
+  },
+  updateTerm: async (id, data) => {
+    const response = await api.put(`/contracts/terms/${id}`, data);
+    return response.data;
+  },
+  deleteTerm: async (id) => {
+    const response = await api.delete(`/contracts/terms/${id}`);
+    return response.data;
+  },
+  getMilestones: async (params) => {
+    const response = await api.get('/contracts/milestones', { params });
+    return response.data;
+  },
+  createMilestone: async (data) => {
+    const response = await api.post('/contracts/milestones', data);
+    return response.data;
+  },
+  deleteMilestone: async (id) => {
+    const response = await api.delete(`/contracts/milestones/${id}`);
+    return response.data;
+  },
+  getAmendments: async (params) => {
+    const response = await api.get('/contracts/amendments', { params });
+    return response.data;
+  },
+  createAmendment: async (data) => {
+    const response = await api.post('/contracts/amendments', data);
+    return response.data;
+  },
+  deleteAmendment: async (id) => {
+    const response = await api.delete(`/contracts/amendments/${id}`);
+    return response.data;
+  },
+};
+
 export default api;

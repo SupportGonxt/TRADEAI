@@ -63,7 +63,11 @@ const TABLE_MAP = {
   rgm_initiatives: 'rgm_initiatives',
   rgm_pricing_strategies: 'rgm_pricing_strategies',
   rgm_mix_analyses: 'rgm_mix_analyses',
-  rgm_growth_trackers: 'rgm_growth_trackers'
+  rgm_growth_trackers: 'rgm_growth_trackers',
+  contracts: 'contracts',
+  contract_terms: 'contract_terms',
+  contract_milestones: 'contract_milestones',
+  contract_amendments: 'contract_amendments'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -533,7 +537,33 @@ const COLUMN_MAP = {
   variancePct: 'variance_pct',
   growthPct: 'growth_pct',
   contributionPct: 'contribution_pct',
-  trendDirection: 'trend_direction'
+  trendDirection: 'trend_direction',
+  contractNumber: 'contract_number',
+  contractType: 'contract_type',
+  vendorId: 'vendor_id',
+  vendorName: 'vendor_name',
+  autoRenew: 'auto_renew',
+  renewalNoticeDays: 'renewal_notice_days',
+  totalValue: 'total_value',
+  committedSpend: 'committed_spend',
+  billingFrequency: 'billing_frequency',
+  complianceStatus: 'compliance_status',
+  lastReviewDate: 'last_review_date',
+  nextReviewDate: 'next_review_date',
+  counterSignedBy: 'counter_signed_by',
+  counterSignedAt: 'counter_signed_at',
+  termNumber: 'term_number',
+  tierStructure: 'tier_structure',
+  expiryDate: 'expiry_date',
+  milestoneType: 'milestone_type',
+  completedDate: 'completed_date',
+  completedBy: 'completed_by',
+  amendmentNumber: 'amendment_number',
+  amendmentType: 'amendment_type',
+  fieldChanged: 'field_changed',
+  oldValue: 'old_value',
+  newValue: 'new_value',
+  impactAmount: 'impact_amount'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -621,7 +651,11 @@ const TABLE_COLUMNS = {
   rgm_initiatives: ['id', 'company_id', 'name', 'description', 'initiative_type', 'status', 'priority', 'category', 'customer_id', 'customer_name', 'product_id', 'product_name', 'channel', 'region', 'brand', 'start_date', 'end_date', 'target_revenue', 'target_margin_pct', 'target_growth_pct', 'actual_revenue', 'actual_margin_pct', 'actual_growth_pct', 'baseline_revenue', 'baseline_margin_pct', 'investment_amount', 'roi', 'confidence_score', 'risk_level', 'owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_pricing_strategies: ['id', 'company_id', 'initiative_id', 'name', 'description', 'strategy_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'current_price', 'recommended_price', 'price_change_pct', 'current_margin_pct', 'projected_margin_pct', 'price_elasticity', 'volume_impact_pct', 'revenue_impact', 'margin_impact', 'competitor_price', 'price_index', 'effective_date', 'end_date', 'approved_by', 'approved_at', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
   rgm_mix_analyses: ['id', 'company_id', 'initiative_id', 'name', 'description', 'analysis_type', 'status', 'dimension', 'period_start', 'period_end', 'total_revenue', 'total_volume', 'total_margin', 'avg_margin_pct', 'mix_score', 'opportunity_value', 'items', 'recommendations', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
-  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at']
+  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at'],
+  contracts: ['id', 'company_id', 'contract_number', 'name', 'description', 'contract_type', 'status', 'customer_id', 'customer_name', 'vendor_id', 'vendor_name', 'start_date', 'end_date', 'auto_renew', 'renewal_notice_days', 'total_value', 'committed_spend', 'actual_spend', 'utilization_pct', 'currency', 'payment_terms', 'billing_frequency', 'owner', 'department', 'priority', 'risk_level', 'compliance_status', 'last_review_date', 'next_review_date', 'signed_by', 'signed_at', 'counter_signed_by', 'counter_signed_at', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
+  contract_terms: ['id', 'company_id', 'contract_id', 'term_number', 'name', 'description', 'term_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'channel', 'region', 'rate', 'rate_type', 'threshold', 'cap', 'tier_structure', 'calculation_basis', 'settlement_frequency', 'effective_date', 'expiry_date', 'accrued_amount', 'settled_amount', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
+  contract_milestones: ['id', 'company_id', 'contract_id', 'name', 'description', 'milestone_type', 'status', 'due_date', 'completed_date', 'completed_by', 'assigned_to', 'priority', 'amount', 'notes', 'data', 'created_at', 'updated_at'],
+  contract_amendments: ['id', 'company_id', 'contract_id', 'amendment_number', 'name', 'description', 'amendment_type', 'status', 'effective_date', 'field_changed', 'old_value', 'new_value', 'reason', 'impact_amount', 'approved_by', 'approved_at', 'created_by', 'notes', 'data', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
