@@ -76,7 +76,7 @@ const TradeSpendListEnhanced = () => {
       icon: '🎯',
       label: 'Optimize Allocation',
       description: 'AI-powered spend optimization',
-      action: () => navigate('/simulation-studio')
+      action: () => navigate('/scenarios')
     },
     {
       icon: '📊',

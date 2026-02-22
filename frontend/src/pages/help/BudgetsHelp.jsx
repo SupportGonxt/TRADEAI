@@ -335,7 +335,7 @@ const BudgetsHelp = () => {
               <ListItem button onClick={() => navigate('/budgets/new')}>
                 <ListItemText primary="Create New Budget" />
               </ListItem>
-              <ListItem button onClick={() => navigate('/budget-console')}>
+              <ListItem button onClick={() => navigate('/budgets')}>
                 <ListItemText primary="Budget Console" />
               </ListItem>
             </List>

@@ -103,7 +103,7 @@ const ProductListEnhanced = () => {
       icon: '💰',
       label: 'Optimize Pricing',
       description: 'Run AI-powered price optimization across portfolio',
-      action: () => navigate('/simulation-studio')
+      action: () => navigate('/scenarios')
     },
     {
       icon: '📦',

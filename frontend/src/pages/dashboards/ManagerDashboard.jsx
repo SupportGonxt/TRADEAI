@@ -96,7 +96,7 @@ const ManagerDashboard = () => {
   };
 
   const handleSimulateReallocation = (recommendation) => {
-    navigate('/simulation-studio', { state: { recommendation } });
+    navigate('/scenarios', { state: { recommendation } });
   };
 
   const handleExplainReallocation = (recommendation) => {
