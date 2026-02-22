@@ -5,6 +5,38 @@ import { getD1Client } from '../services/d1.js';
 const promotionConflictRoutes = new Hono();
 promotionConflictRoutes.use('*', authMiddleware);
 
+promotionConflictRoutes.get('/check', async (c) => {
+  try {
+    const user = c.get('user');
+    const db = getD1Client(c);
+    const promotions = await db.find('promotions', {
+      company_id: user.companyId,
+      status: { $in: ['active', 'approved', 'pending_approval'] }
+    });
+    const conflicts = [];
+    for (let i = 0; i < promotions.length; i++) {
+      for (let j = i + 1; j < promotions.length; j++) {
+        const a = promotions[i], b = promotions[j];
+        const aStart = new Date(a.start_date || a.created_at);
+        const aEnd = new Date(a.end_date || Date.now() + 30 * 86400000);
+        const bStart = new Date(b.start_date || b.created_at);
+        const bEnd = new Date(b.end_date || Date.now() + 30 * 86400000);
+        if (aStart <= bEnd && aEnd >= bStart) {
+          conflicts.push({
+            promotionA: { id: a.id, name: a.name, status: a.status },
+            promotionB: { id: b.id, name: b.name, status: b.status },
+            overlapDays: Math.max(0, Math.ceil((Math.min(aEnd, bEnd) - Math.max(aStart, bStart)) / 86400000)),
+            severity: a.customer_id && b.customer_id && a.customer_id === b.customer_id ? 'high' : 'low'
+          });
+        }
+      }
+    }
+    return c.json({ success: true, data: { conflicts, total: conflicts.length } });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
 promotionConflictRoutes.post('/check', async (c) => {
   try {
     const user = c.get('user');

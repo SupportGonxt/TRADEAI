@@ -321,21 +321,11 @@ pnl.get('/live-by-promotion', async (c) => {
       GROUP BY promotion_id
     `).bind(companyId).all();
 
-    const promoBudgets = await db.prepare(`
-      SELECT
-        promotion_id,
-        SUM(amount) as total_budget
-      FROM budgets
-      WHERE company_id = ? AND promotion_id IS NOT NULL
-      GROUP BY promotion_id
-    `).bind(companyId).all();
-
     const accrualMap = {};
     (promoAccruals.results || []).forEach(r => { accrualMap[r.promotion_id] = r; });
     const settlementMap = {};
     (promoSettlements.results || []).forEach(r => { settlementMap[r.promotion_id] = r; });
     const budgetMap = {};
-    (promoBudgets.results || []).forEach(r => { budgetMap[r.promotion_id] = r; });
 
     const rows = (promoSpends.results || []).map(ps => {
       const promoId = ps.promotion_id;
@@ -719,13 +709,9 @@ pnl.post('/:id/generate', async (c) => {
           'SELECT SUM(settled_amount) as total FROM settlements WHERE company_id = ? AND promotion_id = ?'
         ).bind(companyId, promoId).first();
 
-        const budgetData = await db.prepare(
-          'SELECT SUM(amount) as total FROM budgets WHERE company_id = ? AND promotion_id = ?'
-        ).bind(companyId, promoId).first();
-
         const accrued = accrualData?.total || 0;
         const settled = settlementData?.total || 0;
-        const budgeted = budgetData?.total || 0;
+        const budgeted = 0;
 
         const grossSales = tradeSpend * 4;
         const netSales = grossSales - tradeSpend;

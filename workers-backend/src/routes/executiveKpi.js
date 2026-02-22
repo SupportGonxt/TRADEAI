@@ -6,6 +6,7 @@ const executiveKpiRoutes = new Hono();
 executiveKpiRoutes.use('*', authMiddleware);
 
 const getClient = (c) => getD1Client(c);
+const getCompanyId = (c) => c.get('tenantId') || c.get('user')?.companyId;
 
 executiveKpiRoutes.get('/options', async (c) => {
   return c.json({
@@ -55,7 +56,7 @@ executiveKpiRoutes.get('/options', async (c) => {
 
 executiveKpiRoutes.get('/summary', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   try {
     const [kpis, targets, actuals, scorecards] = await Promise.all([
       db.rawQuery('SELECT COUNT(*) as total, SUM(CASE WHEN is_active = 1 THEN 1 ELSE 0 END) as active FROM kpi_definitions WHERE company_id = ?', [companyId]),
@@ -80,7 +81,7 @@ executiveKpiRoutes.get('/summary', async (c) => {
 // --- KPI Definitions CRUD ---
 executiveKpiRoutes.get('/definitions', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { limit = '50', offset = '0', kpiType, category, search } = c.req.query();
   try {
     let where = 'company_id = ?';
@@ -97,7 +98,7 @@ executiveKpiRoutes.get('/definitions', async (c) => {
 
 executiveKpiRoutes.post('/definitions', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const body = await c.req.json();
   try {
     const id = crypto.randomUUID();
@@ -112,7 +113,7 @@ executiveKpiRoutes.post('/definitions', async (c) => {
 
 executiveKpiRoutes.put('/definitions/:id', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { id } = c.req.param();
   const body = await c.req.json();
   try {
@@ -135,7 +136,7 @@ executiveKpiRoutes.put('/definitions/:id', async (c) => {
 
 executiveKpiRoutes.delete('/definitions/:id', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { id } = c.req.param();
   try {
     await db.rawExecute('DELETE FROM kpi_definitions WHERE id = ? AND company_id = ?', [id, companyId]);
@@ -146,7 +147,7 @@ executiveKpiRoutes.delete('/definitions/:id', async (c) => {
 // --- KPI Targets CRUD ---
 executiveKpiRoutes.get('/targets', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { limit = '50', offset = '0', kpiId, period } = c.req.query();
   try {
     let where = 'company_id = ?';
@@ -162,7 +163,7 @@ executiveKpiRoutes.get('/targets', async (c) => {
 
 executiveKpiRoutes.post('/targets', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const body = await c.req.json();
   try {
     const id = crypto.randomUUID();
@@ -177,7 +178,7 @@ executiveKpiRoutes.post('/targets', async (c) => {
 
 executiveKpiRoutes.delete('/targets/:id', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { id } = c.req.param();
   try {
     await db.rawExecute('DELETE FROM kpi_targets WHERE id = ? AND company_id = ?', [id, companyId]);
@@ -188,7 +189,7 @@ executiveKpiRoutes.delete('/targets/:id', async (c) => {
 // --- KPI Actuals CRUD ---
 executiveKpiRoutes.get('/actuals', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { limit = '50', offset = '0', kpiId, period, ragStatus } = c.req.query();
   try {
     let where = 'company_id = ?';
@@ -205,7 +206,7 @@ executiveKpiRoutes.get('/actuals', async (c) => {
 
 executiveKpiRoutes.post('/actuals', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const body = await c.req.json();
   try {
     const id = crypto.randomUUID();
@@ -224,7 +225,7 @@ executiveKpiRoutes.post('/actuals', async (c) => {
 
 executiveKpiRoutes.delete('/actuals/:id', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { id } = c.req.param();
   try {
     await db.rawExecute('DELETE FROM kpi_actuals WHERE id = ? AND company_id = ?', [id, companyId]);
@@ -235,7 +236,7 @@ executiveKpiRoutes.delete('/actuals/:id', async (c) => {
 // --- Executive Scorecards CRUD ---
 executiveKpiRoutes.get('/scorecards', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { limit = '50', offset = '0', status, period } = c.req.query();
   try {
     let where = 'company_id = ?';
@@ -251,7 +252,7 @@ executiveKpiRoutes.get('/scorecards', async (c) => {
 
 executiveKpiRoutes.get('/scorecards/:id', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { id } = c.req.param();
   try {
     const result = await db.rawQuery('SELECT * FROM executive_scorecards WHERE id = ? AND company_id = ?', [id, companyId]);
@@ -265,7 +266,7 @@ executiveKpiRoutes.get('/scorecards/:id', async (c) => {
 
 executiveKpiRoutes.post('/scorecards', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const body = await c.req.json();
   try {
     const id = crypto.randomUUID();
@@ -280,7 +281,7 @@ executiveKpiRoutes.post('/scorecards', async (c) => {
 
 executiveKpiRoutes.put('/scorecards/:id', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { id } = c.req.param();
   const body = await c.req.json();
   try {
@@ -305,7 +306,7 @@ executiveKpiRoutes.put('/scorecards/:id', async (c) => {
 
 executiveKpiRoutes.delete('/scorecards/:id', async (c) => {
   const db = getClient(c);
-  const companyId = c.get('companyId');
+  const companyId = getCompanyId(c);
   const { id } = c.req.param();
   try {
     await db.rawExecute('DELETE FROM executive_scorecards WHERE id = ? AND company_id = ?', [id, companyId]);
