@@ -67,7 +67,10 @@ const TABLE_MAP = {
   kpi_definitions: 'kpi_definitions',
   kpi_targets: 'kpi_targets',
   kpi_actuals: 'kpi_actuals',
-  executive_scorecards: 'executive_scorecards'
+  executive_scorecards: 'executive_scorecards',
+  waterfall_analyses: 'waterfall_analyses',
+  waterfall_steps: 'waterfall_steps',
+  spend_decompositions: 'spend_decompositions'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -578,7 +581,34 @@ const COLUMN_MAP = {
   amberCount: 'amber_count',
   redCount: 'red_count',
   publishedAt: 'published_at',
-  publishedBy: 'published_by'
+  publishedBy: 'published_by',
+  analysisType: 'analysis_type',
+  baseRevenue: 'base_revenue',
+  grossRevenue: 'gross_revenue',
+  netRevenue: 'net_revenue',
+  totalTradeSpend: 'total_trade_spend',
+  tradeSpendPct: 'trade_spend_pct',
+  totalSteps: 'total_steps',
+  stepOrder: 'step_order',
+  stepType: 'step_type',
+  cumulativeAmount: 'cumulative_amount',
+  cumulativePct: 'cumulative_pct',
+  startValue: 'start_value',
+  endValue: 'end_value',
+  subCategory: 'sub_category',
+  isSubtotal: 'is_subtotal',
+  spendType: 'spend_type',
+  grossAmount: 'gross_amount',
+  netAmount: 'net_amount',
+  pctOfTotal: 'pct_of_total',
+  pctOfRevenue: 'pct_of_revenue',
+  volumeImpact: 'volume_impact',
+  incrementalRevenue: 'incremental_revenue',
+  effectivenessScore: 'effectiveness_score',
+  varianceToBenchmark: 'variance_to_benchmark',
+  trendDirection: 'trend_direction',
+  priorPeriodAmount: 'prior_period_amount',
+  yoyChangePct: 'yoy_change_pct'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -670,7 +700,10 @@ const TABLE_COLUMNS = {
   kpi_definitions: ['id', 'company_id', 'name', 'description', 'kpi_type', 'category', 'unit', 'format', 'calculation_method', 'data_source', 'source_table', 'source_column', 'aggregation', 'frequency', 'direction', 'threshold_red', 'threshold_amber', 'threshold_green', 'weight', 'sort_order', 'is_active', 'owner', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_targets: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'target_value', 'stretch_target', 'floor_value', 'prior_year_value', 'budget_value', 'status', 'approved_by', 'approved_at', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
   kpi_actuals: ['id', 'company_id', 'kpi_id', 'kpi_name', 'period', 'period_start', 'period_end', 'actual_value', 'target_value', 'variance', 'variance_pct', 'achievement_pct', 'trend_direction', 'prior_period_value', 'prior_year_value', 'yoy_growth_pct', 'mom_growth_pct', 'ytd_actual', 'ytd_target', 'ytd_achievement_pct', 'rag_status', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
-  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
+  executive_scorecards: ['id', 'company_id', 'name', 'description', 'scorecard_type', 'status', 'period', 'period_start', 'period_end', 'overall_score', 'overall_rag', 'financial_score', 'operational_score', 'customer_score', 'growth_score', 'total_kpis', 'green_count', 'amber_count', 'red_count', 'highlights', 'lowlights', 'actions', 'commentary', 'published_at', 'published_by', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  waterfall_analyses: ['id', 'company_id', 'name', 'description', 'analysis_type', 'period', 'period_start', 'period_end', 'dimension', 'dimension_id', 'dimension_name', 'base_revenue', 'gross_revenue', 'net_revenue', 'total_trade_spend', 'trade_spend_pct', 'total_steps', 'currency', 'status', 'tags', 'notes', 'data', 'created_by', 'created_at', 'updated_at'],
+  waterfall_steps: ['id', 'company_id', 'analysis_id', 'step_order', 'step_type', 'label', 'description', 'amount', 'percentage', 'cumulative_amount', 'cumulative_pct', 'start_value', 'end_value', 'color', 'category', 'sub_category', 'source', 'is_subtotal', 'notes', 'data', 'created_at', 'updated_at'],
+  spend_decompositions: ['id', 'company_id', 'analysis_id', 'name', 'period', 'period_start', 'period_end', 'spend_type', 'category', 'sub_category', 'customer_id', 'customer_name', 'product_id', 'product_name', 'channel', 'region', 'gross_amount', 'net_amount', 'pct_of_total', 'pct_of_revenue', 'roi', 'volume_impact', 'incremental_revenue', 'effectiveness_score', 'benchmark', 'variance_to_benchmark', 'trend_direction', 'prior_period_amount', 'yoy_change_pct', 'notes', 'data', 'created_by', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
