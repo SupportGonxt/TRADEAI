@@ -32,6 +32,7 @@ const OnboardingWizard = ({ open, onClose, userRole }) => {
         'Your Dashboard',
         'AI Recommendations',
         'Create Promotions',
+        'Alerts & Workflows',
         'Track Performance'
       ]
     : [
@@ -39,6 +40,7 @@ const OnboardingWizard = ({ open, onClose, userRole }) => {
         'Your Dashboard',
         'Budget Management',
         'Simulation Studio',
+        'Admin Tools',
         'Analytics & Reports'
       ];
 
@@ -187,6 +189,49 @@ const OnboardingWizard = ({ open, onClose, userRole }) => {
           );
         case 4:
           return (
+            <Box sx={{ py: 2 }}>
+              <Typography variant="h6" gutterBottom>
+                Alerts & Workflows
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                Stay informed and manage approval processes efficiently.
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Card variant="outlined">
+                    <CardContent>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                        <TrendingUp color="warning" sx={{ mr: 1 }} />
+                        <Typography variant="subtitle1" fontWeight={600}>
+                          Notification Center
+                        </Typography>
+                      </Box>
+                      <Typography variant="body2" color="text.secondary">
+                        View alerts for budget thresholds, claim deadlines, and approval requests
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12}>
+                  <Card variant="outlined">
+                    <CardContent>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                        <Timeline color="info" sx={{ mr: 1 }} />
+                        <Typography variant="subtitle1" fontWeight={600}>
+                          Workflow Engine
+                        </Typography>
+                      </Box>
+                      <Typography variant="body2" color="text.secondary">
+                        Track multi-step approval workflows with SLA monitoring
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        case 5:
+          return (
             <Box sx={{ py: 2, textAlign: 'center' }}>
               <CheckCircle sx={{ fontSize: 80, color: 'success.main', mb: 2 }} />
               <Typography variant="h6" gutterBottom>
@@ -207,7 +252,7 @@ const OnboardingWizard = ({ open, onClose, userRole }) => {
                   • Check your dashboard daily for new recommendations
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  • Always simulate before applying major changes
+                  • Set up alert rules for budget and claim thresholds
                 </Typography>
               </Box>
             </Box>
@@ -354,6 +399,49 @@ const OnboardingWizard = ({ open, onClose, userRole }) => {
           );
         case 4:
           return (
+            <Box sx={{ py: 2 }}>
+              <Typography variant="h6" gutterBottom>
+                Admin Tools
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                Manage roles, documents, integrations, and system configuration.
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Card variant="outlined">
+                    <CardContent>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                        <Assessment color="primary" sx={{ mr: 1 }} />
+                        <Typography variant="subtitle1" fontWeight={600}>
+                          Role & Permission Management
+                        </Typography>
+                      </Box>
+                      <Typography variant="body2" color="text.secondary">
+                        Define roles, assign permissions, and set approval limits per user
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={12}>
+                  <Card variant="outlined">
+                    <CardContent>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                        <Lightbulb color="warning" sx={{ mr: 1 }} />
+                        <Typography variant="subtitle1" fontWeight={600}>
+                          Integrations & Documents
+                        </Typography>
+                      </Box>
+                      <Typography variant="body2" color="text.secondary">
+                        Connect ERP/CRM systems, manage documents with version control
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            </Box>
+          );
+        case 5:
+          return (
             <Box sx={{ py: 2, textAlign: 'center' }}>
               <CheckCircle sx={{ fontSize: 80, color: 'success.main', mb: 2 }} />
               <Typography variant="h6" gutterBottom>
@@ -374,7 +462,7 @@ const OnboardingWizard = ({ open, onClose, userRole }) => {
                   • Review budget reallocation recommendations weekly
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  • Use Simulation Studio for major portfolio decisions
+                  • Set up workflow templates for automated approvals
                 </Typography>
               </Box>
             </Box>

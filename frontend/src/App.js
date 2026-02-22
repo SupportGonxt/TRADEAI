@@ -222,6 +222,12 @@ import {
   DeductionsHelp,
   ForecastingHelp,
   BusinessProcessGuide,
+  NotificationsHelp,
+  DocumentsHelp,
+  IntegrationsHelp,
+  RolesHelp,
+  WorkflowsHelp,
+  SystemConfigHelp,
 } from './pages/help';
 
 function App() {
@@ -2120,6 +2126,12 @@ function App() {
                   )
                 } 
               />
+              <Route path="/help/notifications" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><NotificationsHelp /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/help/documents" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><DocumentsHelp /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/help/integrations" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><IntegrationsHelp /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/help/roles" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><RolesHelp /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/help/workflows" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><WorkflowsHelp /></Layout>) : (<Navigate to="/" replace />)} />
+              <Route path="/help/system-config" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><SystemConfigHelp /></Layout>) : (<Navigate to="/" replace />)} />
               <Route path="/notification-center" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><NotificationCenter /></Layout>) : (<Navigate to="/" replace />)} />
               <Route path="/document-management" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><DocumentManagement /></Layout>) : (<Navigate to="/" replace />)} />
               <Route path="/integration-hub" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><IntegrationHub /></Layout>) : (<Navigate to="/" replace />)} />
