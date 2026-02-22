@@ -59,7 +59,11 @@ const TABLE_MAP = {
   customer_360_insights: 'customer_360_insights',
   report_templates: 'report_templates',
   saved_reports: 'saved_reports',
-  report_schedules: 'report_schedules'
+  report_schedules: 'report_schedules',
+  rgm_initiatives: 'rgm_initiatives',
+  rgm_pricing_strategies: 'rgm_pricing_strategies',
+  rgm_mix_analyses: 'rgm_mix_analyses',
+  rgm_growth_trackers: 'rgm_growth_trackers'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -488,7 +492,48 @@ const COLUMN_MAP = {
   timeOfDay: 'time_of_day',
   nextRunAt: 'next_run_at',
   lastStatus: 'last_status',
-  lastError: 'last_error'
+  lastError: 'last_error',
+  initiativeType: 'initiative_type',
+  targetRevenue: 'target_revenue',
+  targetMarginPct: 'target_margin_pct',
+  targetGrowthPct: 'target_growth_pct',
+  actualRevenue: 'actual_revenue',
+  actualMarginPct: 'actual_margin_pct',
+  actualGrowthPct: 'actual_growth_pct',
+  baselineRevenue: 'baseline_revenue',
+  baselineMarginPct: 'baseline_margin_pct',
+  investmentAmount: 'investment_amount',
+  confidenceScore: 'confidence_score',
+  riskLevel: 'risk_level',
+  strategyType: 'strategy_type',
+  currentPrice: 'current_price',
+  recommendedPrice: 'recommended_price',
+  priceChangePct: 'price_change_pct',
+  currentMarginPct: 'current_margin_pct',
+  projectedMarginPct: 'projected_margin_pct',
+  priceElasticity: 'price_elasticity',
+  volumeImpactPct: 'volume_impact_pct',
+  revenueImpact: 'revenue_impact',
+  marginImpact: 'margin_impact',
+  competitorPrice: 'competitor_price',
+  priceIndex: 'price_index',
+  effectiveDate: 'effective_date',
+  analysisType: 'analysis_type',
+  totalVolume: 'total_volume',
+  totalMargin: 'total_margin',
+  avgMarginPct: 'avg_margin_pct',
+  mixScore: 'mix_score',
+  opportunityValue: 'opportunity_value',
+  metricType: 'metric_type',
+  dimensionId: 'dimension_id',
+  dimensionName: 'dimension_name',
+  targetValue: 'target_value',
+  actualValue: 'actual_value',
+  priorValue: 'prior_value',
+  variancePct: 'variance_pct',
+  growthPct: 'growth_pct',
+  contributionPct: 'contribution_pct',
+  trendDirection: 'trend_direction'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -572,7 +617,11 @@ const TABLE_COLUMNS = {
   customer_360_insights: ['id', 'company_id', 'customer_id', 'insight_type', 'category', 'severity', 'title', 'description', 'metric_name', 'metric_value', 'metric_unit', 'benchmark_value', 'variance_pct', 'trend_direction', 'recommendation', 'action_taken', 'action_date', 'action_by', 'valid_from', 'valid_until', 'confidence', 'source', 'data', 'created_at', 'updated_at'],
   report_templates: ['id', 'company_id', 'name', 'description', 'report_category', 'report_type', 'data_source', 'columns', 'filters', 'grouping', 'sorting', 'calculations', 'chart_config', 'parameters', 'is_system', 'is_shared', 'shared_with', 'schedule_enabled', 'schedule_frequency', 'schedule_day', 'schedule_time', 'schedule_recipients', 'last_run_at', 'run_count', 'created_by', 'tags', 'version', 'status', 'notes', 'data', 'created_at', 'updated_at'],
   saved_reports: ['id', 'company_id', 'template_id', 'name', 'description', 'report_category', 'report_type', 'data_source', 'status', 'filters_applied', 'parameters_applied', 'columns', 'row_count', 'report_data', 'summary_data', 'chart_data', 'export_format', 'export_url', 'file_size', 'generation_time_ms', 'is_favorite', 'is_shared', 'shared_with', 'expires_at', 'generated_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
-  report_schedules: ['id', 'company_id', 'template_id', 'name', 'description', 'frequency', 'day_of_week', 'day_of_month', 'time_of_day', 'timezone', 'recipients', 'format', 'filters', 'parameters', 'is_active', 'last_run_at', 'next_run_at', 'run_count', 'last_status', 'last_error', 'created_by', 'notes', 'data', 'created_at', 'updated_at']
+  report_schedules: ['id', 'company_id', 'template_id', 'name', 'description', 'frequency', 'day_of_week', 'day_of_month', 'time_of_day', 'timezone', 'recipients', 'format', 'filters', 'parameters', 'is_active', 'last_run_at', 'next_run_at', 'run_count', 'last_status', 'last_error', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
+  rgm_initiatives: ['id', 'company_id', 'name', 'description', 'initiative_type', 'status', 'priority', 'category', 'customer_id', 'customer_name', 'product_id', 'product_name', 'channel', 'region', 'brand', 'start_date', 'end_date', 'target_revenue', 'target_margin_pct', 'target_growth_pct', 'actual_revenue', 'actual_margin_pct', 'actual_growth_pct', 'baseline_revenue', 'baseline_margin_pct', 'investment_amount', 'roi', 'confidence_score', 'risk_level', 'owner', 'approved_by', 'approved_at', 'created_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
+  rgm_pricing_strategies: ['id', 'company_id', 'initiative_id', 'name', 'description', 'strategy_type', 'status', 'product_id', 'product_name', 'category', 'brand', 'customer_id', 'customer_name', 'channel', 'current_price', 'recommended_price', 'price_change_pct', 'current_margin_pct', 'projected_margin_pct', 'price_elasticity', 'volume_impact_pct', 'revenue_impact', 'margin_impact', 'competitor_price', 'price_index', 'effective_date', 'end_date', 'approved_by', 'approved_at', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
+  rgm_mix_analyses: ['id', 'company_id', 'initiative_id', 'name', 'description', 'analysis_type', 'status', 'dimension', 'period_start', 'period_end', 'total_revenue', 'total_volume', 'total_margin', 'avg_margin_pct', 'mix_score', 'opportunity_value', 'items', 'recommendations', 'created_by', 'notes', 'data', 'created_at', 'updated_at'],
+  rgm_growth_trackers: ['id', 'company_id', 'initiative_id', 'period', 'period_start', 'period_end', 'metric_type', 'dimension', 'dimension_id', 'dimension_name', 'target_value', 'actual_value', 'prior_value', 'variance', 'variance_pct', 'growth_pct', 'contribution_pct', 'trend_direction', 'notes', 'data', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
