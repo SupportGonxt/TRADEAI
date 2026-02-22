@@ -1572,4 +1572,75 @@ export const executiveKpiService = {
   },
 };
 
+export const notificationCenterService = {
+  getSummary: async () => {
+    const response = await api.get('/notification-center/summary');
+    return response.data;
+  },
+  getOptions: async () => {
+    const response = await api.get('/notification-center/options');
+    return response.data;
+  },
+  getNotifications: async (params) => {
+    const response = await api.get('/notification-center/notifications', { params });
+    return response.data;
+  },
+  createNotification: async (data) => {
+    const response = await api.post('/notification-center/notifications', data);
+    return response.data;
+  },
+  markRead: async (id) => {
+    const response = await api.put(`/notification-center/notifications/${id}/read`);
+    return response.data;
+  },
+  dismiss: async (id) => {
+    const response = await api.put(`/notification-center/notifications/${id}/dismiss`);
+    return response.data;
+  },
+  markAllRead: async () => {
+    const response = await api.put('/notification-center/notifications/mark-all-read');
+    return response.data;
+  },
+  deleteNotification: async (id) => {
+    const response = await api.delete(`/notification-center/notifications/${id}`);
+    return response.data;
+  },
+  getRules: async (params) => {
+    const response = await api.get('/notification-center/rules', { params });
+    return response.data;
+  },
+  createRule: async (data) => {
+    const response = await api.post('/notification-center/rules', data);
+    return response.data;
+  },
+  updateRule: async (id, data) => {
+    const response = await api.put(`/notification-center/rules/${id}`, data);
+    return response.data;
+  },
+  deleteRule: async (id) => {
+    const response = await api.delete(`/notification-center/rules/${id}`);
+    return response.data;
+  },
+  getHistory: async (params) => {
+    const response = await api.get('/notification-center/history', { params });
+    return response.data;
+  },
+  createAlert: async (data) => {
+    const response = await api.post('/notification-center/history', data);
+    return response.data;
+  },
+  acknowledgeAlert: async (id) => {
+    const response = await api.put(`/notification-center/history/${id}/acknowledge`);
+    return response.data;
+  },
+  resolveAlert: async (id) => {
+    const response = await api.put(`/notification-center/history/${id}/resolve`);
+    return response.data;
+  },
+  deleteAlert: async (id) => {
+    const response = await api.delete(`/notification-center/history/${id}`);
+    return response.data;
+  },
+};
+
 export default api;
