@@ -812,3 +812,93 @@ select {
   cursor: pointer;
   background-color: #fff;
 }
+
+/* ── Mobile Responsive Overrides ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .MuiTableContainer-root {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .MuiTable-root {
+    min-width: 600px;
+  }
+  .MuiDialog-paper {
+    margin: 8px !important;
+    width: calc(100% - 16px) !important;
+    max-width: 100% !important;
+    max-height: calc(100vh - 16px) !important;
+  }
+  .MuiGrid-container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+  .MuiGrid-item {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  .MuiCard-root {
+    border-radius: 12px !important;
+  }
+  .MuiCardContent-root {
+    padding: 12px !important;
+  }
+  .MuiTypography-h4,
+  .MuiTypography-h5 {
+    font-size: 1.15rem !important;
+  }
+  .MuiButton-root {
+    font-size: 0.8rem !important;
+    padding: 6px 12px !important;
+    min-width: auto !important;
+  }
+  .MuiButton-startIcon {
+    margin-right: 4px !important;
+  }
+  .MuiTabs-root {
+    min-height: 40px !important;
+  }
+  .MuiTab-root {
+    min-height: 40px !important;
+    font-size: 0.75rem !important;
+    padding: 6px 10px !important;
+    min-width: auto !important;
+  }
+  .MuiChip-root {
+    height: 24px !important;
+    font-size: 0.7rem !important;
+  }
+  .MuiTextField-root {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .MuiTable-root {
+    min-width: 500px;
+  }
+  .MuiDialog-paper {
+    margin: 4px !important;
+    border-radius: 12px !important;
+  }
+  .MuiDialogTitle-root {
+    padding: 12px 16px !important;
+    font-size: 1rem !important;
+  }
+  .MuiDialogContent-root {
+    padding: 8px 16px !important;
+  }
+  .MuiDialogActions-root {
+    padding: 8px 16px !important;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .MuiTableCell-root {
+    padding: 6px 8px !important;
+    font-size: 0.75rem !important;
+  }
+  .MuiTableCell-head {
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+  }
+}
