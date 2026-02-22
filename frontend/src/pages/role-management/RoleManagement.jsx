@@ -99,10 +99,10 @@ export default function RoleManagement() {
       {loading && <LinearProgress sx={{ mb: 2 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Total Roles" value={summary.roles?.total} /></Grid>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Active Roles" value={summary.roles?.active} color="#059669" /></Grid>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Users Assigned" value={summary.assignments?.users} color="#2563EB" /></Grid>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Permission Groups" value={summary.permissionGroups?.total} color="#D97706" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Total Roles" value={summary.roles?.total} /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Active Roles" value={summary.roles?.active} color="#059669" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Users Assigned" value={summary.assignments?.users} color="#2563EB" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Permission Groups" value={summary.permissionGroups?.total} color="#D97706" /></Grid>
       </Grid>
 
       <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>

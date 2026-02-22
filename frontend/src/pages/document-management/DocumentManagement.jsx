@@ -107,10 +107,10 @@ export default function DocumentManagement() {
       {loading && <LinearProgress sx={{ mb: 2 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Total Documents" value={summary.total} /></Grid>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Active" value={summary.active} color="#059669" /></Grid>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Pending Approval" value={summary.pending} color="#D97706" /></Grid>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Total Size (KB)" value={summary.total_size ? Math.round(summary.total_size / 1024) : 0} color="#2563EB" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Total Documents" value={summary.total} /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Active" value={summary.active} color="#059669" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Pending Approval" value={summary.pending} color="#D97706" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Total Size (KB)" value={summary.total_size ? Math.round(summary.total_size / 1024) : 0} color="#2563EB" /></Grid>
       </Grid>
 
       <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>

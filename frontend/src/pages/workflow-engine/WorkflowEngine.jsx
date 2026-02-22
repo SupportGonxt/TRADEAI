@@ -120,10 +120,10 @@ export default function WorkflowEngine() {
       {loading && <LinearProgress sx={{ mb: 2 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Templates" value={summary.templates?.total} /></Grid>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Active Templates" value={summary.templates?.active} color="#059669" /></Grid>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="In Progress" value={summary.instances?.in_progress} color="#2563EB" /></Grid>
-        <Grid item xs={12} sm={6} sm={3}><SummaryCard title="Completed" value={summary.instances?.completed} color="#D97706" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Templates" value={summary.templates?.total} /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Active Templates" value={summary.templates?.active} color="#059669" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="In Progress" value={summary.instances?.in_progress} color="#2563EB" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Completed" value={summary.instances?.completed} color="#D97706" /></Grid>
       </Grid>
 
       <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>
