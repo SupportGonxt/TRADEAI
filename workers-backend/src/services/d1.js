@@ -56,7 +56,10 @@ const TABLE_MAP = {
   optimization_recommendations: 'optimization_recommendations',
   optimization_constraints: 'optimization_constraints',
   customer_360_profiles: 'customer_360_profiles',
-  customer_360_insights: 'customer_360_insights'
+  customer_360_insights: 'customer_360_insights',
+  report_templates: 'report_templates',
+  saved_reports: 'saved_reports',
+  report_schedules: 'report_schedules'
 };
 
 // Column mapping for common fields (MongoDB field -> D1 column)
@@ -452,7 +455,40 @@ const COLUMN_MAP = {
   actionDate: 'action_date',
   actionBy: 'action_by',
   validFrom: 'valid_from',
-  validUntil: 'valid_until'
+  validUntil: 'valid_until',
+  reportCategory: 'report_category',
+  reportType: 'report_type',
+  dataSource: 'data_source',
+  chartConfig: 'chart_config',
+  scheduleEnabled: 'schedule_enabled',
+  scheduleFrequency: 'schedule_frequency',
+  scheduleDay: 'schedule_day',
+  scheduleTime: 'schedule_time',
+  scheduleRecipients: 'schedule_recipients',
+  lastRunAt: 'last_run_at',
+  runCount: 'run_count',
+  templateId: 'template_id',
+  filtersApplied: 'filters_applied',
+  parametersApplied: 'parameters_applied',
+  rowCount: 'row_count',
+  reportData: 'report_data',
+  summaryData: 'summary_data',
+  chartData: 'chart_data',
+  exportFormat: 'export_format',
+  exportUrl: 'export_url',
+  fileSize: 'file_size',
+  generationTimeMs: 'generation_time_ms',
+  isFavorite: 'is_favorite',
+  isShared: 'is_shared',
+  sharedWith: 'shared_with',
+  expiresAt: 'expires_at',
+  generatedBy: 'generated_by',
+  dayOfWeek: 'day_of_week',
+  dayOfMonth: 'day_of_month',
+  timeOfDay: 'time_of_day',
+  nextRunAt: 'next_run_at',
+  lastStatus: 'last_status',
+  lastError: 'last_error'
 };
 
 // Reverse column mapping (D1 column -> MongoDB field)
@@ -533,7 +569,10 @@ const TABLE_COLUMNS = {
   optimization_recommendations: ['id', 'company_id', 'optimization_id', 'recommendation_type', 'priority', 'title', 'description', 'current_value', 'recommended_value', 'change_pct', 'expected_impact_revenue', 'expected_impact_roi', 'expected_impact_units', 'expected_impact_margin', 'confidence', 'risk_level', 'category', 'metric_name', 'rationale', 'action_taken', 'applied_at', 'sort_order', 'data', 'created_at', 'updated_at'],
   optimization_constraints: ['id', 'company_id', 'optimization_id', 'constraint_name', 'constraint_type', 'operator', 'threshold_value', 'current_value', 'is_violated', 'severity', 'sort_order', 'notes', 'data', 'created_at', 'updated_at'],
   customer_360_profiles: ['id', 'company_id', 'customer_id', 'customer_name', 'customer_code', 'channel', 'sub_channel', 'tier', 'region', 'status', 'total_revenue', 'total_spend', 'total_claims', 'total_deductions', 'net_revenue', 'gross_margin_pct', 'trade_spend_pct', 'revenue_growth_pct', 'avg_order_value', 'order_frequency', 'last_order_date', 'active_promotions', 'completed_promotions', 'active_claims', 'pending_deductions', 'ltv_score', 'churn_risk', 'churn_reason', 'segment', 'price_sensitivity', 'promo_responsiveness', 'next_best_action', 'health_score', 'satisfaction_score', 'engagement_score', 'payment_reliability', 'top_products', 'top_categories', 'monthly_revenue', 'monthly_spend', 'last_calculated_at', 'notes', 'data', 'created_at', 'updated_at'],
-  customer_360_insights: ['id', 'company_id', 'customer_id', 'insight_type', 'category', 'severity', 'title', 'description', 'metric_name', 'metric_value', 'metric_unit', 'benchmark_value', 'variance_pct', 'trend_direction', 'recommendation', 'action_taken', 'action_date', 'action_by', 'valid_from', 'valid_until', 'confidence', 'source', 'data', 'created_at', 'updated_at']
+  customer_360_insights: ['id', 'company_id', 'customer_id', 'insight_type', 'category', 'severity', 'title', 'description', 'metric_name', 'metric_value', 'metric_unit', 'benchmark_value', 'variance_pct', 'trend_direction', 'recommendation', 'action_taken', 'action_date', 'action_by', 'valid_from', 'valid_until', 'confidence', 'source', 'data', 'created_at', 'updated_at'],
+  report_templates: ['id', 'company_id', 'name', 'description', 'report_category', 'report_type', 'data_source', 'columns', 'filters', 'grouping', 'sorting', 'calculations', 'chart_config', 'parameters', 'is_system', 'is_shared', 'shared_with', 'schedule_enabled', 'schedule_frequency', 'schedule_day', 'schedule_time', 'schedule_recipients', 'last_run_at', 'run_count', 'created_by', 'tags', 'version', 'status', 'notes', 'data', 'created_at', 'updated_at'],
+  saved_reports: ['id', 'company_id', 'template_id', 'name', 'description', 'report_category', 'report_type', 'data_source', 'status', 'filters_applied', 'parameters_applied', 'columns', 'row_count', 'report_data', 'summary_data', 'chart_data', 'export_format', 'export_url', 'file_size', 'generation_time_ms', 'is_favorite', 'is_shared', 'shared_with', 'expires_at', 'generated_by', 'tags', 'notes', 'data', 'created_at', 'updated_at'],
+  report_schedules: ['id', 'company_id', 'template_id', 'name', 'description', 'frequency', 'day_of_week', 'day_of_month', 'time_of_day', 'timezone', 'recipients', 'format', 'filters', 'parameters', 'is_active', 'last_run_at', 'next_run_at', 'run_count', 'last_status', 'last_error', 'created_by', 'notes', 'data', 'created_at', 'updated_at']
 };
 
 // Generate a UUID for new records
