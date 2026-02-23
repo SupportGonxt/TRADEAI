@@ -30,38 +30,31 @@ const BudgetAllocations = ({ budgetId }) => {
 
   return (
     <Box>
-      <Typography variant="h6" gutterBottom>Monthly Allocations</Typography>
+      <Typography variant="h6" gutterBottom>Budget Allocations</Typography>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Month</TableCell>
-              <TableCell align="right">Sales Target</TableCell>
-              <TableCell align="right">Marketing</TableCell>
-              <TableCell align="right">Cash Co-op</TableCell>
-              <TableCell align="right">Trading Terms</TableCell>
-              <TableCell align="right">Promotions</TableCell>
-              <TableCell align="right">Total</TableCell>
+              <TableCell>Promotion</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell align="right">Amount</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Start Date</TableCell>
+              <TableCell>End Date</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {allocations.length === 0 ? (
-              <TableRow><TableCell colSpan={7} align="center">No allocations yet</TableCell></TableRow>
+              <TableRow><TableCell colSpan={6} align="center">No allocations yet</TableCell></TableRow>
             ) : (
-              allocations.map((line) => (
-                <TableRow key={line.month}>
-                  <TableCell>Month {line.month}</TableCell>
-                  <TableCell align="right">R {line.sales?.value?.toLocaleString() || '0'}</TableCell>
-                  <TableCell align="right">R {line.tradeSpend?.marketing?.budget?.toLocaleString() || '0'}</TableCell>
-                  <TableCell align="right">R {line.tradeSpend?.cashCoop?.budget?.toLocaleString() || '0'}</TableCell>
-                  <TableCell align="right">R {line.tradeSpend?.tradingTerms?.budget?.toLocaleString() || '0'}</TableCell>
-                  <TableCell align="right">R {line.tradeSpend?.promotions?.budget?.toLocaleString() || '0'}</TableCell>
-                  <TableCell align="right">
-                    R {((line.tradeSpend?.marketing?.budget || 0) + 
-                        (line.tradeSpend?.cashCoop?.budget || 0) + 
-                        (line.tradeSpend?.tradingTerms?.budget || 0) + 
-                        (line.tradeSpend?.promotions?.budget || 0)).toLocaleString()}
-                  </TableCell>
+              allocations.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell sx={{ textTransform: 'capitalize' }}>{item.type}</TableCell>
+                  <TableCell align="right">R {(item.amount || 0).toLocaleString()}</TableCell>
+                  <TableCell sx={{ textTransform: 'capitalize' }}>{item.status}</TableCell>
+                  <TableCell>{item.startDate ? new Date(item.startDate).toLocaleDateString() : 'N/A'}</TableCell>
+                  <TableCell>{item.endDate ? new Date(item.endDate).toLocaleDateString() : 'N/A'}</TableCell>
                 </TableRow>
               ))
             )}
