@@ -27,11 +27,17 @@ dashboardRoutes.get('/', async (c) => {
       mongodb.find('tradespends', { companyId: tenantId }, { limit: 5, sort: { createdAt: -1 } })
     ]);
 
-    // Get budget utilization
-    const budgets = await mongodb.find('budgets', { 
+    // Get budget utilization - check current year first, fall back to most recent year
+    let budgets = await mongodb.find('budgets', { 
       companyId: tenantId, 
       year: new Date().getFullYear() 
     });
+    if (budgets.length === 0) {
+      budgets = await mongodb.find('budgets', { 
+        companyId: tenantId, 
+        year: new Date().getFullYear() - 1 
+      });
+    }
     
     const totalBudget = budgets.reduce((sum, b) => sum + (b.amount || 0), 0);
     const utilizedBudget = budgets.reduce((sum, b) => sum + (b.utilized || 0), 0);

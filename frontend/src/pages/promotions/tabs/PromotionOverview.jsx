@@ -35,27 +35,27 @@ const PromotionOverview = ({ promotion }) => {
         <Typography variant="h6" gutterBottom>Financial Summary</Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} md={3}>
-            <Typography variant="body2" color="text.secondary">Estimated Cost</Typography>
+            <Typography variant="body2" color="text.secondary">Budget Amount</Typography>
             <Typography variant="h6">
-              R {promotion.financial?.costs?.totalCost?.toLocaleString() || '0'}
+              R {(promotion.budgetAmount || 0).toLocaleString()}
             </Typography>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Typography variant="body2" color="text.secondary">Actual Cost</Typography>
+            <Typography variant="body2" color="text.secondary">Expected Lift</Typography>
             <Typography variant="h6">
-              R {promotion.financial?.actual?.totalCost?.toLocaleString() || '0'}
+              {promotion.preEvaluation?.expectedLift?.toFixed(1) || '0'}%
             </Typography>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Typography variant="body2" color="text.secondary">Incremental Revenue</Typography>
-            <Typography variant="h6">
-              R {promotion.financial?.actual?.incrementalRevenue?.toLocaleString() || '0'}
+            <Typography variant="body2" color="text.secondary">Expected ROI</Typography>
+            <Typography variant="h6" color={(promotion.preEvaluation?.expectedROI || 0) > 0 ? 'success.main' : 'error.main'}>
+              {promotion.preEvaluation?.expectedROI?.toFixed(1) || '0'}%
             </Typography>
           </Grid>
           <Grid item xs={12} md={3}>
-            <Typography variant="body2" color="text.secondary">ROI</Typography>
-            <Typography variant="h6" color={promotion.financial?.profitability?.roi > 0 ? 'success.main' : 'error.main'}>
-              {promotion.financial?.profitability?.roi?.toFixed(1) || '0'}%
+            <Typography variant="body2" color="text.secondary">Confidence</Typography>
+            <Typography variant="h6">
+              {promotion.preEvaluation?.confidence ? (promotion.preEvaluation.confidence * 100).toFixed(0) + '%' : 'N/A'}
             </Typography>
           </Grid>
         </Grid>

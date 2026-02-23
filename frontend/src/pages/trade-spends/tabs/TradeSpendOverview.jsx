@@ -13,8 +13,8 @@ const TradeSpendOverview = ({ tradeSpend }) => {
             <Typography variant="body1">{formatLabel(tradeSpend.spendType)}</Typography>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography variant="body2" color="text.secondary">Category</Typography>
-            <Typography variant="body1">{tradeSpend.category || 'N/A'}</Typography>
+            <Typography variant="body2" color="text.secondary">Activity Type</Typography>
+            <Typography variant="body1">{tradeSpend.activityType || tradeSpend.category || 'N/A'}</Typography>
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography variant="body2" color="text.secondary">Customer</Typography>
