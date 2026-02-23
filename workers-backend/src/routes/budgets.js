@@ -159,6 +159,111 @@ budgetRoutes.post('/:id/clone', async (c) => {
   }
 });
 
+budgetRoutes.get('/:id/allocations', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const budget = await mongodb.findOne('budgets', { _id: { $oid: id }, companyId: tenantId });
+    if (!budget) return c.json({ success: false, message: 'Budget not found' }, 404);
+    return c.json({ success: true, data: budget.allocations || budget.monthlyAllocations || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+budgetRoutes.get('/:id/approvals', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const budget = await mongodb.findOne('budgets', { _id: { $oid: id }, companyId: tenantId });
+    if (!budget) return c.json({ success: false, message: 'Budget not found' }, 404);
+    return c.json({ success: true, data: budget.approvals || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+budgetRoutes.get('/:id/spending', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const budget = await mongodb.findOne('budgets', { _id: { $oid: id }, companyId: tenantId });
+    if (!budget) return c.json({ success: false, message: 'Budget not found' }, 404);
+    const tradeSpends = await mongodb.find('tradespends', { budgetId: id, companyId: tenantId });
+    const spending = {
+      totalBudget: budget.amount || budget.totalAmount || 0,
+      totalSpent: tradeSpends.reduce((sum, ts) => sum + (ts.amount || 0), 0),
+      items: tradeSpends.map(ts => ({
+        id: ts._id || ts.id,
+        name: ts.name || ts.spendType || 'Trade Spend',
+        amount: ts.amount || 0,
+        status: ts.status,
+        date: ts.createdAt
+      }))
+    };
+    spending.remaining = spending.totalBudget - spending.totalSpent;
+    spending.utilizationRate = spending.totalBudget > 0 ? ((spending.totalSpent / spending.totalBudget) * 100).toFixed(1) : '0.0';
+    return c.json({ success: true, data: spending });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+budgetRoutes.get('/:id/history', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const budget = await mongodb.findOne('budgets', { _id: { $oid: id }, companyId: tenantId });
+    if (!budget) return c.json({ success: false, message: 'Budget not found' }, 404);
+    return c.json({ success: true, data: budget.history || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+budgetRoutes.get('/:id/transfers', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const budget = await mongodb.findOne('budgets', { _id: { $oid: id }, companyId: tenantId });
+    if (!budget) return c.json({ success: false, message: 'Budget not found' }, 404);
+    return c.json({ success: true, data: budget.transfers || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+budgetRoutes.get('/:id/scenarios', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const budget = await mongodb.findOne('budgets', { _id: { $oid: id }, companyId: tenantId });
+    if (!budget) return c.json({ success: false, message: 'Budget not found' }, 404);
+    return c.json({ success: true, data: budget.scenarios || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+budgetRoutes.get('/:id/forecast', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const budget = await mongodb.findOne('budgets', { _id: { $oid: id }, companyId: tenantId });
+    if (!budget) return c.json({ success: false, message: 'Budget not found' }, 404);
+    return c.json({ success: true, data: budget.forecast || budget.forecasts || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
 // Get budget utilization
 budgetRoutes.get('/:id/utilization', async (c) => {
   try {
