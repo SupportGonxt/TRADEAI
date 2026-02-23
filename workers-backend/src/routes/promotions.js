@@ -159,7 +159,20 @@ promotionRoutes.get('/:id/products', async (c) => {
     const mongodb = getMongoClient(c);
     const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
     if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
-    return c.json({ success: true, data: promotion.products || [] });
+    const products = [];
+    if (promotion.productId) {
+      const product = await mongodb.findOne('products', { id: promotion.productId, companyId: tenantId });
+      if (product) {
+        products.push({
+          id: product.id || product._id,
+          product: { id: product.id || product._id, name: product.name, sku: product.sku || product.code },
+          regularPrice: product.unitPrice || 0,
+          promotionalPrice: (product.unitPrice || 0) * 0.85,
+          expectedLift: promotion.preEvaluation?.expectedLift || 15
+        });
+      }
+    }
+    return c.json({ success: true, data: products });
   } catch (error) {
     return c.json({ success: false, message: error.message }, 500);
   }
@@ -187,7 +200,18 @@ promotionRoutes.get('/:id/customers', async (c) => {
     const mongodb = getMongoClient(c);
     const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
     if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
-    return c.json({ success: true, data: promotion.customers || [] });
+    const customers = [];
+    if (promotion.customerId) {
+      const customer = await mongodb.findOne('customers', { id: promotion.customerId, companyId: tenantId });
+      if (customer) {
+        customers.push({
+          id: customer.id || customer._id,
+          customer: { id: customer.id || customer._id, name: customer.name, code: customer.code, type: customer.customerType || customer.channel },
+          stores: customer.hierarchy ? [customer.hierarchy] : []
+        });
+      }
+    }
+    return c.json({ success: true, data: customers });
   } catch (error) {
     return c.json({ success: false, message: error.message }, 500);
   }
@@ -215,14 +239,24 @@ promotionRoutes.get('/:id/budget', async (c) => {
     const mongodb = getMongoClient(c);
     const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
     if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
-    const budget = promotion.budget || promotion.financial || {
-      totalBudget: promotion.estimatedCost || 0,
-      allocatedBudget: promotion.allocatedBudget || 0,
-      spentBudget: promotion.actualCost || promotion.financial?.actual?.totalCost || 0,
-      remainingBudget: (promotion.estimatedCost || 0) - (promotion.actualCost || 0),
+    const totalBudget = promotion.budgetAmount || 0;
+    let allocatedBudget = totalBudget;
+    let spentBudget = 0;
+    if (promotion.budgetId) {
+      const linkedBudget = await mongodb.findOne('budgets', { _id: { $oid: promotion.budgetId }, companyId: tenantId });
+      if (linkedBudget) {
+        allocatedBudget = linkedBudget.utilized || totalBudget;
+      }
+    }
+    const tradeSpends = await mongodb.find('tradespends', { promotionId: id, companyId: tenantId });
+    spentBudget = tradeSpends.reduce((sum, ts) => sum + (ts.amount || 0), 0);
+    return c.json({ success: true, data: {
+      totalBudget,
+      allocatedBudget,
+      spentBudget,
+      remainingBudget: totalBudget - spentBudget,
       currency: 'ZAR'
-    };
-    return c.json({ success: true, data: budget });
+    }});
   } catch (error) {
     return c.json({ success: false, message: error.message }, 500);
   }
@@ -235,7 +269,14 @@ promotionRoutes.get('/:id/documents', async (c) => {
     const mongodb = getMongoClient(c);
     const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
     if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
-    return c.json({ success: true, data: promotion.documents || [] });
+    const documents = [];
+    if (promotion.budgetId) {
+      documents.push({ id: `doc-budget-${id}`, name: 'Budget Allocation', type: 'budget', createdAt: promotion.createdAt });
+    }
+    if (promotion.approvedBy) {
+      documents.push({ id: `doc-approval-${id}`, name: 'Approval Record', type: 'approval', createdAt: promotion.approvedAt || promotion.updatedAt });
+    }
+    return c.json({ success: true, data: documents });
   } catch (error) {
     return c.json({ success: false, message: error.message }, 500);
   }
@@ -263,7 +304,20 @@ promotionRoutes.get('/:id/approvals', async (c) => {
     const mongodb = getMongoClient(c);
     const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
     if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
-    return c.json({ success: true, data: promotion.approvals || [] });
+    const approvals = [];
+    if (promotion.createdBy) {
+      approvals.push({ id: `appr-submit-${id}`, action: 'submitted', user: promotion.createdBy, date: promotion.createdAt, status: 'completed' });
+    }
+    if (promotion.approvedBy) {
+      approvals.push({ id: `appr-approve-${id}`, action: 'approved', user: promotion.approvedBy, date: promotion.approvedAt, status: 'completed' });
+    }
+    if (promotion.rejectedBy) {
+      approvals.push({ id: `appr-reject-${id}`, action: 'rejected', user: promotion.rejectedBy, date: promotion.rejectedAt, reason: promotion.rejectionReason, status: 'completed' });
+    }
+    if (approvals.length === 0 && promotion.status === 'draft') {
+      approvals.push({ id: `appr-pending-${id}`, action: 'pending_submission', user: promotion.createdBy, date: null, status: 'pending' });
+    }
+    return c.json({ success: true, data: approvals });
   } catch (error) {
     return c.json({ success: false, message: error.message }, 500);
   }
@@ -276,7 +330,18 @@ promotionRoutes.get('/:id/history', async (c) => {
     const mongodb = getMongoClient(c);
     const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
     if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
-    return c.json({ success: true, data: promotion.history || [] });
+    const history = [];
+    history.push({ id: `hist-create-${id}`, action: 'Created', user: promotion.createdBy, date: promotion.createdAt, details: `Promotion "${promotion.name}" created` });
+    if (promotion.approvedBy) {
+      history.push({ id: `hist-approve-${id}`, action: 'Approved', user: promotion.approvedBy, date: promotion.approvedAt, details: 'Promotion approved' });
+    }
+    if (promotion.rejectedBy) {
+      history.push({ id: `hist-reject-${id}`, action: 'Rejected', user: promotion.rejectedBy, date: promotion.rejectedAt, details: promotion.rejectionReason || 'Promotion rejected' });
+    }
+    if (promotion.updatedAt && promotion.updatedAt !== promotion.createdAt) {
+      history.push({ id: `hist-update-${id}`, action: 'Updated', user: promotion.createdBy, date: promotion.updatedAt, details: `Status: ${promotion.status}` });
+    }
+    return c.json({ success: true, data: history.sort((a, b) => new Date(b.date) - new Date(a.date)) });
   } catch (error) {
     return c.json({ success: false, message: error.message }, 500);
   }
