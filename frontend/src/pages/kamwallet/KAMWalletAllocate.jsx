@@ -229,7 +229,7 @@ const KAMWalletAllocate = () => {
               </TableHead>
               <TableBody>
                 {wallet.allocations && wallet.allocations.length > 0 ? (
-                  wallet.allocations.map((allocation, index) => {
+                  (wallet?.allocations || []).map((allocation, index) => {
                     const allocationRemaining = allocation.allocatedAmount - allocation.usedAmount;
                     return (
                       <TableRow key={index}>

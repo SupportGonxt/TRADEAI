@@ -283,7 +283,7 @@ const MLDashboard = () => {
                   <Typography variant="body2" gutterBottom>
                     Recommended Retention Strategies:
                   </Typography>
-                  {predictionResults.retentionStrategies.map((strategy, index) => (
+                  {(predictionResults?.retentionStrategies || []).map((strategy, index) => (
                     <Chip
                       key={index}
                       label={strategy}

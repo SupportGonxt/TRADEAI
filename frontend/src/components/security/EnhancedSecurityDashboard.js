@@ -324,7 +324,7 @@ const EnhancedSecurityDashboard = () => {
                     fill="#8884d8"
                     dataKey="value"
                   >
-                    {securityOverview.eventTypes.map((entry, index) => (
+                    {(securityOverview?.eventTypes || []).map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>

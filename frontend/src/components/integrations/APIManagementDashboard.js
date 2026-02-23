@@ -466,7 +466,7 @@ const APIManagementDashboard = () => {
                     Top Endpoints
                   </Typography>
                   <List>
-                    {analytics.topEndpoints.map((endpoint, index) => (
+                    {(analytics?.topEndpoints || []).map((endpoint, index) => (
                       <ListItem key={index} divider>
                         <ListItemText
                           primary={endpoint.endpoint}

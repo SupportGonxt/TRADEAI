@@ -399,7 +399,7 @@ const RebateDetail = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {rebate.calculation.tiers.map((tier, index) => (
+                      {(rebate?.calculation?.tiers || []).map((tier, index) => (
                         <TableRow key={index}>
                           <TableCell>Tier {index + 1}</TableCell>
                           <TableCell>{tier.minVolume?.toLocaleString() || 'N/A'}</TableCell>

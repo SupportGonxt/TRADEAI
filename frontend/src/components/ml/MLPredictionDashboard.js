@@ -613,7 +613,7 @@ const MLPredictionDashboard = () => {
                       <Typography variant="body2" color="textSecondary" gutterBottom>
                         All Probabilities
                       </Typography>
-                      {predictions.customerBehavior.probabilities.map((prob, index) => (
+                      {(predictions?.customerBehavior?.probabilities || []).map((prob, index) => (
                         <Box key={index} mb={1}>
                           <Box display="flex" justifyContent="space-between">
                             <Typography variant="body2">{prob.behavior}</Typography>
@@ -632,7 +632,7 @@ const MLPredictionDashboard = () => {
                         <Typography variant="body2" color="textSecondary" gutterBottom>
                           Recommendations
                         </Typography>
-                        {predictions.customerBehavior.recommendations.map((rec, index) => (
+                        {(predictions?.customerBehavior?.recommendations || []).map((rec, index) => (
                           <Chip key={index} label={rec} size="small" sx={{ mr: 0.5, mb: 0.5 }} />
                         ))}
                       </Box>

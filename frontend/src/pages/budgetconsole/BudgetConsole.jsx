@@ -395,7 +395,7 @@ const BudgetConsole = () => {
                       <Box sx={{ height: 200, position: 'relative', mb: 2 }}>
                         <svg width="100%" height="100%" viewBox="0 0 300 200">
                           <polyline
-                            points={roiCurve.points.map((p, i) => 
+                            points={(roiCurve?.points || []).map((p, i) => 
                               `${(p.budget / 600000) * 300},${200 - (p.roi / 3.5) * 200}`
                             ).join(' ')}
                             fill="none"

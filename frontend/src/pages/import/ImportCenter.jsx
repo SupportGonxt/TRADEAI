@@ -332,7 +332,7 @@ const ImportCenter = () => {
 
               {validationResults.errors.length > 0 && (
                 <Alert severity="error" sx={{ mb: 2 }}>
-                  {validationResults.errors.map((error, index) => (
+                  {(validationResults?.errors || []).map((error, index) => (
                     <Typography key={index} variant="body2">
                       {error}
                     </Typography>
@@ -342,7 +342,7 @@ const ImportCenter = () => {
 
               {validationResults.warnings.length > 0 && (
                 <Alert severity="warning" sx={{ mb: 2 }}>
-                  {validationResults.warnings.map((warning, index) => (
+                  {(validationResults?.warnings || []).map((warning, index) => (
                     <Typography key={index} variant="body2">
                       {warning}
                     </Typography>

@@ -300,7 +300,7 @@ const AnalyticsDashboard = () => {
             <div className="recommendations">
               <h4>Recommendations</h4>
               <ul>
-                {results.recommendations.map((rec, idx) => (
+                {(results?.recommendations || []).map((rec, idx) => (
                   <li key={idx}>{rec}</li>
                 ))}
               </ul>
@@ -438,7 +438,7 @@ const AnalyticsDashboard = () => {
             <div className="recommendations">
               <h4>Recommendations</h4>
               <ul>
-                {results.recommendations.map((rec, idx) => (
+                {(results?.recommendations || []).map((rec, idx) => (
                   <li key={idx}>{rec}</li>
                 ))}
               </ul>

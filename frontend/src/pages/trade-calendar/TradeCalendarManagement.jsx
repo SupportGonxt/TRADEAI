@@ -753,7 +753,7 @@ const TradeCalendarManagement = () => {
                   <Alert severity={violations.blocked ? 'error' : 'warning'} icon={violations.blocked ? <BlockIcon /> : <WarningIcon />}>
                     {violations.totalViolations} violation(s) found ({violations.blockers} blockers, {violations.warnings} warnings)
                   </Alert>
-                  {violations.violations.map((v, i) => (
+                  {(violations?.violations || []).map((v, i) => (
                     <Alert key={i} severity={v.action === 'block' ? 'error' : 'warning'} sx={{ mt: 1 }}>
                       <strong>{v.constraintName}</strong>: {v.message}
                     </Alert>

@@ -269,7 +269,7 @@ const ApprovalDetail = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {approval.approvalChain.map((step, index) => (
+                      {(approval?.approvalChain || []).map((step, index) => (
                         <TableRow key={index}>
                           <TableCell>{step.level}</TableCell>
                           <TableCell>

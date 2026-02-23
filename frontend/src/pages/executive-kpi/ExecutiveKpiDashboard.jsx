@@ -658,7 +658,7 @@ export default function ExecutiveKpiDashboard() {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {detailScorecard.kpiActuals.map((a) => (
+                        {(detailScorecard?.kpiActuals || []).map((a) => (
                           <TableRow key={a.id}>
                             <TableCell>{a.kpiName || a.kpiId}</TableCell>
                             <TableCell align="right">{formatNumber(a.actualValue)}</TableCell>

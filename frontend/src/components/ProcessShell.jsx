@@ -103,7 +103,7 @@ const ProcessShell = ({ module, entityId, entity, children }) => {
           </div>
           <ProgressBar now={currentStage.progress} variant="primary" />
           <div className="d-flex justify-content-between mt-2">
-            {processModel.stages.map((stage, idx) => (
+            {(processModel?.stages || []).map((stage, idx) => (
               <div
                 key={stage}
                 className={`text-center ${stage === currentStage.name ? 'text-primary fw-bold' : 'text-muted'}`}

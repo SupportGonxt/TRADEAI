@@ -263,7 +263,7 @@ const CustomerIntelligencePanel = ({ customerId, customerData }) => {
               🎯 Priority Actions
             </Typography>
             <Stack spacing={2}>
-              {intelligence.topActions.map((action, index) => (
+              {(intelligence?.topActions || []).map((action, index) => (
                 <Card key={index} variant="outlined">
                   <CardContent>
                     <Stack spacing={1}>

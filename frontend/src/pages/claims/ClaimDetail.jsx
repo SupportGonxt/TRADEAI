@@ -298,7 +298,7 @@ const ClaimDetail = () => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {claim.lineItems.map((item, index) => (
+                      {(claim?.lineItems || []).map((item, index) => (
                         <TableRow key={index}>
                           <TableCell>{item.description}</TableCell>
                           <TableCell>{item.promotion?.name || '-'}</TableCell>
@@ -406,7 +406,7 @@ const ClaimDetail = () => {
                     <Typography variant="body2" color="text.secondary" gutterBottom>
                       Matched Invoices
                     </Typography>
-                    {claim.matchedInvoices.map((invoice, index) => (
+                    {(claim?.matchedInvoices || []).map((invoice, index) => (
                       <Typography key={index} variant="body2">
                         {invoice.invoiceNumber}
                       </Typography>

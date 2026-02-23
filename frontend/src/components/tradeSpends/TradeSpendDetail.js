@@ -348,7 +348,7 @@ const TradeSpendDetail = () => {
                   
                   {tradeSpend.products && tradeSpend.products.length > 0 ? (
                     <List>
-                      {tradeSpend.products.map((product) => (
+                      {(tradeSpend?.products || []).map((product) => (
                         <React.Fragment key={product.id}>
                           <ListItem>
                             <ListItemText
