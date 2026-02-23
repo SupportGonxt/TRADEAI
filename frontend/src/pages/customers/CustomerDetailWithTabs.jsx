@@ -118,6 +118,7 @@ const CustomerDetailWithTabs = () => {
 
         <Box>
           {activeTab === 'overview' && <CustomerOverview customer={customer} onUpdate={loadCustomer} />}
+          {activeTab === 'hierarchy' && <CustomerOverview customer={customer} onUpdate={loadCustomer} />}
           {activeTab === 'promotions' && <CustomerPromotions customerId={id} customer={customer} />}
           {activeTab === 'trade-spends' && <CustomerTradeSpends customerId={id} customer={customer} />}
           {activeTab === 'trading-terms' && <CustomerTradingTerms customerId={id} customer={customer} />}
@@ -125,6 +126,10 @@ const CustomerDetailWithTabs = () => {
           {activeTab === 'claims' && <CustomerClaims customerId={id} customer={customer} />}
           {activeTab === 'deductions' && <CustomerDeductions customerId={id} customer={customer} />}
           {activeTab === 'sales-history' && <CustomerSalesHistory customerId={id} customer={customer} />}
+          {activeTab === 'allocations' && <CustomerBudgets customerId={id} customer={customer} />}
+          {activeTab === 'offers' && <CustomerPromotions customerId={id} customer={customer} />}
+          {activeTab === 'execution' && <CustomerTradeSpends customerId={id} customer={customer} />}
+          {activeTab === 'settlements' && <CustomerClaims customerId={id} customer={customer} />}
         </Box>
       </Container>
   );

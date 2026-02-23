@@ -30,14 +30,14 @@ const BudgetForecast = ({ budgetId }) => {
 
   if (!data) return <Paper sx={{ p: 3 }}><Typography>No forecast data available</Typography></Paper>;
 
-  const months = Array.isArray(data.months || data.forecast) ? (data.months || data.forecast) : [];
+  const months = Array.isArray(data) ? data : (Array.isArray(data.months || data.forecast) ? (data.months || data.forecast) : []);
 
   return (
     <Box>
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={12} sm={4}><Card><CardContent><Typography variant="body2" color="text.secondary">Projected Spend</Typography><Typography variant="h6">{fmt(data.projectedSpend || data.totalProjected)}</Typography></CardContent></Card></Grid>
-        <Grid item xs={12} sm={4}><Card><CardContent><Typography variant="body2" color="text.secondary">Confidence</Typography><Typography variant="h6">{data.confidence || data.confidenceLevel || 'N/A'}</Typography></CardContent></Card></Grid>
-        <Grid item xs={12} sm={4}><Card><CardContent><Typography variant="body2" color="text.secondary">Variance</Typography><Typography variant="h6">{data.variance || data.expectedVariance || 'N/A'}</Typography></CardContent></Card></Grid>
+        <Grid item xs={12} sm={4}><Card><CardContent><Typography variant="body2" color="text.secondary">Projected Spend</Typography><Typography variant="h6">{fmt(Array.isArray(data) ? months.reduce((s,m) => s + (m.planned || 0), 0) : (data.projectedSpend || data.totalProjected))}</Typography></CardContent></Card></Grid>
+        <Grid item xs={12} sm={4}><Card><CardContent><Typography variant="body2" color="text.secondary">Actual Spend</Typography><Typography variant="h6">{fmt(Array.isArray(data) ? months.reduce((s,m) => s + (m.actual || 0), 0) : (data.actualSpend || 0))}</Typography></CardContent></Card></Grid>
+        <Grid item xs={12} sm={4}><Card><CardContent><Typography variant="body2" color="text.secondary">Total Variance</Typography><Typography variant="h6">{fmt(Array.isArray(data) ? months.reduce((s,m) => s + (m.variance || 0), 0) : (data.variance || 0))}</Typography></CardContent></Card></Grid>
       </Grid>
       <Typography variant="h6" gutterBottom>Monthly Forecast</Typography>
       <TableContainer component={Paper}>
@@ -57,7 +57,7 @@ const BudgetForecast = ({ budgetId }) => {
               months.map((item, index) => (
                 <TableRow key={item.month || index}>
                   <TableCell>{item.month || item.period || `Month ${index + 1}`}</TableCell>
-                  <TableCell>{fmt(item.projected || item.forecast)}</TableCell>
+                  <TableCell>{fmt(item.planned || item.projected || item.forecast)}</TableCell>
                   <TableCell>{fmt(item.actual)}</TableCell>
                   <TableCell>{fmt(item.variance)}</TableCell>
                 </TableRow>

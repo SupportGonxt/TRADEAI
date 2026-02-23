@@ -116,13 +116,23 @@ const BudgetDetailWithTabs = () => {
 
         <Box>
           {activeTab === 'overview' && <BudgetOverview budget={budget} onUpdate={loadBudget} />}
+          {activeTab === 'funding' && <BudgetSpending budgetId={id} budget={budget} />}
           {activeTab === 'allocations' && <BudgetAllocations budgetId={id} budget={budget} onUpdate={loadBudget} />}
+          {activeTab === 'promotions' && <BudgetAllocations budgetId={id} budget={budget} onUpdate={loadBudget} />}
+          {activeTab === 'claims' && <BudgetApprovals budgetId={id} budget={budget} />}
+          {activeTab === 'reconcile' && <BudgetSpending budgetId={id} budget={budget} />}
+          {activeTab === 'audit' && <BudgetHistory budgetId={id} budget={budget} />}
           {activeTab === 'spending' && <BudgetSpending budgetId={id} budget={budget} />}
           {activeTab === 'transfers' && <BudgetTransfers budgetId={id} budget={budget} onUpdate={loadBudget} />}
           {activeTab === 'approvals' && <BudgetApprovals budgetId={id} budget={budget} />}
           {activeTab === 'scenarios' && <BudgetScenarios budgetId={id} budget={budget} />}
           {activeTab === 'forecast' && <BudgetForecast budgetId={id} budget={budget} />}
           {activeTab === 'history' && <BudgetHistory budgetId={id} budget={budget} />}
+          {activeTab === 'vendor-funding' && <BudgetSpending budgetId={id} budget={budget} />}
+          {activeTab === 'store-budgets' && <BudgetAllocations budgetId={id} budget={budget} onUpdate={loadBudget} />}
+          {activeTab === 'offers' && <BudgetAllocations budgetId={id} budget={budget} onUpdate={loadBudget} />}
+          {activeTab === 'execution' && <BudgetSpending budgetId={id} budget={budget} />}
+          {activeTab === 'settlements' && <BudgetHistory budgetId={id} budget={budget} />}
         </Box>
       </Container>
   );

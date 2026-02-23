@@ -46,10 +46,10 @@ const TradeSpendApprovals = ({ tradeSpendId }) => {
             ) : (
               data.map((item, index) => (
                 <TableRow key={item.id || index}>
-                  <TableCell>{item.approverName || item.approvedBy || 'N/A'}</TableCell>
-                  <TableCell><Chip label={item.status || 'pending'} size="small" color={item.status === 'approved' ? 'success' : item.status === 'rejected' ? 'error' : 'warning'} /></TableCell>
+                  <TableCell>{item.user || item.approverName || item.approvedBy || 'N/A'}</TableCell>
+                  <TableCell><Chip label={item.status || item.action || 'pending'} size="small" color={item.status === 'completed' || item.status === 'approved' ? 'success' : item.status === 'rejected' ? 'error' : 'warning'} /></TableCell>
                   <TableCell>{item.date ? new Date(item.date).toLocaleDateString() : 'N/A'}</TableCell>
-                  <TableCell>{item.comments || '-'}</TableCell>
+                  <TableCell>{item.action || item.comments || '-'}</TableCell>
                 </TableRow>
               ))
             )}

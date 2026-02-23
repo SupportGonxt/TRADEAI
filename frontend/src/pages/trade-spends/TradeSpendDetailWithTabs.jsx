@@ -112,11 +112,21 @@ const TradeSpendDetailWithTabs = () => {
 
         <Box>
           {activeTab === 'overview' && <TradeSpendOverview tradeSpend={tradeSpend} onUpdate={loadTradeSpend} />}
+          {activeTab === 'budget-link' && <TradeSpendPerformance tradeSpendId={id} tradeSpend={tradeSpend} />}
+          {activeTab === 'scope' && <TradeSpendDocuments tradeSpendId={id} tradeSpend={tradeSpend} onUpdate={loadTradeSpend} />}
           {activeTab === 'accruals' && <TradeSpendAccruals tradeSpendId={id} tradeSpend={tradeSpend} onUpdate={loadTradeSpend} />}
+          {activeTab === 'claims' && <TradeSpendApprovals tradeSpendId={id} tradeSpend={tradeSpend} />}
+          {activeTab === 'reconcile' && <TradeSpendPerformance tradeSpendId={id} tradeSpend={tradeSpend} />}
           {activeTab === 'documents' && <TradeSpendDocuments tradeSpendId={id} tradeSpend={tradeSpend} onUpdate={loadTradeSpend} />}
           {activeTab === 'approvals' && <TradeSpendApprovals tradeSpendId={id} tradeSpend={tradeSpend} />}
           {activeTab === 'performance' && <TradeSpendPerformance tradeSpendId={id} tradeSpend={tradeSpend} />}
           {activeTab === 'history' && <TradeSpendHistory tradeSpendId={id} tradeSpend={tradeSpend} />}
+          {activeTab === 'vendor-wallet' && <TradeSpendPerformance tradeSpendId={id} tradeSpend={tradeSpend} />}
+          {activeTab === 'allocation' && <TradeSpendAccruals tradeSpendId={id} tradeSpend={tradeSpend} onUpdate={loadTradeSpend} />}
+          {activeTab === 'offers' && <TradeSpendOverview tradeSpend={tradeSpend} onUpdate={loadTradeSpend} />}
+          {activeTab === 'execution' && <TradeSpendPerformance tradeSpendId={id} tradeSpend={tradeSpend} />}
+          {activeTab === 'claim-submission' && <TradeSpendApprovals tradeSpendId={id} tradeSpend={tradeSpend} />}
+          {activeTab === 'settlements' && <TradeSpendHistory tradeSpendId={id} tradeSpend={tradeSpend} />}
         </Box>
       </Container>
   );

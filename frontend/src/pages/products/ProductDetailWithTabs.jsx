@@ -110,10 +110,13 @@ const ProductDetailWithTabs = () => {
 
         <Box>
           {activeTab === 'overview' && <ProductOverview product={product} onUpdate={loadProduct} />}
+          {activeTab === 'hierarchy' && <ProductOverview product={product} onUpdate={loadProduct} />}
           {activeTab === 'promotions' && <ProductPromotions productId={id} product={product} />}
+          {activeTab === 'trade-spends' && <ProductPromotions productId={id} product={product} />}
           {activeTab === 'campaigns' && <ProductCampaigns productId={id} product={product} />}
           {activeTab === 'trading-terms' && <ProductTradingTerms productId={id} product={product} />}
           {activeTab === 'sales-history' && <ProductSalesHistory productId={id} product={product} />}
+          {activeTab === 'range' && <ProductOverview product={product} onUpdate={loadProduct} />}
         </Box>
       </Container>
   );

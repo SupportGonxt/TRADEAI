@@ -51,11 +51,11 @@ const PromotionApprovals = ({ promotionId, promotion, onUpdate }) => {
             ) : (
               approvals.map((item, index) => (
                 <TableRow key={item.id || index}>
-                  <TableCell>{item.approverName || item.approver?.name || item.approvedBy || 'N/A'}</TableCell>
-                  <TableCell>{item.role || item.approverRole || 'N/A'}</TableCell>
+                  <TableCell>{item.approverName || item.user || item.approver?.name || item.approvedBy || 'N/A'}</TableCell>
+                  <TableCell>{item.action || item.role || item.approverRole || 'N/A'}</TableCell>
                   <TableCell><Chip label={item.status || 'pending'} color={statusColor(item.status)} size="small" /></TableCell>
                   <TableCell>{item.date || item.approvedAt ? new Date(item.date || item.approvedAt).toLocaleDateString() : 'N/A'}</TableCell>
-                  <TableCell>{item.comments || item.notes || '-'}</TableCell>
+                  <TableCell>{item.comments || item.reason || item.notes || '-'}</TableCell>
                 </TableRow>
               ))
             )}

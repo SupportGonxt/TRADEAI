@@ -108,9 +108,13 @@ const CampaignDetailWithTabs = () => {
 
         <Box>
           {activeTab === 'overview' && <CampaignOverview campaign={campaign} onUpdate={loadCampaign} />}
+          {activeTab === 'promotions' && <CampaignHistory campaignId={id} campaign={campaign} />}
           {activeTab === 'budget' && <CampaignBudget campaignId={id} campaign={campaign} />}
           {activeTab === 'performance' && <CampaignPerformance campaignId={id} campaign={campaign} />}
           {activeTab === 'history' && <CampaignHistory campaignId={id} campaign={campaign} />}
+          {activeTab === 'vendor-funding' && <CampaignBudget campaignId={id} campaign={campaign} />}
+          {activeTab === 'offers' && <CampaignOverview campaign={campaign} onUpdate={loadCampaign} />}
+          {activeTab === 'execution' && <CampaignPerformance campaignId={id} campaign={campaign} />}
         </Box>
       </Container>
   );
