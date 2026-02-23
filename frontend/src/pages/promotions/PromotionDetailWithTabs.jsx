@@ -226,14 +226,22 @@ const PromotionDetailWithTabs = () => {
         {/* Tab Content */}
         <Box>
           {activeTab === 'overview' && <PromotionOverview promotion={promotion} onUpdate={loadPromotion} />}
+          {activeTab === 'commitments' && <PromotionBudget promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
           {activeTab === 'products' && <PromotionProducts promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
           {activeTab === 'customers' && <PromotionCustomers promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
+          {activeTab === 'trade-spends' && <PromotionDocuments promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
+          {activeTab === 'claims' && <PromotionApprovals promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
           {activeTab === 'budget' && <PromotionBudget promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
           {activeTab === 'approvals' && <PromotionApprovals promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
           {activeTab === 'documents' && <PromotionDocuments promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
           {activeTab === 'conflicts' && <PromotionConflicts promotionId={id} promotion={promotion} />}
           {activeTab === 'performance' && <PromotionPerformance promotionId={id} promotion={promotion} />}
           {activeTab === 'history' && <PromotionHistory promotionId={id} promotion={promotion} />}
+          {activeTab === 'vendor-funding' && <PromotionBudget promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
+          {activeTab === 'allocation' && <PromotionCustomers promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
+          {activeTab === 'offer' && <PromotionOverview promotion={promotion} onUpdate={loadPromotion} />}
+          {activeTab === 'stores' && <PromotionCustomers promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
+          {activeTab === 'pos-proof' && <PromotionDocuments promotionId={id} promotion={promotion} onUpdate={loadPromotion} />}
         </Box>
       </Container>
   );
