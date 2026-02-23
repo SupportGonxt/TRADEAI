@@ -194,6 +194,77 @@ tradeSpendRoutes.post('/:id/clone', async (c) => {
   }
 });
 
+tradeSpendRoutes.get('/:id/performance', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const ts = await mongodb.findOne('tradespends', { _id: { $oid: id }, companyId: tenantId });
+    if (!ts) return c.json({ success: false, message: 'Trade spend not found' }, 404);
+    return c.json({ success: true, data: ts.performance || {
+      amount: ts.amount || 0,
+      status: ts.status,
+      roi: ts.roi || 0,
+      uplift: ts.uplift || 0,
+      incrementalRevenue: ts.incrementalRevenue || 0
+    }});
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+tradeSpendRoutes.get('/:id/approvals', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const ts = await mongodb.findOne('tradespends', { _id: { $oid: id }, companyId: tenantId });
+    if (!ts) return c.json({ success: false, message: 'Trade spend not found' }, 404);
+    return c.json({ success: true, data: ts.approvals || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+tradeSpendRoutes.get('/:id/history', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const ts = await mongodb.findOne('tradespends', { _id: { $oid: id }, companyId: tenantId });
+    if (!ts) return c.json({ success: false, message: 'Trade spend not found' }, 404);
+    return c.json({ success: true, data: ts.history || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+tradeSpendRoutes.get('/:id/documents', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const ts = await mongodb.findOne('tradespends', { _id: { $oid: id }, companyId: tenantId });
+    if (!ts) return c.json({ success: false, message: 'Trade spend not found' }, 404);
+    return c.json({ success: true, data: ts.documents || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+tradeSpendRoutes.get('/:id/accruals', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const ts = await mongodb.findOne('tradespends', { _id: { $oid: id }, companyId: tenantId });
+    if (!ts) return c.json({ success: false, message: 'Trade spend not found' }, 404);
+    return c.json({ success: true, data: ts.accruals || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
 // Approve trade spend
 tradeSpendRoutes.post('/:id/approve', async (c) => {
   try {

@@ -418,4 +418,59 @@ campaigns.post('/:id/promotions', async (c) => {
   }
 });
 
+campaigns.get('/:id/performance', async (c) => {
+  try {
+    const db = c.env.DB;
+    const companyId = getCompanyId(c);
+    const { id } = c.req.param();
+    const campaign = await db.prepare('SELECT * FROM campaigns WHERE id = ? AND company_id = ?').bind(id, companyId).first();
+    if (!campaign) return c.json({ success: false, message: 'Campaign not found' }, 404);
+    const doc = rowToDocument(campaign);
+    return c.json({ success: true, data: doc.performance || {
+      budgetAmount: doc.budgetAmount || 0,
+      spentAmount: doc.spentAmount || 0,
+      targetRevenue: doc.targetRevenue || 0,
+      actualRevenue: doc.actualRevenue || 0,
+      targetVolume: doc.targetVolume || 0,
+      actualVolume: doc.actualVolume || 0,
+      roi: doc.actualRevenue && doc.spentAmount ? (((doc.actualRevenue - doc.spentAmount) / doc.spentAmount) * 100).toFixed(1) : '0.0'
+    }});
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+campaigns.get('/:id/budget', async (c) => {
+  try {
+    const db = c.env.DB;
+    const companyId = getCompanyId(c);
+    const { id } = c.req.param();
+    const campaign = await db.prepare('SELECT * FROM campaigns WHERE id = ? AND company_id = ?').bind(id, companyId).first();
+    if (!campaign) return c.json({ success: false, message: 'Campaign not found' }, 404);
+    const doc = rowToDocument(campaign);
+    return c.json({ success: true, data: doc.budget || {
+      totalBudget: doc.budgetAmount || 0,
+      spentAmount: doc.spentAmount || 0,
+      remaining: (doc.budgetAmount || 0) - (doc.spentAmount || 0),
+      currency: 'ZAR'
+    }});
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+campaigns.get('/:id/history', async (c) => {
+  try {
+    const db = c.env.DB;
+    const companyId = getCompanyId(c);
+    const { id } = c.req.param();
+    const campaign = await db.prepare('SELECT * FROM campaigns WHERE id = ? AND company_id = ?').bind(id, companyId).first();
+    if (!campaign) return c.json({ success: false, message: 'Campaign not found' }, 404);
+    const doc = rowToDocument(campaign);
+    return c.json({ success: true, data: doc.history || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
 export const campaignsRoutes = campaigns;

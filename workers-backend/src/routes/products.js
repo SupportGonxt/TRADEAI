@@ -140,6 +140,64 @@ productRoutes.get('/:id', async (c) => {
   }
 });
 
+productRoutes.get('/:id/promotions', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const product = await mongodb.findOne('products', { _id: { $oid: id }, companyId: tenantId });
+    if (!product) return c.json({ success: false, message: 'Product not found' }, 404);
+    const promos = await mongodb.find('promotions', { companyId: tenantId }, { limit: 50, sort: { createdAt: -1 } });
+    const prodId = product.id || product._id;
+    const filtered = promos.filter(p =>
+      (p.products || []).some(pr => (pr.product?.id || pr.product?._id || pr.id) === prodId) ||
+      (p.productIds || []).includes(prodId)
+    );
+    return c.json({ success: true, data: filtered });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+productRoutes.get('/:id/campaigns', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const product = await mongodb.findOne('products', { _id: { $oid: id }, companyId: tenantId });
+    if (!product) return c.json({ success: false, message: 'Product not found' }, 404);
+    return c.json({ success: true, data: product.campaigns || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+productRoutes.get('/:id/sales-history', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const product = await mongodb.findOne('products', { _id: { $oid: id }, companyId: tenantId });
+    if (!product) return c.json({ success: false, message: 'Product not found' }, 404);
+    return c.json({ success: true, data: product.salesHistory || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+productRoutes.get('/:id/trading-terms', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const product = await mongodb.findOne('products', { _id: { $oid: id }, companyId: tenantId });
+    if (!product) return c.json({ success: false, message: 'Product not found' }, 404);
+    return c.json({ success: true, data: product.tradingTerms || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
 // Create product
 productRoutes.post('/', async (c) => {
   try {
