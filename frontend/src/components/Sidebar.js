@@ -21,79 +21,118 @@ import {
   Logout as LogoutIcon,
   ExpandMore as ExpandIcon,
   ExpandLess as CollapseIcon,
+  SwapHoriz as TransactionsIcon,
+  AdminPanelSettings as AdminIcon,
 } from '@mui/icons-material';
 
 const SIDEBAR_WIDTH = 220;
 
-const navGroups = [
-  {
-    key: 'home',
-    label: 'Home',
-    icon: <HomeIcon />,
-    path: '/dashboard',
-  },
-  {
-    key: 'promotions',
-    label: 'Promotions',
-    icon: <PromotionsIcon />,
-    children: [
-      { label: 'All Promotions', path: '/promotions' },
-      { label: 'Trade Calendar', path: '/trade-calendar' },
-      { label: 'Scenarios', path: '/scenarios' },
-      { label: 'Optimizer', path: '/promotion-optimizer' },
-    ],
-  },
-  {
-    key: 'budgets',
-    label: 'Budgets & Spend',
-    icon: <BudgetsIcon />,
-    children: [
-      { label: 'Budgets', path: '/budgets' },
-      { label: 'Allocations', path: '/budget-allocations' },
-      { label: 'Trade Spends', path: '/trade-spends' },
-      { label: 'Accruals', path: '/accruals' },
-      { label: 'Settlements', path: '/settlements' },
-    ],
-  },
-  {
-    key: 'approvals',
-    label: 'Approvals',
-    icon: <ApprovalsIcon />,
-    path: '/approvals',
-  },
-  {
-    key: 'claims',
-    label: 'Claims & Deductions',
-    icon: <ClaimsIcon />,
-    children: [
-      { label: 'Claims', path: '/claims' },
-      { label: 'Deductions', path: '/deductions' },
-    ],
-  },
-  {
-    key: 'insights',
-    label: 'Insights',
-    icon: <InsightsIcon />,
-    children: [
-      { label: 'P&L', path: '/pnl' },
-      { label: 'Customer 360', path: '/customer-360' },
-      { label: 'Reports', path: '/advanced-reporting' },
-      { label: 'RGM', path: '/revenue-growth' },
-      { label: 'KPIs', path: '/executive-kpi' },
-      { label: 'Demand Signals', path: '/demand-signals' },
-    ],
-  },
-  {
-    key: 'data',
-    label: 'Master Data',
-    icon: <DataIcon />,
-    children: [
-      { label: 'Customers', path: '/customers' },
-      { label: 'Products', path: '/products' },
-      { label: 'Baselines', path: '/baselines' },
-    ],
-  },
-];
+const getNavGroups = (userRole) => {
+  const isAdmin = userRole === 'admin' || userRole === 'super_admin';
+
+  const groups = [
+    {
+      key: 'home',
+      label: 'Home',
+      icon: <HomeIcon />,
+      path: '/dashboard',
+    },
+    {
+      key: 'promotions',
+      label: 'Promotions',
+      icon: <PromotionsIcon />,
+      children: [
+        { label: 'All Promotions', path: '/promotions' },
+        { label: 'Campaigns', path: '/campaigns' },
+        { label: 'Trade Calendar', path: '/trade-calendar' },
+        { label: 'Scenarios', path: '/scenarios' },
+        { label: 'Optimizer', path: '/promotion-optimizer' },
+      ],
+    },
+    {
+      key: 'budgets',
+      label: 'Budgets & Spend',
+      icon: <BudgetsIcon />,
+      children: [
+        { label: 'Budgets', path: '/budgets' },
+        { label: 'Allocations', path: '/budget-allocations' },
+        { label: 'Trade Spends', path: '/trade-spends' },
+        { label: 'KAM Wallet', path: '/kamwallet' },
+        { label: 'Accruals', path: '/accruals' },
+        { label: 'Settlements', path: '/settlements' },
+      ],
+    },
+    {
+      key: 'approvals',
+      label: 'Approvals',
+      icon: <ApprovalsIcon />,
+      path: '/approvals',
+    },
+    {
+      key: 'claims',
+      label: 'Claims & Deductions',
+      icon: <ClaimsIcon />,
+      children: [
+        { label: 'Claims', path: '/claims' },
+        { label: 'Deductions', path: '/deductions' },
+        { label: 'Reconciliation', path: '/deductions/reconciliation' },
+      ],
+    },
+    {
+      key: 'insights',
+      label: 'Insights',
+      icon: <InsightsIcon />,
+      children: [
+        { label: 'P&L', path: '/pnl' },
+        { label: 'Customer 360', path: '/customer-360' },
+        { label: 'Reports', path: '/advanced-reporting' },
+        { label: 'RGM', path: '/revenue-growth' },
+        { label: 'Executive KPIs', path: '/executive-kpi' },
+        { label: 'Demand Signals', path: '/demand-signals' },
+        { label: 'Forecasting', path: '/forecasting' },
+      ],
+    },
+    {
+      key: 'transactions',
+      label: 'Transactions',
+      icon: <TransactionsIcon />,
+      children: [
+        { label: 'All Transactions', path: '/transactions' },
+        { label: 'Import Center', path: '/import-center' },
+      ],
+    },
+    {
+      key: 'data',
+      label: 'Master Data',
+      icon: <DataIcon />,
+      children: [
+        { label: 'Customers', path: '/customers' },
+        { label: 'Products', path: '/products' },
+        { label: 'Vendors', path: '/vendors' },
+        { label: 'Trading Terms', path: '/trading-terms' },
+        { label: 'Baselines', path: '/baselines' },
+      ],
+    },
+  ];
+
+  if (isAdmin) {
+    groups.push({
+      key: 'admin',
+      label: 'Administration',
+      icon: <AdminIcon />,
+      children: [
+        { label: 'Users', path: '/users' },
+        { label: 'Roles', path: '/role-management' },
+        { label: 'Workflows', path: '/workflow-engine' },
+        { label: 'Integrations', path: '/integration-hub' },
+        { label: 'Documents', path: '/document-management' },
+        { label: 'Notifications', path: '/notification-center' },
+      ],
+    });
+  }
+
+  return groups;
+};
 
 const bottomItems = [
   { key: 'settings', label: 'Settings', icon: <SettingsIcon />, path: '/system-config' },
@@ -104,6 +143,7 @@ const Sidebar = ({ user, onLogout }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [expanded, setExpanded] = useState({});
+  const navGroups = getNavGroups(user?.role);
 
   const isActive = (path) => {
     if (path === '/dashboard') return location.pathname === '/dashboard' || location.pathname === '/';

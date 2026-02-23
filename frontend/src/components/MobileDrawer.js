@@ -57,6 +57,7 @@ const MobileDrawer= ({ open, onClose, user, onLogout }) => {
       icon: <LightbulbIcon />,
       children: [
         { label: 'All Promotions', path: '/promotions' },
+        { label: 'Campaigns', path: '/campaigns' },
         { label: 'Trade Calendar', path: '/trade-calendar' },
         { label: 'Scenarios', path: '/scenarios' },
         { label: 'Optimizer', path: '/promotion-optimizer' },
@@ -70,6 +71,7 @@ const MobileDrawer= ({ open, onClose, user, onLogout }) => {
         { label: 'Budgets', path: '/budgets' },
         { label: 'Allocations', path: '/budget-allocations' },
         { label: 'Trade Spends', path: '/trade-spends' },
+        { label: 'KAM Wallet', path: '/kamwallet' },
         { label: 'Accruals', path: '/accruals' },
         { label: 'Settlements', path: '/settlements' },
       ]
@@ -87,6 +89,7 @@ const MobileDrawer= ({ open, onClose, user, onLogout }) => {
       children: [
         { label: 'Claims', path: '/claims' },
         { label: 'Deductions', path: '/deductions' },
+        { label: 'Reconciliation', path: '/deductions/reconciliation' },
       ]
     },
     {
@@ -98,8 +101,18 @@ const MobileDrawer= ({ open, onClose, user, onLogout }) => {
         { label: 'Customer 360', path: '/customer-360' },
         { label: 'Reports', path: '/advanced-reporting' },
         { label: 'RGM', path: '/revenue-growth' },
-        { label: 'KPIs', path: '/executive-kpi' },
+        { label: 'Executive KPIs', path: '/executive-kpi' },
         { label: 'Demand Signals', path: '/demand-signals' },
+        { label: 'Forecasting', path: '/forecasting' },
+      ]
+    },
+    {
+      key: 'transactions',
+      label: 'Transactions',
+      icon: <DataIcon />,
+      children: [
+        { label: 'All Transactions', path: '/transactions' },
+        { label: 'Import Center', path: '/import-center' },
       ]
     },
     {
@@ -109,17 +122,30 @@ const MobileDrawer= ({ open, onClose, user, onLogout }) => {
       children: [
         { label: 'Customers', path: '/customers' },
         { label: 'Products', path: '/products' },
+        { label: 'Vendors', path: '/vendors' },
+        { label: 'Trading Terms', path: '/trading-terms' },
         { label: 'Baselines', path: '/baselines' },
       ]
     },
     isAdmin && {
       key: 'admin',
-      label: 'Settings',
+      label: 'Administration',
       icon: <SettingsIcon />,
       children: [
+        { label: 'Users', path: '/users' },
+        { label: 'Roles', path: '/role-management' },
+        { label: 'Workflows', path: '/workflow-engine' },
+        { label: 'Integrations', path: '/integration-hub' },
+        { label: 'Documents', path: '/document-management' },
+        { label: 'Notifications', path: '/notification-center' },
         { label: 'System Config', path: '/system-config' },
-        { label: 'Help', path: '/help' },
       ]
+    },
+    {
+      key: 'help',
+      label: 'Help',
+      icon: <SettingsIcon />,
+      path: '/help'
     },
   ].filter(Boolean);
 

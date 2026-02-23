@@ -15,20 +15,14 @@ import {BudgetPage} from './components/budgets';
 import { PromotionList } from './components/promotions';
 import {CustomerList} from './components/customers';
 import {ProductList} from './components/products';
-import { AnalyticsDashboard } from './components/analytics';
 import { SettingsPage } from './components/settings';
 import { UserList, UserDetail, UserForm } from './components/users';
-import { ReportList, ReportBuilder, BudgetReports, TradingTermsReports, CustomerReports, ProductReports, PromotionReports, TradeSpendReports } from './components/reports';
+import { ReportList } from './components/reports';
 import { CompanyList, CompanyDetail, CompanyForm } from './components/companies';
 import {TradingTermDetail, TradingTermForm} from './components/tradingTerms';
-import SimulationStudio from './components/enterprise/simulations/SimulationStudio';
-import ExecutiveDashboardEnhanced from './components/enterprise/dashboards/ExecutiveDashboardEnhanced';
 import TransactionManagement from './components/enterprise/transactions/TransactionManagement';
 import ForecastingDashboard from './components/forecasting/ForecastingDashboard';
 
-// New World-Class UI Components
-import RealTimeDashboard from './pages/RealTimeDashboard';
-import PromotionFlow from './pages/flows/PromotionFlow';
 
 // AI-Powered Flow Components (Refactored UX)
 import CustomerEntryFlow from './pages/flows/CustomerEntryFlow';
@@ -39,8 +33,6 @@ import TradeSpendEntryFlow from './pages/flows/TradeSpendEntryFlow';
 import TransactionEntryFlow from './pages/transactions/TransactionEntryFlow';
 import BulkUploadTransactions from './pages/transactions/BulkUploadTransactions';
 
-// AI Dashboard (Feature 7.2)
-import AIDashboard from './pages/ai/AIDashboard';
 
 import JAMDashboard from './pages/dashboards/JAMDashboard';
 import HierarchyManager from './pages/hierarchy/HierarchyManager';
@@ -66,15 +58,10 @@ import ProductEdit from './components/products/ProductEdit';
 
 import TradeSpendListNew from './pages/tradespend/TradeSpendList';
 import TradingTermsListNew from './pages/tradingterms/TradingTermsList';
-import ActivityGridCalendar from './pages/activitygrid/ActivityGridCalendar';
-import SimulationStudioNew from './pages/simulation/SimulationStudio';
-import PromotionsTimelineNew from './pages/timeline/PromotionsTimeline';
 import Customer360New from './pages/customer360/Customer360';
 import AdvancedReportingManagement from './pages/advanced-reporting/AdvancedReportingManagement';
 import RevenueGrowthManagement from './pages/revenue-growth/RevenueGrowthManagement';
 import ExecutiveKpiDashboard from './pages/executive-kpi/ExecutiveKpiDashboard';
-import BudgetConsoleNew from './pages/budgetconsole/BudgetConsole';
-import PromotionPlannerNew from './pages/promotions/PromotionPlanner';
 
 // Approvals, Claims, and Deductions Components
 import ApprovalsList from './pages/approvals/ApprovalsList';
@@ -144,17 +131,12 @@ import ProductHierarchy from './pages/hierarchy/ProductHierarchy';
 // Import Center
 import ImportCenter from './pages/import/ImportCenter';
 
-import FundingOverview from './pages/funding/FundingOverview';
-
-import VendorManagement from './pages/vendors/VendorManagement';
 
 import { CompanyTypeProvider } from './contexts/CompanyTypeContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { CurrencyProvider } from './contexts/CurrencyContext';
 import { UserSkillProvider } from './hooks/useUserSkillContext';
 
-// Enterprise Components
-import EnterpriseDashboard from './components/enterprise/EnterpriseDashboard';
 
 // Admin Pages - Customer Assignment & Alerts
 import CustomerAssignment from './pages/admin/customer-assignment/CustomerAssignment';
@@ -163,13 +145,7 @@ import Alerts from './pages/admin/alerts/Alerts';
 // Approval History
 import ApprovalHistory from './pages/approvals/ApprovalHistory';
 
-// Performance Analytics Pages
-import PromotionEffectiveness from './pages/performance-analytics/PromotionEffectiveness';
-import BudgetVariance from './pages/performance-analytics/BudgetVariance';
-import CustomerSegmentation from './pages/performance-analytics/CustomerSegmentation';
 
-// Predictive Analytics
-import PredictiveAnalytics from './pages/planning/PredictiveAnalytics';
 
 // Baseline Management
 import BaselineManagement from './pages/baselines/BaselineManagement';
@@ -730,30 +706,6 @@ function App() {
           } 
         />
         <Route 
-          path="/analytics" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <AnalyticsDashboard />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/ai-dashboard" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <AIDashboard />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
           path="/settings" 
           element={
             isAuthenticated && (user?.role === 'admin' || user?.role === 'super_admin') ? (
@@ -819,90 +771,6 @@ function App() {
             isAuthenticated ? (
               <Layout user={user} onLogout={handleLogout}>
                 <ReportList />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/reports/new" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <ReportBuilder />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/reports/budget" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <BudgetReports />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/reports/tradingterms" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <TradingTermsReports />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/reports/customers" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <CustomerReports />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/reports/products" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <ProductReports />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/reports/promotions" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <PromotionReports />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/reports/tradespend" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <TradeSpendReports />
               </Layout>
             ) : (
               <Navigate to="/" replace />
@@ -1017,18 +885,6 @@ function App() {
             )
           } 
         />
-        <Route
-          path="/activity-grid"
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <ActivityGridCalendar />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          }
-        />
         <Route 
           path="/trading-terms" 
           element={
@@ -1071,66 +927,6 @@ function App() {
             isAuthenticated ? (
               <Layout user={user} onLogout={handleLogout}>
                 <TradingTermForm />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/simulations" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <SimulationStudio />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/simulation-studio" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <SimulationStudioNew />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/promotions-timeline" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <PromotionsTimelineNew />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/promotion-planner" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <PromotionPlannerNew />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/budget-console" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <BudgetConsoleNew />
               </Layout>
             ) : (
               <Navigate to="/" replace />
@@ -1389,43 +1185,7 @@ function App() {
             )
           } 
         />
-        <Route 
-          path="/executive-dashboard" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <ExecutiveDashboardEnhanced />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
         {/* New World-Class UI Routes */}
-        <Route 
-          path="/realtime-dashboard" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <RealTimeDashboard />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/flows/promotion" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <PromotionFlow />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
         <Route 
           path="/approvals" 
           element={
@@ -1480,54 +1240,6 @@ function App() {
                     isAuthenticated ? (
                       <Layout user={user} onLogout={handleLogout}>
                         <Alerts />
-                      </Layout>
-                    ) : (
-                      <Navigate to="/" replace />
-                    )
-                  } 
-                />
-                <Route 
-                  path="/performance-analytics/promotion-effectiveness" 
-                  element={
-                    isAuthenticated ? (
-                      <Layout user={user} onLogout={handleLogout}>
-                        <PromotionEffectiveness />
-                      </Layout>
-                    ) : (
-                      <Navigate to="/" replace />
-                    )
-                  } 
-                />
-                <Route 
-                  path="/performance-analytics/budget-variance" 
-                  element={
-                    isAuthenticated ? (
-                      <Layout user={user} onLogout={handleLogout}>
-                        <BudgetVariance />
-                      </Layout>
-                    ) : (
-                      <Navigate to="/" replace />
-                    )
-                  } 
-                />
-                <Route 
-                  path="/performance-analytics/customer-segmentation" 
-                  element={
-                    isAuthenticated ? (
-                      <Layout user={user} onLogout={handleLogout}>
-                        <CustomerSegmentation />
-                      </Layout>
-                    ) : (
-                      <Navigate to="/" replace />
-                    )
-                  } 
-                />
-                <Route 
-                  path="/predictive-analytics" 
-                  element={
-                    isAuthenticated ? (
-                      <Layout user={user} onLogout={handleLogout}>
-                        <PredictiveAnalytics />
                       </Layout>
                     ) : (
                       <Navigate to="/" replace />
@@ -1779,54 +1491,6 @@ function App() {
           } 
         />
         <Route 
-          path="/enterprise/budget" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <EnterpriseDashboard view="budget" />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/enterprise/promotions" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <EnterpriseDashboard view="promotions" />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/enterprise/trade-spend" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <EnterpriseDashboard view="trade-spend" />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/reports/schedule" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <ReportBuilder />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
           path="/kamwallet" 
           element={
             isAuthenticated ? (
@@ -1904,18 +1568,6 @@ function App() {
           } 
         />
         <Route 
-          path="/funding-overview" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <FundingOverview />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
           path="/hierarchy/customers" 
           element={
             isAuthenticated ? (
@@ -1933,18 +1585,6 @@ function App() {
             isAuthenticated ? (
               <Layout user={user} onLogout={handleLogout}>
                 <ProductHierarchy />
-              </Layout>
-            ) : (
-              <Navigate to="/" replace />
-            )
-          } 
-        />
-        <Route 
-          path="/vendor-management" 
-          element={
-            isAuthenticated ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <VendorManagement />
               </Layout>
             ) : (
               <Navigate to="/" replace />
@@ -2126,6 +1766,35 @@ function App() {
               <Route path="/role-management" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><RoleManagement /></Layout>) : (<Navigate to="/" replace />)} />
               <Route path="/system-config" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><SystemConfig /></Layout>) : (<Navigate to="/" replace />)} />
               <Route path="/workflow-engine" element={isAuthenticated ? (<Layout user={user} onLogout={handleLogout}><WorkflowEngine /></Layout>) : (<Navigate to="/" replace />)} />
+              {/* Redirect duplicate/legacy routes to canonical paths */}
+              <Route path="/simulations" element={<Navigate to="/scenarios" replace />} />
+              <Route path="/simulation-studio" element={<Navigate to="/scenarios" replace />} />
+              <Route path="/promotion-planner" element={<Navigate to="/promotions" replace />} />
+              <Route path="/promotions-timeline" element={<Navigate to="/trade-calendar" replace />} />
+              <Route path="/activity-grid" element={<Navigate to="/trade-calendar" replace />} />
+              <Route path="/realtime-dashboard" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/executive-dashboard" element={<Navigate to="/executive-kpi" replace />} />
+              <Route path="/analytics" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/reports" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/reports/budget" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/reports/customers" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/reports/products" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/reports/promotions" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/reports/tradespend" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/reports/tradingterms" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/vendor-management" element={<Navigate to="/vendors" replace />} />
+              <Route path="/data/import-export" element={<Navigate to="/import-center" replace />} />
+              <Route path="/predictive-analytics" element={<Navigate to="/forecasting" replace />} />
+              <Route path="/ai-dashboard" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/budget-console" element={<Navigate to="/budgets" replace />} />
+              <Route path="/funding-overview" element={<Navigate to="/budgets" replace />} />
+              <Route path="/enterprise/budget" element={<Navigate to="/budgets" replace />} />
+              <Route path="/enterprise/promotions" element={<Navigate to="/promotions" replace />} />
+              <Route path="/enterprise/trade-spend" element={<Navigate to="/trade-spends" replace />} />
+              <Route path="/performance-analytics/promotion-effectiveness" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/performance-analytics/budget-variance" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/performance-analytics/customer-segmentation" element={<Navigate to="/advanced-reporting" replace />} />
+              <Route path="/flows/promotion" element={<Navigate to="/promotions/new" replace />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
                 </UserSkillProvider>
