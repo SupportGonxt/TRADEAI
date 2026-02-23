@@ -328,7 +328,7 @@ const PromotionEntryFlow = () => {
               <Typography variant="caption" sx={{ opacity: 0.8 }}>
                 Alternatives:
               </Typography>
-              {aiSuggestions.alternatives.map((alt, idx) => (
+              {(aiSuggestions?.alternatives || []).map((alt, idx) => (
                 <Box key={idx} sx={{ display: 'flex', justifyContent: 'space-between', mt: 0.5 }}>
                   <Typography variant="caption">{alt.discount}%</Typography>
                   <Typography variant="caption">ROI: {alt.expectedROI}x</Typography>

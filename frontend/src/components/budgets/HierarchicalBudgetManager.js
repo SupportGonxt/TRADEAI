@@ -369,7 +369,7 @@ const HierarchicalBudgetManager = () => {
                 <Typography variant="subtitle2" gutterBottom>
                   Child Budget Breakdown
                 </Typography>
-                {selectedNode.children.map(child => (
+                {(selectedNode?.children || []).map(child => (
                   <Box key={child.id} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', py: 1 }}>
                     <Typography variant="body2">{child.name}</Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

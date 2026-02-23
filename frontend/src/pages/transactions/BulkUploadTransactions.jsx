@@ -338,7 +338,7 @@ export default function BulkUploadTransactions() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {uploadResult.success.map((item) => (
+                    {(uploadResult?.success || []).map((item) => (
                       <TableRow key={item.row}>
                         <TableCell>{item.row}</TableCell>
                         <TableCell>{item.transactionNumber}</TableCell>
@@ -368,7 +368,7 @@ export default function BulkUploadTransactions() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {uploadResult.failed.map((item) => (
+                    {(uploadResult?.failed || []).map((item) => (
                       <TableRow key={item.row}>
                         <TableCell>{item.row}</TableCell>
                         <TableCell>

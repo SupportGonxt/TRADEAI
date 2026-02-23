@@ -231,7 +231,7 @@ export default function WorkflowEngine() {
           <Table size="small">
             <TableHead><TableRow><TableCell>#</TableCell><TableCell>Step</TableCell><TableCell>Type</TableCell><TableCell>Assignee</TableCell><TableCell>Status</TableCell><TableCell>Actions</TableCell></TableRow></TableHead>
             <TableBody>
-              {detailDialog.steps.map(s => (
+              {(detailDialog?.steps || []).map(s => (
                 <TableRow key={s.id}>
                   <TableCell>{s.step_number}</TableCell>
                   <TableCell>{s.step_name}</TableCell>

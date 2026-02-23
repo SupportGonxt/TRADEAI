@@ -587,7 +587,7 @@ const AIInsights = () => {
                           <Typography variant="body2" color="text.secondary">
                             Top Risk Factors
                           </Typography>
-                          {selectedInsight.data.churnRisk.topRiskFactors.map((factor, index) => (
+                          {(selectedInsight?.data?.churnRisk?.topRiskFactors || []).map((factor, index) => (
                             <Chip key={index} label={factor} size="small" sx={{ mr: 0.5, mb: 0.5 }} />
                           ))}
                         </Grid>
@@ -603,7 +603,7 @@ const AIInsights = () => {
                     Recommendations
                   </Typography>
                   <List>
-                    {selectedInsight.recommendations.map((rec, index) => (
+                    {(selectedInsight?.recommendations || []).map((rec, index) => (
                       <ListItem key={index}>
                         <ListItemIcon>
                           <Lightbulb color="primary" />

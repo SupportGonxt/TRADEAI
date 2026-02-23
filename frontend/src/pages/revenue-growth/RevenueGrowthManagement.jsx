@@ -297,7 +297,7 @@ export default function RevenueGrowthManagement() {
               <Box sx={{ mt: 3 }}>
                 <Typography variant="subtitle1" fontWeight={600} gutterBottom>Pricing Strategies ({selectedInit.pricingStrategies.length})</Typography>
                 <TableContainer><Table size="small"><TableHead><TableRow><TableCell>Name</TableCell><TableCell>Type</TableCell><TableCell align="right">Current</TableCell><TableCell align="right">Recommended</TableCell><TableCell align="right">Change</TableCell><TableCell align="right">Revenue Impact</TableCell></TableRow></TableHead><TableBody>
-                  {selectedInit.pricingStrategies.map(p => (
+                  {(selectedInit?.pricingStrategies || []).map(p => (
                     <TableRow key={p.id}><TableCell>{p.name}</TableCell><TableCell>{p.strategyType || p.strategy_type}</TableCell><TableCell align="right">{formatCurrency(p.currentPrice || p.current_price)}</TableCell><TableCell align="right">{formatCurrency(p.recommendedPrice || p.recommended_price)}</TableCell><TableCell align="right">{formatPct(p.priceChangePct || p.price_change_pct)}</TableCell><TableCell align="right">{formatCurrency(p.revenueImpact || p.revenue_impact)}</TableCell></TableRow>
                   ))}
                 </TableBody></Table></TableContainer>
@@ -308,7 +308,7 @@ export default function RevenueGrowthManagement() {
               <Box sx={{ mt: 3 }}>
                 <Typography variant="subtitle1" fontWeight={600} gutterBottom>Growth Tracking ({selectedInit.growthTrackers.length})</Typography>
                 <TableContainer><Table size="small"><TableHead><TableRow><TableCell>Period</TableCell><TableCell>Metric</TableCell><TableCell align="right">Target</TableCell><TableCell align="right">Actual</TableCell><TableCell align="right">Variance</TableCell><TableCell align="right">Growth</TableCell></TableRow></TableHead><TableBody>
-                  {selectedInit.growthTrackers.map(g => (
+                  {(selectedInit?.growthTrackers || []).map(g => (
                     <TableRow key={g.id}><TableCell>{g.period}</TableCell><TableCell>{g.metricType || g.metric_type}</TableCell><TableCell align="right">{formatCurrency(g.targetValue || g.target_value)}</TableCell><TableCell align="right">{formatCurrency(g.actualValue || g.actual_value)}</TableCell><TableCell align="right">{formatPct(g.variancePct || g.variance_pct)}</TableCell><TableCell align="right">{formatPct(g.growthPct || g.growth_pct)}</TableCell></TableRow>
                   ))}
                 </TableBody></Table></TableContainer>

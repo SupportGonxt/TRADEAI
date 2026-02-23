@@ -603,7 +603,7 @@ const AIRecommendations = () => {
                         <Typography variant="body2" color="text.secondary" gutterBottom>
                           Recommendations
                         </Typography>
-                        {customerSegmentation.recommendations.map((rec, index) => (
+                        {(customerSegmentation?.recommendations || []).map((rec, index) => (
                           <Chip key={index} label={rec} size="small" sx={{ mr: 0.5, mb: 0.5 }} />
                         ))}
                       </Box>

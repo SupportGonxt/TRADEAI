@@ -61,7 +61,7 @@ const AIDemandForecastWidget = ({ productId = 'ALL', customerId = 'ALL', days = 
       // Transform ML service response to widget format
       const data = response.data;
       const transformedForecast = {
-        predictions: data.forecast.map(f => ({
+        predictions: (data?.forecast || []).map(f => ({
           date: f.date,
           value: f.predicted_volume,
           confidenceLower: f.confidence_lower,

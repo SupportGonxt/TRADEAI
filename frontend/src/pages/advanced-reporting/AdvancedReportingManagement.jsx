@@ -345,7 +345,7 @@ const AdvancedReportingManagement = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {selectedTemplate.recentReports.map((rpt) => (
+                  {(selectedTemplate?.recentReports || []).map((rpt) => (
                     <TableRow key={rpt.id || rpt._id}>
                       <TableCell>{rpt.name}</TableCell>
                       <TableCell align="right">{fmt(rpt.rowCount || rpt.row_count)}</TableCell>
@@ -379,7 +379,7 @@ const AdvancedReportingManagement = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {selectedTemplate.schedules.map((sch) => (
+                  {(selectedTemplate?.schedules || []).map((sch) => (
                     <TableRow key={sch.id || sch._id}>
                       <TableCell>{sch.name}</TableCell>
                       <TableCell>{sch.frequency}</TableCell>

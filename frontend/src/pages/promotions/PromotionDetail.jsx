@@ -310,7 +310,7 @@ const PromotionDetail = () => {
             Products
           </Typography>
           <Box display="flex" flexWrap="wrap" gap={1}>
-            {promotion.products.map((product, index) => (
+            {(promotion?.products || []).map((product, index) => (
               <Chip 
                 key={index} 
                 label={product.name || product}
@@ -327,7 +327,7 @@ const PromotionDetail = () => {
             Target Customers
           </Typography>
           <Box display="flex" flexWrap="wrap" gap={1}>
-            {promotion.customers.map((customer, index) => (
+            {(promotion?.customers || []).map((customer, index) => (
               <Chip 
                 key={index} 
                 label={customer.name || customer}

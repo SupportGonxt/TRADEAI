@@ -880,7 +880,7 @@ const MonitoringDashboard = () => {
                     Trace Logs
                   </Typography>
                   <List>
-                    {traceDialog.trace.logs.map((log, index) => (
+                    {(traceDialog?.trace?.logs || []).map((log, index) => (
                       <ListItem key={index}>
                         <ListItemText
                           primary={log.message}

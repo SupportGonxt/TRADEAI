@@ -310,7 +310,7 @@ const AIAnalysisStep= ({ data, onChange, errors = {} }) => {
             </Typography>
             
             <List dense>
-              {aiInsights.recommendations.map((rec, index) => (
+              {(aiInsights?.recommendations || []).map((rec, index) => (
                 <ListItem key={index} disablePadding sx={{ py: 0.5 }}>
                   <ListItemIcon sx={{ minWidth: 32 }}>
                     {React.cloneElement(rec.icon, { 
@@ -337,7 +337,7 @@ const AIAnalysisStep= ({ data, onChange, errors = {} }) => {
             </Typography>
             
             <Grid container spacing={1}>
-              {aiInsights.opportunities.map((opp, index) => (
+              {(aiInsights?.opportunities || []).map((opp, index) => (
                 <Grid item xs={12} sm={6} key={index}>
                   <Chip 
                     icon={<TrendingUpIcon />}

@@ -385,7 +385,7 @@ const VarianceAnalysisPage = () => {
                       Based on the variance patterns, these reason codes may be applicable
                     </Alert>
                     <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                      {varianceAnalysis.suggestedReasonCodes.map((code) => (
+                      {(varianceAnalysis?.suggestedReasonCodes || []).map((code) => (
                         <Chip
                           key={code.id || code._id}
                           label={`${code.code}: ${code.name}`}

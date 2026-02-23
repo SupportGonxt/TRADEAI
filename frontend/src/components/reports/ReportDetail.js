@@ -318,7 +318,7 @@ const ReportDetail = ({ open, onClose, reportId, onUpdate, onDelete }) => {
                               Recipients:
                             </Typography>
                             <List dense>
-                              {report.schedule.recipients.map((recipient, index) => (
+                              {(report?.schedule?.recipients || []).map((recipient, index) => (
                                 <ListItem key={index} sx={{ py: 0 }}>
                                   <ListItemIcon sx={{ minWidth: 20 }}>
                                     <EmailIcon fontSize="small" />
@@ -346,7 +346,7 @@ const ReportDetail = ({ open, onClose, reportId, onUpdate, onDelete }) => {
                   Tags:
                 </Typography>
                 <Box display="flex" flexWrap="wrap" gap={1}>
-                  {report.tags.map((tag, index) => (
+                  {(report?.tags || []).map((tag, index) => (
                     <Chip key={index} label={tag} size="small" variant="outlined" />
                   ))}
                 </Box>

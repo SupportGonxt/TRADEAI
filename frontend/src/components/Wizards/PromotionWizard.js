@@ -406,7 +406,7 @@ const PromotionWizard = () => {
                 <Typography variant="h6" gutterBottom>
                   💡 Key Insights
                 </Typography>
-                {aiSuggestions.insights.map((insight, idx) => (
+                {(aiSuggestions?.insights || []).map((insight, idx) => (
                   <Alert key={idx} severity="info" sx={{ mb: 1 }} icon={<TrendingUpIcon />}>
                     {insight}
                   </Alert>
@@ -421,7 +421,7 @@ const PromotionWizard = () => {
 
                 <RadioGroup value={selectedScenario} onChange={(e) => applyScenario(e.target.value)}>
                   <Grid container spacing={2}>
-                    {aiSuggestions.scenarios.map((scenario) => (
+                    {(aiSuggestions?.scenarios || []).map((scenario) => (
                       <Grid item xs={12} key={scenario.id}>
                         <Card 
                           sx={{ 

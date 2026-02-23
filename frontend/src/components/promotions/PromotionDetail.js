@@ -398,7 +398,7 @@ const PromotionDetail = () => {
                   
                   {promotion.products && promotion.products.length > 0 ? (
                     <List>
-                      {promotion.products.map((product) => (
+                      {(promotion?.products || []).map((product) => (
                         <React.Fragment key={product.id}>
                           <ListItem>
                             <ListItemText
@@ -434,7 +434,7 @@ const PromotionDetail = () => {
                   
                   {promotion.trade_spends && promotion.trade_spends.length > 0 ? (
                     <List>
-                      {promotion.trade_spends.map((tradeSpend, index) => (
+                      {(promotion?.trade_spends || []).map((tradeSpend, index) => (
                         <React.Fragment key={tradeSpend.id || index}>
                           <ListItem>
                             <ListItemText

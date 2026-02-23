@@ -183,7 +183,7 @@ const SuccessTracker = ({ userId }) => {
         </Box>
         
         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 1 }}>
-          {stats.badges.map((badge) => (
+          {(stats?.badges || []).map((badge) => (
             <Paper
               key={badge.id}
               sx={{

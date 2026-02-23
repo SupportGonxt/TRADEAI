@@ -286,7 +286,7 @@ const EnhancedWorkflowDashboard = () => {
                     fill="#8884d8"
                     dataKey="value"
                   >
-                    {workflowOverview.slaCompliance.map((entry, index) => (
+                    {(workflowOverview?.slaCompliance || []).map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>

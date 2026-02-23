@@ -311,7 +311,7 @@ const DeductionDetail = () => {
                 <Divider sx={{ mb: 2 }} />
 
                 <List>
-                  {deduction.disputeHistory.map((dispute, index) => (
+                  {(deduction?.disputeHistory || []).map((dispute, index) => (
                     <ListItem key={index} divider={index < deduction.disputeHistory.length - 1}>
                       <ListItemText
                         primary={dispute.reason}
@@ -403,7 +403,7 @@ const DeductionDetail = () => {
                     <Typography variant="body2" color="text.secondary" gutterBottom>
                       Matched Claims
                     </Typography>
-                    {deduction.matchedClaims.map((claim, index) => (
+                    {(deduction?.matchedClaims || []).map((claim, index) => (
                       <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                         <LinkIcon sx={{ mr: 1, fontSize: 16, color: 'text.secondary' }} />
                         <Typography

@@ -368,7 +368,7 @@ export default function PromotionSimulator({ onSaveScenario }) {
                   <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                     AI Recommendations
                   </Typography>
-                  {results.recommendations.map((rec, index) => (
+                  {(results?.recommendations || []).map((rec, index) => (
                     <Alert 
                       key={index} 
                       severity={rec.type === 'positive' ? 'success' : rec.type === 'warning' ? 'warning' : 'info'}

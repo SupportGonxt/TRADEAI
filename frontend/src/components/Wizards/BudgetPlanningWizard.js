@@ -417,7 +417,7 @@ const BudgetPlanningWizard = () => {
                 <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
                   💡 Key Insights
                 </Typography>
-                {aiSuggestions.insights.map((insight, idx) => (
+                {(aiSuggestions?.insights || []).map((insight, idx) => (
                   <Alert key={idx} severity="info" sx={{ mb: 1 }}>
                     {insight}
                   </Alert>
@@ -427,7 +427,7 @@ const BudgetPlanningWizard = () => {
                   🎯 Alternative Strategies
                 </Typography>
                 <Grid container spacing={2}>
-                  {aiSuggestions.alternatives.map((alt, idx) => (
+                  {(aiSuggestions?.alternatives || []).map((alt, idx) => (
                     <Grid item xs={12} md={4} key={idx}>
                       <Card sx={{ height: '100%' }}>
                         <CardContent>

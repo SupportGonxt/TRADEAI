@@ -826,7 +826,7 @@ const PnLManagement = () => {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {detailReport.lineItems.map((li, idx) => (
+                        {(detailReport?.lineItems || []).map((li, idx) => (
                           <TableRow key={idx} hover>
                             <TableCell>{li.sortOrder || li.sort_order || idx + 1}</TableCell>
                             <TableCell sx={{ fontWeight: 600 }}>{li.lineLabel || li.line_label || li.customerName || li.customer_name || li.promotionName || li.promotion_name || '-'}</TableCell>

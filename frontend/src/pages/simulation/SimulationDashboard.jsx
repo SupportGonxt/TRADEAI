@@ -224,7 +224,7 @@ const SimulationDashboard = () => {
                   <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
                     AI Recommendations
                   </Typography>
-                  {simulationResults.recommendations.map((rec, index) => (
+                  {(simulationResults?.recommendations || []).map((rec, index) => (
                     <Alert
                       key={index}
                       severity={
