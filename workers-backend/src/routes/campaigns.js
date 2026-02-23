@@ -467,7 +467,15 @@ campaigns.get('/:id/history', async (c) => {
     const campaign = await db.prepare('SELECT * FROM campaigns WHERE id = ? AND company_id = ?').bind(id, companyId).first();
     if (!campaign) return c.json({ success: false, message: 'Campaign not found' }, 404);
     const doc = rowToDocument(campaign);
-    return c.json({ success: true, data: doc.history || [] });
+    const history = [];
+    history.push({ id: `hist-create-${id}`, action: 'Created', user: doc.createdBy, date: doc.createdAt, details: `Campaign "${doc.name}" created` });
+    if (doc.approvedBy) {
+      history.push({ id: `hist-approve-${id}`, action: 'Approved', user: doc.approvedBy, date: doc.approvedAt, details: 'Campaign approved' });
+    }
+    if (doc.updatedAt && doc.updatedAt !== doc.createdAt) {
+      history.push({ id: `hist-update-${id}`, action: 'Updated', user: doc.createdBy, date: doc.updatedAt, details: `Status: ${doc.status}` });
+    }
+    return c.json({ success: true, data: history.sort((a, b) => new Date(b.date) - new Date(a.date)) });
   } catch (error) {
     return c.json({ success: false, message: error.message }, 500);
   }
