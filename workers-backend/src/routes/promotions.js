@@ -152,6 +152,136 @@ promotionRoutes.post('/:id/clone', async (c) => {
   }
 });
 
+promotionRoutes.get('/:id/products', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
+    if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
+    return c.json({ success: true, data: promotion.products || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+promotionRoutes.delete('/:id/products/:productId', async (c) => {
+  try {
+    const { id, productId } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
+    if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
+    const products = (promotion.products || []).filter(p => (p.product?.id || p.product?._id || p.id) !== productId);
+    await mongodb.updateOne('promotions', { _id: { $oid: id }, companyId: tenantId }, { products });
+    return c.json({ success: true, message: 'Product removed' });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+promotionRoutes.get('/:id/customers', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
+    if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
+    return c.json({ success: true, data: promotion.customers || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+promotionRoutes.delete('/:id/customers/:customerId', async (c) => {
+  try {
+    const { id, customerId } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
+    if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
+    const customers = (promotion.customers || []).filter(cu => (cu.customer?.id || cu.customer?._id || cu.id) !== customerId);
+    await mongodb.updateOne('promotions', { _id: { $oid: id }, companyId: tenantId }, { customers });
+    return c.json({ success: true, message: 'Customer removed' });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+promotionRoutes.get('/:id/budget', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
+    if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
+    const budget = promotion.budget || promotion.financial || {
+      totalBudget: promotion.estimatedCost || 0,
+      allocatedBudget: promotion.allocatedBudget || 0,
+      spentBudget: promotion.actualCost || promotion.financial?.actual?.totalCost || 0,
+      remainingBudget: (promotion.estimatedCost || 0) - (promotion.actualCost || 0),
+      currency: 'ZAR'
+    };
+    return c.json({ success: true, data: budget });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+promotionRoutes.get('/:id/documents', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
+    if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
+    return c.json({ success: true, data: promotion.documents || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+promotionRoutes.delete('/:id/documents/:documentId', async (c) => {
+  try {
+    const { id, documentId } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
+    if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
+    const documents = (promotion.documents || []).filter(d => (d._id || d.id) !== documentId);
+    await mongodb.updateOne('promotions', { _id: { $oid: id }, companyId: tenantId }, { documents });
+    return c.json({ success: true, message: 'Document deleted' });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+promotionRoutes.get('/:id/approvals', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
+    if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
+    return c.json({ success: true, data: promotion.approvals || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
+promotionRoutes.get('/:id/history', async (c) => {
+  try {
+    const { id } = c.req.param();
+    const tenantId = c.get('tenantId');
+    const mongodb = getMongoClient(c);
+    const promotion = await mongodb.findOne('promotions', { _id: { $oid: id }, companyId: tenantId });
+    if (!promotion) return c.json({ success: false, message: 'Promotion not found' }, 404);
+    return c.json({ success: true, data: promotion.history || [] });
+  } catch (error) {
+    return c.json({ success: false, message: error.message }, 500);
+  }
+});
+
 // Get promotion performance
 promotionRoutes.get('/:id/performance', async (c) => {
   try {

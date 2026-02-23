@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Paper, Typography, CircularProgress } from '@mui/material';
-import { toast } from 'react-toastify';
+import { Box, Paper, Typography, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip } from '@mui/material';
 import apiClient from '../../../services/api/apiClient';
 
-const BudgetApprovals = ({ budgetId, _budget }) => {
-  const [data, setData] = useState(null);
+const BudgetApprovals = ({ budgetId }) => {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -15,10 +14,10 @@ const BudgetApprovals = ({ budgetId, _budget }) => {
     try {
       setLoading(true);
       const response = await apiClient.get(`/budgets/${budgetId}/approvals`);
-      setData(response.data.data || response.data);
+      const result = response.data.data || response.data;
+      setData(Array.isArray(result) ? result : []);
     } catch (error) {
-      console.error('Error loading data:', error);
-      toast.error('Failed to load data');
+      console.error('Error loading approvals:', error);
     } finally {
       setLoading(false);
     }
@@ -29,11 +28,35 @@ const BudgetApprovals = ({ budgetId, _budget }) => {
   }
 
   return (
-    <Paper sx={{ p: 3 }}>
-      <Typography variant="h6" gutterBottom>Approvals</Typography>
-      <Typography variant="body2" color="text.secondary">Data will be displayed here</Typography>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </Paper>
+    <Box>
+      <Typography variant="h6" gutterBottom>Approval History</Typography>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Approver</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Date</TableCell>
+              <TableCell>Comments</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.length === 0 ? (
+              <TableRow><TableCell colSpan={4} align="center">No approval records</TableCell></TableRow>
+            ) : (
+              data.map((item, index) => (
+                <TableRow key={item.id || index}>
+                  <TableCell>{item.approverName || item.approvedBy || 'N/A'}</TableCell>
+                  <TableCell><Chip label={item.status || 'pending'} size="small" color={item.status === 'approved' ? 'success' : item.status === 'rejected' ? 'error' : 'warning'} /></TableCell>
+                  <TableCell>{item.date ? new Date(item.date).toLocaleDateString() : 'N/A'}</TableCell>
+                  <TableCell>{item.comments || '-'}</TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 };
 

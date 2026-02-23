@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Paper, Typography, CircularProgress } from '@mui/material';
-import { toast } from 'react-toastify';
+import { Box, Paper, Typography, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Grid, Card, CardContent } from '@mui/material';
 import apiClient from '../../../services/api/apiClient';
 
-const BudgetForecast = ({ budgetId, budget }) => {
+const fmt = (v) => typeof v === 'number' ? `R ${v.toLocaleString()}` : v || 'N/A';
+
+const BudgetForecast = ({ budgetId }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -17,8 +18,7 @@ const BudgetForecast = ({ budgetId, budget }) => {
       const response = await apiClient.get(`/budgets/${budgetId}/forecast`);
       setData(response.data.data || response.data);
     } catch (error) {
-      console.error('Error loading data:', error);
-      toast.error('Failed to load data');
+      console.error('Error loading forecast:', error);
     } finally {
       setLoading(false);
     }
@@ -28,12 +28,45 @@ const BudgetForecast = ({ budgetId, budget }) => {
     return <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}><CircularProgress /></Box>;
   }
 
+  if (!data) return <Paper sx={{ p: 3 }}><Typography>No forecast data available</Typography></Paper>;
+
+  const months = Array.isArray(data.months || data.forecast) ? (data.months || data.forecast) : [];
+
   return (
-    <Paper sx={{ p: 3 }}>
-      <Typography variant="h6" gutterBottom>Forecast</Typography>
-      <Typography variant="body2" color="text.secondary">Data will be displayed here</Typography>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </Paper>
+    <Box>
+      <Grid container spacing={2} sx={{ mb: 3 }}>
+        <Grid item xs={12} sm={4}><Card><CardContent><Typography variant="body2" color="text.secondary">Projected Spend</Typography><Typography variant="h6">{fmt(data.projectedSpend || data.totalProjected)}</Typography></CardContent></Card></Grid>
+        <Grid item xs={12} sm={4}><Card><CardContent><Typography variant="body2" color="text.secondary">Confidence</Typography><Typography variant="h6">{data.confidence || data.confidenceLevel || 'N/A'}</Typography></CardContent></Card></Grid>
+        <Grid item xs={12} sm={4}><Card><CardContent><Typography variant="body2" color="text.secondary">Variance</Typography><Typography variant="h6">{data.variance || data.expectedVariance || 'N/A'}</Typography></CardContent></Card></Grid>
+      </Grid>
+      <Typography variant="h6" gutterBottom>Monthly Forecast</Typography>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Month</TableCell>
+              <TableCell>Projected</TableCell>
+              <TableCell>Actual</TableCell>
+              <TableCell>Variance</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {months.length === 0 ? (
+              <TableRow><TableCell colSpan={4} align="center">No forecast data</TableCell></TableRow>
+            ) : (
+              months.map((item, index) => (
+                <TableRow key={item.month || index}>
+                  <TableCell>{item.month || item.period || `Month ${index + 1}`}</TableCell>
+                  <TableCell>{fmt(item.projected || item.forecast)}</TableCell>
+                  <TableCell>{fmt(item.actual)}</TableCell>
+                  <TableCell>{fmt(item.variance)}</TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 };
 
