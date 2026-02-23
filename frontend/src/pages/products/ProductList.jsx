@@ -27,7 +27,7 @@ const ProductList = () => {
       if (filters.category !== 'all') params.append('category', filters.category);
       const response = await api.get(`/products?${params}`);
       if (response.data.success) {
-        const normalizedProducts = response.data.data.map(product => ({
+        const normalizedProducts = (response.data.data || []).map(product => ({
           ...product,
           category: typeof product.category === 'object' ? (product.category?.primary || 'Uncategorized') : product.category,
           brand: typeof product.brand === 'object' ? (product.brand?.name || 'Unknown') : product.brand

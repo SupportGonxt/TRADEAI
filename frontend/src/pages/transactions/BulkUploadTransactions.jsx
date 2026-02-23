@@ -95,10 +95,11 @@ export default function BulkUploadTransactions() {
         }
       });
 
-      setUploadResult(response.data.data);
+      const result = response.data.data || { total: 0, success: [], failed: [] };
+      setUploadResult(result);
       
-      if (response.data.data.failed.length > 0) {
-        setErrors(response.data.data.failed.map(f => `Row ${f.row}: ${f.error}`));
+      if (result.failed?.length > 0) {
+        setErrors(result.failed.map(f => `Row ${f.row}: ${f.error}`));
       }
 
       setFile(null);
@@ -286,7 +287,7 @@ export default function BulkUploadTransactions() {
               <Card>
                 <CardContent sx={{ textAlign: 'center' }}>
                   <Typography variant="h4" color="primary.main" fontWeight="bold">
-                    {uploadResult.total}
+                    {uploadResult.total || 0}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Total Rows
@@ -299,7 +300,7 @@ export default function BulkUploadTransactions() {
               <Card>
                 <CardContent sx={{ textAlign: 'center' }}>
                   <Typography variant="h4" color="success.main" fontWeight="bold">
-                    {uploadResult.success.length}
+                    {(uploadResult.success || []).length}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Successful
@@ -312,7 +313,7 @@ export default function BulkUploadTransactions() {
               <Card>
                 <CardContent sx={{ textAlign: 'center' }}>
                   <Typography variant="h4" color="error.main" fontWeight="bold">
-                    {uploadResult.failed.length}
+                    {(uploadResult.failed || []).length}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Failed
@@ -322,7 +323,7 @@ export default function BulkUploadTransactions() {
             </Grid>
           </Grid>
 
-          {uploadResult.success.length > 0 && (
+          {(uploadResult.success || []).length > 0 && (
             <Box sx={{ mb: 3 }}>
               <Typography variant="subtitle1" gutterBottom fontWeight="bold">
                 <CheckCircleIcon color="success" sx={{ verticalAlign: 'middle', mr: 1 }} />
@@ -353,7 +354,7 @@ export default function BulkUploadTransactions() {
             </Box>
           )}
 
-          {uploadResult.failed.length > 0 && (
+          {(uploadResult.failed || []).length > 0 && (
             <Box>
               <Typography variant="subtitle1" gutterBottom fontWeight="bold">
                 <ErrorIcon color="error" sx={{ verticalAlign: 'middle', mr: 1 }} />
