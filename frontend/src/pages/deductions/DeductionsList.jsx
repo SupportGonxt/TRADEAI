@@ -127,7 +127,7 @@ const DeductionsList = () => {
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
         {summaryCards.map((s) => (
-          <Grid item xs={6} md={3} key={s.label}>
+          <Grid item xs={12} sm={6} md={3} key={s.label}>
             <Paper elevation={0} sx={{ p: 2.5, borderRadius: '16px', border: '1px solid', borderColor: 'divider', display: 'flex', alignItems: 'center', gap: 2 }}>
               <Box sx={{ width: 44, height: 44, borderRadius: '12px', bgcolor: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {React.cloneElement(s.icon, { sx: { color: s.color, fontSize: 22 } })}

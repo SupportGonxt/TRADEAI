@@ -400,22 +400,22 @@ const ScenarioPlanningManagement = () => {
       {loading && <LinearProgress sx={{ mb: 2, borderRadius: 1 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Total Scenarios" value={summary?.total || 0}
             subtitle={`${summary?.simulatedCount || 0} simulated`}
             icon={<ScienceIcon />} color="#7C3AED" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Avg ROI" value={formatPct(summary?.avgRoi)}
             subtitle={`Avg lift: ${formatPct(summary?.avgLift)}`}
             icon={<TrendUpIcon />} color="#059669" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Projected Revenue" value={formatCurrency(summary?.totalProjectedRevenue)}
             subtitle={`Spend: ${formatCurrency(summary?.totalProjectedSpend)}`}
             icon={<TrendUpIcon />} color="#2563EB" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Net Profit" value={formatCurrency(summary?.totalNetProfit)}
             subtitle={`Confidence: ${formatPct(summary?.avgConfidence)}`}
             icon={<TrendDownIcon />} color="#D97706" />
@@ -552,19 +552,19 @@ const ScenarioPlanningManagement = () => {
                 {budgets.map(b => <MenuItem key={b.id} value={b.id}>{b.name}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Start Date" type="date" InputLabelProps={{ shrink: true }}
                 value={scenarioForm.startDate} onChange={(e) => setScenarioForm(p => ({ ...p, startDate: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="End Date" type="date" InputLabelProps={{ shrink: true }}
                 value={scenarioForm.endDate} onChange={(e) => setScenarioForm(p => ({ ...p, endDate: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Channel"
                 value={scenarioForm.channel} onChange={(e) => setScenarioForm(p => ({ ...p, channel: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField select fullWidth size="small" label="Risk Level"
                 value={scenarioForm.riskLevel} onChange={(e) => setScenarioForm(p => ({ ...p, riskLevel: e.target.value }))}>
                 {riskLevels.map(r => <MenuItem key={r.value} value={r.value}>{r.label}</MenuItem>)}
@@ -572,19 +572,19 @@ const ScenarioPlanningManagement = () => {
             </Grid>
 
             <Grid item xs={12}><Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#374151' }}>Baseline Assumptions</Typography></Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Baseline Revenue (R)" type="number"
                 value={scenarioForm.baselineRevenue} onChange={(e) => setScenarioForm(p => ({ ...p, baselineRevenue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Baseline Units" type="number"
                 value={scenarioForm.baselineUnits} onChange={(e) => setScenarioForm(p => ({ ...p, baselineUnits: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Baseline Margin %" type="number"
                 value={scenarioForm.baselineMarginPct} onChange={(e) => setScenarioForm(p => ({ ...p, baselineMarginPct: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Projected Spend (R)" type="number"
                 value={scenarioForm.projectedSpend} onChange={(e) => setScenarioForm(p => ({ ...p, projectedSpend: parseFloat(e.target.value) || 0 }))} />
             </Grid>
@@ -769,29 +769,29 @@ const ScenarioPlanningManagement = () => {
               <TextField fullWidth size="small" label="Variable Name" required
                 value={varForm.variableName} onChange={(e) => setVarForm(p => ({ ...p, variableName: e.target.value }))} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth size="small" label="Category"
                 value={varForm.category} onChange={(e) => setVarForm(p => ({ ...p, category: e.target.value }))}>
                 {variableCategories.map(c => <MenuItem key={c.value} value={c.value}>{c.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth size="small" label="Unit" placeholder="e.g. R, %, units"
                 value={varForm.unit} onChange={(e) => setVarForm(p => ({ ...p, unit: e.target.value }))} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth size="small" label="Base Value" type="number"
                 value={varForm.baseValue} onChange={(e) => setVarForm(p => ({ ...p, baseValue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth size="small" label="Adjusted Value" type="number"
                 value={varForm.adjustedValue} onChange={(e) => setVarForm(p => ({ ...p, adjustedValue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth size="small" label="Min Value" type="number"
                 value={varForm.minValue} onChange={(e) => setVarForm(p => ({ ...p, minValue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth size="small" label="Max Value" type="number"
                 value={varForm.maxValue} onChange={(e) => setVarForm(p => ({ ...p, maxValue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
@@ -824,13 +824,13 @@ const ScenarioPlanningManagement = () => {
         <DialogTitle sx={{ fontWeight: 700 }}>Compare Scenarios</DialogTitle>
         <DialogContent dividers>
           <Grid container spacing={2} sx={{ mb: 2, mt: 0.5 }}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth size="small" label="Scenario A"
                 value={compareA} onChange={(e) => setCompareA(e.target.value)}>
                 {scenarios.map(s => <MenuItem key={s.id} value={s.id}>{s.name}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth size="small" label="Scenario B"
                 value={compareB} onChange={(e) => setCompareB(e.target.value)}>
                 {scenarios.map(s => <MenuItem key={s.id} value={s.id}>{s.name}</MenuItem>)}

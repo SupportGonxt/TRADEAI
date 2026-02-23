@@ -323,22 +323,22 @@ const PromotionOptimizerManagement = () => {
       {loading && <LinearProgress sx={{ mb: 2, borderRadius: 1 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Total Optimizations" value={summary?.total || 0}
             subtitle={`${summary?.optimizedCount || 0} optimized, ${summary?.appliedCount || 0} applied`}
             icon={<TuneIcon />} color="#7C3AED" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Avg ROI" value={formatPct(summary?.avgRoi)}
             subtitle={`Avg lift: ${formatPct(summary?.avgLift)}`}
             icon={<TrendUpIcon />} color="#059669" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Avg Improvement" value={formatPct(summary?.avgImprovement)}
             subtitle={`Confidence: ${formatPct(summary?.avgConfidence)}`}
             icon={<SpeedIcon />} color="#2563EB" />
         </Grid>
-        <Grid item xs={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <SummaryCard title="Recommendations" value={summary?.recommendations?.total || 0}
             subtitle={`${summary?.recommendations?.pending || 0} pending`}
             icon={<RecommendIcon />} color="#D97706" />
@@ -466,43 +466,43 @@ const PromotionOptimizerManagement = () => {
                 {products.map(p => <MenuItem key={p.id} value={p.id}>{p.name}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Start Date" type="date" InputLabelProps={{ shrink: true }}
                 value={optForm.startDate} onChange={(e) => setOptForm(p => ({ ...p, startDate: e.target.value }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="End Date" type="date" InputLabelProps={{ shrink: true }}
                 value={optForm.endDate} onChange={(e) => setOptForm(p => ({ ...p, endDate: e.target.value }))} />
             </Grid>
 
             <Grid item xs={12}><Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#374151' }}>Constraints & Thresholds</Typography></Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Budget Limit (R)" type="number"
                 value={optForm.budgetLimit} onChange={(e) => setOptForm(p => ({ ...p, budgetLimit: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Min ROI %" type="number"
                 value={optForm.minRoiThreshold} onChange={(e) => setOptForm(p => ({ ...p, minRoiThreshold: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Min Lift %" type="number"
                 value={optForm.minLiftThreshold} onChange={(e) => setOptForm(p => ({ ...p, minLiftThreshold: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <TextField fullWidth size="small" label="Max Discount %" type="number"
                 value={optForm.maxDiscountPct} onChange={(e) => setOptForm(p => ({ ...p, maxDiscountPct: parseFloat(e.target.value) || 0 }))} />
             </Grid>
 
             <Grid item xs={12}><Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#374151' }}>Baseline Assumptions</Typography></Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField fullWidth size="small" label="Baseline Revenue (R)" type="number"
                 value={optForm.baselineRevenue} onChange={(e) => setOptForm(p => ({ ...p, baselineRevenue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField fullWidth size="small" label="Baseline Units" type="number"
                 value={optForm.baselineUnits} onChange={(e) => setOptForm(p => ({ ...p, baselineUnits: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               <TextField fullWidth size="small" label="Baseline Margin %" type="number"
                 value={optForm.baselineMarginPct} onChange={(e) => setOptForm(p => ({ ...p, baselineMarginPct: parseFloat(e.target.value) || 0 }))} />
             </Grid>
@@ -705,23 +705,23 @@ const PromotionOptimizerManagement = () => {
               <TextField fullWidth size="small" label="Constraint Name" required
                 value={conForm.constraintName} onChange={(e) => setConForm(p => ({ ...p, constraintName: e.target.value }))} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth size="small" label="Type"
                 value={conForm.constraintType} onChange={(e) => setConForm(p => ({ ...p, constraintType: e.target.value }))}>
                 {constraintTypes.map(t => <MenuItem key={t.value} value={t.value}>{t.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth size="small" label="Operator"
                 value={conForm.operator} onChange={(e) => setConForm(p => ({ ...p, operator: e.target.value }))}>
                 {operators.map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
               </TextField>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth size="small" label="Threshold Value" type="number"
                 value={conForm.thresholdValue} onChange={(e) => setConForm(p => ({ ...p, thresholdValue: parseFloat(e.target.value) || 0 }))} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth size="small" label="Severity"
                 value={conForm.severity} onChange={(e) => setConForm(p => ({ ...p, severity: e.target.value }))}>
                 <MenuItem value="info">Info</MenuItem>

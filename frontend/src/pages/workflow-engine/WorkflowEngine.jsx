@@ -120,10 +120,10 @@ export default function WorkflowEngine() {
       {loading && <LinearProgress sx={{ mb: 2 }} />}
 
       <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={6} sm={3}><SummaryCard title="Templates" value={summary.templates?.total} /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Active Templates" value={summary.templates?.active} color="#059669" /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="In Progress" value={summary.instances?.in_progress} color="#2563EB" /></Grid>
-        <Grid item xs={6} sm={3}><SummaryCard title="Completed" value={summary.instances?.completed} color="#D97706" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Templates" value={summary.templates?.total} /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Active Templates" value={summary.templates?.active} color="#059669" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="In Progress" value={summary.instances?.in_progress} color="#2563EB" /></Grid>
+        <Grid item xs={12} sm={6} md={3}><SummaryCard title="Completed" value={summary.instances?.completed} color="#D97706" /></Grid>
       </Grid>
 
       <Paper sx={{ borderRadius: 3, overflow: 'hidden' }}>
@@ -204,8 +204,8 @@ export default function WorkflowEngine() {
           <TextField label="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} fullWidth required size="small" />
           <TextField label="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} fullWidth multiline rows={2} size="small" />
           <Grid container spacing={2}>
-            <Grid item xs={6}><TextField select label="Workflow Type" value={form.workflow_type} onChange={(e) => setForm({ ...form, workflow_type: e.target.value })} fullWidth size="small">{(options.workflowTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
-            <Grid item xs={6}><TextField select label="Entity Type" value={form.entity_type} onChange={(e) => setForm({ ...form, entity_type: e.target.value })} fullWidth size="small"><MenuItem value="">None</MenuItem>{(options.entityTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
+            <Grid item xs={12} sm={6}><TextField select label="Workflow Type" value={form.workflow_type} onChange={(e) => setForm({ ...form, workflow_type: e.target.value })} fullWidth size="small">{(options.workflowTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
+            <Grid item xs={12} sm={6}><TextField select label="Entity Type" value={form.entity_type} onChange={(e) => setForm({ ...form, entity_type: e.target.value })} fullWidth size="small"><MenuItem value="">None</MenuItem>{(options.entityTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={4}><TextField select label="Trigger" value={form.trigger_event} onChange={(e) => setForm({ ...form, trigger_event: e.target.value })} fullWidth size="small">{(options.triggerEvents || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}</TextField></Grid>

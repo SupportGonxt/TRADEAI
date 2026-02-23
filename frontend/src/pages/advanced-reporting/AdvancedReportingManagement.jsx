@@ -248,7 +248,7 @@ const AdvancedReportingManagement = () => {
             { label: 'Min', value: `R ${fmt(summaryData.minAmount)}` },
             { label: 'Gen Time', value: `${selectedReport.generationTimeMs || selectedReport.generation_time_ms || 0}ms` },
           ].map((item, i) => (
-            <Grid item xs={6} sm={4} md={2} key={i}>
+            <Grid item xs={12} sm={6} md={2} key={i}>
               <Paper sx={{ p: 2, textAlign: 'center' }}>
                 <Typography variant="caption" color="text.secondary">{item.label}</Typography>
                 <Typography variant="h6" fontWeight={600}>{item.value}</Typography>
@@ -320,7 +320,7 @@ const AdvancedReportingManagement = () => {
             { label: 'Version', value: selectedTemplate.version || 1 },
             { label: 'Last Run', value: selectedTemplate.lastRunAt || selectedTemplate.last_run_at || '—' },
           ].map((item, i) => (
-            <Grid item xs={6} sm={4} md={2} key={i}>
+            <Grid item xs={12} sm={6} md={2} key={i}>
               <Paper sx={{ p: 2, textAlign: 'center' }}>
                 <Typography variant="caption" color="text.secondary">{item.label}</Typography>
                 <Typography variant="h6" fontWeight={600}>{item.value}</Typography>
@@ -414,7 +414,7 @@ const AdvancedReportingManagement = () => {
       {summary && (
         <Grid container spacing={2} sx={{ mb: 3 }}>
           {summaryCards.map((card, i) => (
-            <Grid item xs={6} sm={4} md={2} key={i}>
+            <Grid item xs={12} sm={6} md={2} key={i}>
               <Paper sx={{ p: 2, textAlign: 'center', borderTop: `3px solid ${card.color}` }}>
                 <Typography variant="caption" color="text.secondary">{card.label}</Typography>
                 <Typography variant="h5" fontWeight={700} sx={{ color: card.color }}>{card.value}</Typography>

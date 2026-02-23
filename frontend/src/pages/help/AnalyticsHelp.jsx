@@ -335,7 +335,7 @@ const AnalyticsHelp = () => {
               <ListItem button onClick={() => navigate('/dashboard')}>
                 <ListItemText primary="Main Dashboard" />
               </ListItem>
-              <ListItem button onClick={() => navigate('/ai-dashboard')}>
+              <ListItem button onClick={() => navigate('/dashboard')}>
                 <ListItemText primary="AI Insights" />
               </ListItem>
               <ListItem button onClick={() => navigate('/reports')}>

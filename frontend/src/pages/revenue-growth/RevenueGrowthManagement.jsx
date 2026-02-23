@@ -280,16 +280,16 @@ export default function RevenueGrowthManagement() {
             <Button variant="text" onClick={() => setSelectedInit(null)} sx={{ mb: 2 }}>&larr; Back to list</Button>
             <Typography variant="h6" fontWeight={700} gutterBottom>{selectedInit.name}</Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
-              <Grid item xs={6} md={3}><Typography variant="caption" color="text.secondary">Type</Typography><Typography variant="body2">{selectedInit.initiativeType || selectedInit.initiative_type}</Typography></Grid>
-              <Grid item xs={6} md={3}><Typography variant="caption" color="text.secondary">Status</Typography><br /><Chip label={selectedInit.status} size="small" color={statusColors[selectedInit.status] || 'default'} /></Grid>
-              <Grid item xs={6} md={3}><Typography variant="caption" color="text.secondary">Priority</Typography><br /><Chip label={selectedInit.priority} size="small" color={priorityColors[selectedInit.priority] || 'default'} /></Grid>
-              <Grid item xs={6} md={3}><Typography variant="caption" color="text.secondary">Risk</Typography><br /><Chip label={selectedInit.riskLevel || selectedInit.risk_level || 'low'} size="small" /></Grid>
+              <Grid item xs={12} sm={6} md={3}><Typography variant="caption" color="text.secondary">Type</Typography><Typography variant="body2">{selectedInit.initiativeType || selectedInit.initiative_type}</Typography></Grid>
+              <Grid item xs={12} sm={6} md={3}><Typography variant="caption" color="text.secondary">Status</Typography><br /><Chip label={selectedInit.status} size="small" color={statusColors[selectedInit.status] || 'default'} /></Grid>
+              <Grid item xs={12} sm={6} md={3}><Typography variant="caption" color="text.secondary">Priority</Typography><br /><Chip label={selectedInit.priority} size="small" color={priorityColors[selectedInit.priority] || 'default'} /></Grid>
+              <Grid item xs={12} sm={6} md={3}><Typography variant="caption" color="text.secondary">Risk</Typography><br /><Chip label={selectedInit.riskLevel || selectedInit.risk_level || 'low'} size="small" /></Grid>
             </Grid>
             <Grid container spacing={2} sx={{ mb: 3 }}>
-              <Grid item xs={6} md={3}><Typography variant="caption" color="text.secondary">Target Revenue</Typography><Typography variant="h6" fontWeight={700}>{formatCurrency(selectedInit.targetRevenue || selectedInit.target_revenue)}</Typography></Grid>
-              <Grid item xs={6} md={3}><Typography variant="caption" color="text.secondary">Actual Revenue</Typography><Typography variant="h6" fontWeight={700}>{formatCurrency(selectedInit.actualRevenue || selectedInit.actual_revenue)}</Typography></Grid>
-              <Grid item xs={6} md={3}><Typography variant="caption" color="text.secondary">Investment</Typography><Typography variant="h6" fontWeight={700}>{formatCurrency(selectedInit.investmentAmount || selectedInit.investment_amount)}</Typography></Grid>
-              <Grid item xs={6} md={3}><Typography variant="caption" color="text.secondary">ROI</Typography><Typography variant="h6" fontWeight={700}>{formatPct(selectedInit.roi)}</Typography></Grid>
+              <Grid item xs={12} sm={6} md={3}><Typography variant="caption" color="text.secondary">Target Revenue</Typography><Typography variant="h6" fontWeight={700}>{formatCurrency(selectedInit.targetRevenue || selectedInit.target_revenue)}</Typography></Grid>
+              <Grid item xs={12} sm={6} md={3}><Typography variant="caption" color="text.secondary">Actual Revenue</Typography><Typography variant="h6" fontWeight={700}>{formatCurrency(selectedInit.actualRevenue || selectedInit.actual_revenue)}</Typography></Grid>
+              <Grid item xs={12} sm={6} md={3}><Typography variant="caption" color="text.secondary">Investment</Typography><Typography variant="h6" fontWeight={700}>{formatCurrency(selectedInit.investmentAmount || selectedInit.investment_amount)}</Typography></Grid>
+              <Grid item xs={12} sm={6} md={3}><Typography variant="caption" color="text.secondary">ROI</Typography><Typography variant="h6" fontWeight={700}>{formatPct(selectedInit.roi)}</Typography></Grid>
             </Grid>
             {selectedInit.description && <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>{selectedInit.description}</Typography>}
 
@@ -449,28 +449,28 @@ export default function RevenueGrowthManagement() {
           <Grid container spacing={2} sx={{ mt: 0.5 }}>
             <Grid item xs={12}><TextField fullWidth label="Name" value={initForm.name} onChange={(e) => setInitForm({ ...initForm, name: e.target.value })} /></Grid>
             <Grid item xs={12}><TextField fullWidth label="Description" multiline rows={2} value={initForm.description} onChange={(e) => setInitForm({ ...initForm, description: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth select label="Type" value={initForm.initiativeType} onChange={(e) => setInitForm({ ...initForm, initiativeType: e.target.value })}>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth select label="Type" value={initForm.initiativeType} onChange={(e) => setInitForm({ ...initForm, initiativeType: e.target.value })}>
               {(options?.initiativeTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
             </TextField></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth select label="Status" value={initForm.status} onChange={(e) => setInitForm({ ...initForm, status: e.target.value })}>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth select label="Status" value={initForm.status} onChange={(e) => setInitForm({ ...initForm, status: e.target.value })}>
               {['draft','active','completed','paused','cancelled'].map(s => <MenuItem key={s} value={s}>{s}</MenuItem>)}
             </TextField></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth select label="Priority" value={initForm.priority} onChange={(e) => setInitForm({ ...initForm, priority: e.target.value })}>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth select label="Priority" value={initForm.priority} onChange={(e) => setInitForm({ ...initForm, priority: e.target.value })}>
               {(options?.priorities || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
             </TextField></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth label="Channel" value={initForm.channel} onChange={(e) => setInitForm({ ...initForm, channel: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth label="Region" value={initForm.region} onChange={(e) => setInitForm({ ...initForm, region: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth label="Brand" value={initForm.brand} onChange={(e) => setInitForm({ ...initForm, brand: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth label="Start Date" type="date" InputLabelProps={{ shrink: true }} value={initForm.startDate} onChange={(e) => setInitForm({ ...initForm, startDate: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth label="End Date" type="date" InputLabelProps={{ shrink: true }} value={initForm.endDate} onChange={(e) => setInitForm({ ...initForm, endDate: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth select label="Risk Level" value={initForm.riskLevel} onChange={(e) => setInitForm({ ...initForm, riskLevel: e.target.value })}>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth label="Channel" value={initForm.channel} onChange={(e) => setInitForm({ ...initForm, channel: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth label="Region" value={initForm.region} onChange={(e) => setInitForm({ ...initForm, region: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth label="Brand" value={initForm.brand} onChange={(e) => setInitForm({ ...initForm, brand: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth label="Start Date" type="date" InputLabelProps={{ shrink: true }} value={initForm.startDate} onChange={(e) => setInitForm({ ...initForm, startDate: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth label="End Date" type="date" InputLabelProps={{ shrink: true }} value={initForm.endDate} onChange={(e) => setInitForm({ ...initForm, endDate: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth select label="Risk Level" value={initForm.riskLevel} onChange={(e) => setInitForm({ ...initForm, riskLevel: e.target.value })}>
               {(options?.riskLevels || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
             </TextField></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Target Revenue" type="number" value={initForm.targetRevenue} onChange={(e) => setInitForm({ ...initForm, targetRevenue: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Baseline Revenue" type="number" value={initForm.baselineRevenue} onChange={(e) => setInitForm({ ...initForm, baselineRevenue: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Target Growth %" type="number" value={initForm.targetGrowthPct} onChange={(e) => setInitForm({ ...initForm, targetGrowthPct: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Investment Amount" type="number" value={initForm.investmentAmount} onChange={(e) => setInitForm({ ...initForm, investmentAmount: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6}><TextField fullWidth label="Owner" value={initForm.owner} onChange={(e) => setInitForm({ ...initForm, owner: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Target Revenue" type="number" value={initForm.targetRevenue} onChange={(e) => setInitForm({ ...initForm, targetRevenue: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Baseline Revenue" type="number" value={initForm.baselineRevenue} onChange={(e) => setInitForm({ ...initForm, baselineRevenue: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Target Growth %" type="number" value={initForm.targetGrowthPct} onChange={(e) => setInitForm({ ...initForm, targetGrowthPct: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Investment Amount" type="number" value={initForm.investmentAmount} onChange={(e) => setInitForm({ ...initForm, investmentAmount: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6}><TextField fullWidth label="Owner" value={initForm.owner} onChange={(e) => setInitForm({ ...initForm, owner: e.target.value })} /></Grid>
             <Grid item xs={12}><TextField fullWidth label="Notes" multiline rows={2} value={initForm.notes} onChange={(e) => setInitForm({ ...initForm, notes: e.target.value })} /></Grid>
           </Grid>
         </DialogContent>
@@ -486,25 +486,25 @@ export default function RevenueGrowthManagement() {
           <Grid container spacing={2} sx={{ mt: 0.5 }}>
             <Grid item xs={12}><TextField fullWidth label="Name" value={pricingForm.name} onChange={(e) => setPricingForm({ ...pricingForm, name: e.target.value })} /></Grid>
             <Grid item xs={12}><TextField fullWidth label="Description" multiline rows={2} value={pricingForm.description} onChange={(e) => setPricingForm({ ...pricingForm, description: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth select label="Strategy Type" value={pricingForm.strategyType} onChange={(e) => setPricingForm({ ...pricingForm, strategyType: e.target.value })}>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth select label="Strategy Type" value={pricingForm.strategyType} onChange={(e) => setPricingForm({ ...pricingForm, strategyType: e.target.value })}>
               {(options?.strategyTypes || []).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
             </TextField></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth select label="Status" value={pricingForm.status} onChange={(e) => setPricingForm({ ...pricingForm, status: e.target.value })}>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth select label="Status" value={pricingForm.status} onChange={(e) => setPricingForm({ ...pricingForm, status: e.target.value })}>
               {['draft','active','completed','cancelled'].map(s => <MenuItem key={s} value={s}>{s}</MenuItem>)}
             </TextField></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth label="Product" value={pricingForm.productName} onChange={(e) => setPricingForm({ ...pricingForm, productName: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth label="Category" value={pricingForm.category} onChange={(e) => setPricingForm({ ...pricingForm, category: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth label="Brand" value={pricingForm.brand} onChange={(e) => setPricingForm({ ...pricingForm, brand: e.target.value })} /></Grid>
-            <Grid item xs={6} md={4}><TextField fullWidth label="Channel" value={pricingForm.channel} onChange={(e) => setPricingForm({ ...pricingForm, channel: e.target.value })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Current Price" type="number" value={pricingForm.currentPrice} onChange={(e) => setPricingForm({ ...pricingForm, currentPrice: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Recommended Price" type="number" value={pricingForm.recommendedPrice} onChange={(e) => setPricingForm({ ...pricingForm, recommendedPrice: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Price Change %" type="number" value={pricingForm.priceChangePct} onChange={(e) => setPricingForm({ ...pricingForm, priceChangePct: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Competitor Price" type="number" value={pricingForm.competitorPrice} onChange={(e) => setPricingForm({ ...pricingForm, competitorPrice: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Current Margin %" type="number" value={pricingForm.currentMarginPct} onChange={(e) => setPricingForm({ ...pricingForm, currentMarginPct: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Projected Margin %" type="number" value={pricingForm.projectedMarginPct} onChange={(e) => setPricingForm({ ...pricingForm, projectedMarginPct: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Revenue Impact" type="number" value={pricingForm.revenueImpact} onChange={(e) => setPricingForm({ ...pricingForm, revenueImpact: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6} md={3}><TextField fullWidth label="Margin Impact" type="number" value={pricingForm.marginImpact} onChange={(e) => setPricingForm({ ...pricingForm, marginImpact: parseFloat(e.target.value) || 0 })} /></Grid>
-            <Grid item xs={6}><TextField fullWidth label="Effective Date" type="date" InputLabelProps={{ shrink: true }} value={pricingForm.effectiveDate} onChange={(e) => setPricingForm({ ...pricingForm, effectiveDate: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth label="Product" value={pricingForm.productName} onChange={(e) => setPricingForm({ ...pricingForm, productName: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth label="Category" value={pricingForm.category} onChange={(e) => setPricingForm({ ...pricingForm, category: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth label="Brand" value={pricingForm.brand} onChange={(e) => setPricingForm({ ...pricingForm, brand: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={4}><TextField fullWidth label="Channel" value={pricingForm.channel} onChange={(e) => setPricingForm({ ...pricingForm, channel: e.target.value })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Current Price" type="number" value={pricingForm.currentPrice} onChange={(e) => setPricingForm({ ...pricingForm, currentPrice: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Recommended Price" type="number" value={pricingForm.recommendedPrice} onChange={(e) => setPricingForm({ ...pricingForm, recommendedPrice: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Price Change %" type="number" value={pricingForm.priceChangePct} onChange={(e) => setPricingForm({ ...pricingForm, priceChangePct: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Competitor Price" type="number" value={pricingForm.competitorPrice} onChange={(e) => setPricingForm({ ...pricingForm, competitorPrice: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Current Margin %" type="number" value={pricingForm.currentMarginPct} onChange={(e) => setPricingForm({ ...pricingForm, currentMarginPct: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Projected Margin %" type="number" value={pricingForm.projectedMarginPct} onChange={(e) => setPricingForm({ ...pricingForm, projectedMarginPct: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Revenue Impact" type="number" value={pricingForm.revenueImpact} onChange={(e) => setPricingForm({ ...pricingForm, revenueImpact: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6} md={3}><TextField fullWidth label="Margin Impact" type="number" value={pricingForm.marginImpact} onChange={(e) => setPricingForm({ ...pricingForm, marginImpact: parseFloat(e.target.value) || 0 })} /></Grid>
+            <Grid item xs={12} sm={6}><TextField fullWidth label="Effective Date" type="date" InputLabelProps={{ shrink: true }} value={pricingForm.effectiveDate} onChange={(e) => setPricingForm({ ...pricingForm, effectiveDate: e.target.value })} /></Grid>
             <Grid item xs={12}><TextField fullWidth label="Notes" multiline rows={2} value={pricingForm.notes} onChange={(e) => setPricingForm({ ...pricingForm, notes: e.target.value })} /></Grid>
           </Grid>
         </DialogContent>

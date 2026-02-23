@@ -80,7 +80,7 @@ const BudgetListEnhanced = () => {
       icon: '',
       label: 'Rebalance Budgets',
       description: 'AI-powered budget reallocation optimizer',
-      action: () => navigate('/simulation-studio')
+      action: () => navigate('/scenarios')
     },
     {
       icon: '',

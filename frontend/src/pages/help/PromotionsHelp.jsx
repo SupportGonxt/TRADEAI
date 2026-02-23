@@ -371,7 +371,7 @@ const PromotionsHelp = () => {
               <ListItem button onClick={() => navigate('/approvals')}>
                 <ListItemText primary="Pending Approvals" />
               </ListItem>
-              <ListItem button onClick={() => navigate('/simulation-studio')}>
+              <ListItem button onClick={() => navigate('/scenarios')}>
                 <ListItemText primary="Simulation Studio" />
               </ListItem>
             </List>

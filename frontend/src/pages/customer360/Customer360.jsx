@@ -191,7 +191,7 @@ const Customer360Dashboard = () => {
             { label: 'LTV Score', value: formatCurrency(p.ltvScore), icon: <Star />, color: '#7C3AED' },
             { label: 'Churn Risk', value: `${((p.churnRisk || 0) * 100).toFixed(0)}%`, icon: <Warning />, color: (p.churnRisk || 0) > 0.5 ? '#EF4444' : '#F59E0B' },
           ].map((card, i) => (
-            <Grid item xs={6} md={2} key={i}>
+            <Grid item xs={12} sm={6} md={2} key={i}>
               <Paper sx={{ p: 2, textAlign: 'center', borderTop: 3, borderColor: card.color }}>
                 <Box sx={{ color: card.color, mb: 0.5 }}>{card.icon}</Box>
                 <Typography variant="h6" sx={{ fontWeight: 700 }}>{card.value}</Typography>
@@ -333,7 +333,7 @@ const Customer360Dashboard = () => {
             { label: 'Total Revenue', value: formatCurrency(summary.totalRevenue), icon: <AttachMoney />, color: '#F59E0B' },
             { label: 'Total Spend', value: formatCurrency(summary.totalSpend), icon: <BarChart />, color: '#6B7280' },
           ].map((card, i) => (
-            <Grid item xs={6} md={2} key={i}>
+            <Grid item xs={12} sm={6} md={2} key={i}>
               <Paper sx={{ p: 2, textAlign: 'center', borderTop: 3, borderColor: card.color }}>
                 <Box sx={{ color: card.color, mb: 0.5 }}>{card.icon}</Box>
                 <Typography variant="h6" sx={{ fontWeight: 700 }}>{card.value}</Typography>

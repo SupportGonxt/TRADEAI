@@ -21,7 +21,6 @@ import {
   Lightbulb as LightbulbIcon,
   RocketLaunch as RocketIcon,
   Analytics as AnalyticsIcon,
-  TrendingUp as MonitorIcon,
   Assignment as AssignmentIcon,
   Receipt as ReceiptIcon,
   Storage as DataIcon,
@@ -53,41 +52,41 @@ const MobileDrawer= ({ open, onClose, user, onLogout }) => {
       path: '/dashboard'
     },
     {
-      key: 'mywork',
-      label: 'My Work',
-      icon: <DashboardIcon />,
-      children: [
-        isKAM && { label: 'My Dashboard', path: '/dashboard' },
-        isKAM && { label: 'My Wallet', path: '/kamwallet', badge: 'NEW' },
-        isManager && { label: 'Pending Approvals', path: '/approvals' },
-        isKAM && { label: 'New Promotion', path: '/promotions/new', badge: 'AI' },
-        isKAM && { label: 'New Budget', path: '/budgets/new', badge: 'AI' },
-        isKAM && { label: 'Submit Claim', path: '/claims/create' },
-      ].filter(Boolean)
-    },
-    {
       key: 'promotions',
       label: 'Promotions',
       icon: <LightbulbIcon />,
       children: [
         { label: 'All Promotions', path: '/promotions' },
-        { label: 'New Promotion', path: '/promotions/new', badge: 'AI' },
-        { label: 'Promotion Planner', path: '/promotion-planner', badge: 'AI' },
-        { label: 'Timeline', path: '/promotions-timeline' },
-        { label: 'Activity Calendar', path: '/activity-grid' },
+        { label: 'Trade Calendar', path: '/trade-calendar' },
+        { label: 'Scenarios', path: '/scenarios' },
+        { label: 'Optimizer', path: '/promotion-optimizer' },
       ]
     },
     {
       key: 'budgets',
-      label: 'Budgets',
+      label: 'Budgets & Spend',
       icon: <RocketIcon />,
       children: [
-        { label: 'All Budgets', path: '/budgets' },
-        { label: 'New Budget', path: '/budgets/new', badge: 'AI' },
-        { label: 'Budget Console', path: '/budget-console', badge: 'AI' },
+        { label: 'Budgets', path: '/budgets' },
+        { label: 'Allocations', path: '/budget-allocations' },
         { label: 'Trade Spends', path: '/trade-spends' },
-        { label: 'New Trade Spend', path: '/trade-spends/new', badge: 'AI' },
-        { label: 'Trading Terms', path: '/trading-terms' },
+        { label: 'Accruals', path: '/accruals' },
+        { label: 'Settlements', path: '/settlements' },
+      ]
+    },
+    {
+      key: 'approvals',
+      label: 'Approvals',
+      icon: <AssignmentIcon />,
+      path: '/approvals'
+    },
+    {
+      key: 'claims',
+      label: 'Claims & Deductions',
+      icon: <ReceiptIcon />,
+      children: [
+        { label: 'Claims', path: '/claims' },
+        { label: 'Deductions', path: '/deductions' },
       ]
     },
     {
@@ -95,67 +94,31 @@ const MobileDrawer= ({ open, onClose, user, onLogout }) => {
       label: 'Insights',
       icon: <AnalyticsIcon />,
       children: [
-        { label: 'Analytics Dashboard', path: '/analytics', badge: 'AI' },
-        { label: 'Live Performance', path: '/realtime-dashboard', badge: 'LIVE' },
-        { label: 'Promotion Effectiveness', path: '/performance-analytics/promotion-effectiveness' },
-        { label: 'Budget Variance', path: '/performance-analytics/budget-variance' },
-        { label: 'Reports', path: '/reports' },
-        { label: 'Forecasting', path: '/forecasting', badge: 'AI' },
-        { label: 'Customer Segmentation', path: '/performance-analytics/customer-segmentation' },
-      ]
-    },
-    isManager && {
-      key: 'approvals',
-      label: 'Approvals',
-      icon: <AssignmentIcon />,
-      children: [
-        { label: 'Pending Approvals', path: '/approvals' },
-        { label: 'Approval History', path: '/approvals/history' },
-      ]
-    },
-    {
-      key: 'claims',
-      label: 'Claims',
-      icon: <ReceiptIcon />,
-      children: [
-        { label: 'All Claims', path: '/claims' },
-        { label: 'Submit Claim', path: '/claims/create' },
-        { label: 'Deductions', path: '/deductions' },
-        { label: 'Reconciliation', path: '/deductions/reconciliation' },
-        { label: 'All Rebates', path: '/rebates' },
-        { label: 'New Rebate', path: '/rebates/new' },
-      ]
-    },
-    {
-      key: 'planning',
-      label: 'Planning',
-      icon: <MonitorIcon />,
-      children: [
-        { label: 'Simulation Studio', path: '/simulation-studio', badge: 'AI' },
-        { label: 'Predictive Analytics', path: '/predictive-analytics', badge: 'AI' },
+        { label: 'P&L', path: '/pnl' },
+        { label: 'Customer 360', path: '/customer-360' },
+        { label: 'Reports', path: '/advanced-reporting' },
+        { label: 'RGM', path: '/revenue-growth' },
+        { label: 'KPIs', path: '/executive-kpi' },
+        { label: 'Demand Signals', path: '/demand-signals' },
       ]
     },
     {
       key: 'data',
-      label: 'Data',
+      label: 'Master Data',
       icon: <DataIcon />,
       children: [
         { label: 'Customers', path: '/customers' },
-        { label: 'New Customer', path: '/customers/new', badge: 'AI' },
         { label: 'Products', path: '/products' },
-        { label: 'New Product', path: '/products/new', badge: 'AI' },
-        isAdmin && { label: 'Import/Export', path: '/data/import-export' },
-      ].filter(Boolean)
+        { label: 'Baselines', path: '/baselines' },
+      ]
     },
     isAdmin && {
       key: 'admin',
-      label: 'Admin',
+      label: 'Settings',
       icon: <SettingsIcon />,
       children: [
-        { label: 'Users', path: '/users' },
-        { label: 'Customer Assignment', path: '/customer-assignment' },
-        { label: 'Settings', path: '/settings' },
-        { label: 'Alerts', path: '/alerts' },
+        { label: 'System Config', path: '/system-config' },
+        { label: 'Help', path: '/help' },
       ]
     },
   ].filter(Boolean);

@@ -367,7 +367,7 @@ const SettlementManagement = () => {
         <TextField fullWidth label="Description" multiline rows={2} value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Settlement Type" value={form.settlementType}
           onChange={(e) => setForm({ ...form, settlementType: e.target.value })}>
           {(options?.settlementTypes || [
@@ -380,7 +380,7 @@ const SettlementManagement = () => {
           ]).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Payment Method" value={form.paymentMethod}
           onChange={(e) => setForm({ ...form, paymentMethod: e.target.value })}>
           {(options?.paymentMethods || [
@@ -392,37 +392,37 @@ const SettlementManagement = () => {
           ]).map(o => <MenuItem key={o.value} value={o.value}>{o.label}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Customer" value={form.customerId}
           onChange={(e) => setForm({ ...form, customerId: e.target.value })}>
           <MenuItem value="">Select Customer</MenuItem>
           {customers.map(c => <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Promotion" value={form.promotionId}
           onChange={(e) => setForm({ ...form, promotionId: e.target.value })}>
           <MenuItem value="">None</MenuItem>
           {promotions.map(p => <MenuItem key={p.id} value={p.id}>{p.name}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField select fullWidth label="Linked Accrual" value={form.accrualId}
           onChange={(e) => setForm({ ...form, accrualId: e.target.value })}>
           <MenuItem value="">None</MenuItem>
           {accruals.map(a => <MenuItem key={a.id} value={a.id}>{a.name}</MenuItem>)}
         </TextField>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Currency" value={form.currency}
           onChange={(e) => setForm({ ...form, currency: e.target.value })} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Settlement Date" type="date" value={form.settlementDate}
           onChange={(e) => setForm({ ...form, settlementDate: e.target.value })}
           InputLabelProps={{ shrink: true }} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Due Date" type="date" value={form.dueDate}
           onChange={(e) => setForm({ ...form, dueDate: e.target.value })}
           InputLabelProps={{ shrink: true }} />
@@ -441,12 +441,12 @@ const SettlementManagement = () => {
           onChange={(e) => setForm({ ...form, approvedAmount: parseFloat(e.target.value) || 0 })} />
       </Grid>
       <Grid item xs={12}><Divider sx={{ my: 1 }} /><Typography variant="subtitle2" sx={{ mb: 1 }}>GL Configuration</Typography></Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="GL Account" value={form.glAccount}
           onChange={(e) => setForm({ ...form, glAccount: e.target.value })}
           placeholder="e.g. Trade Settlement Expense" />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField fullWidth label="Cost Center" value={form.costCenter}
           onChange={(e) => setForm({ ...form, costCenter: e.target.value })}
           placeholder="e.g. Trade Accrual Liability" />
@@ -633,11 +633,11 @@ const SettlementManagement = () => {
                 <Typography variant="caption" color="text.secondary">Currency</Typography>
                 <Typography variant="body2">{s.currency}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">GL Account</Typography>
                 <Typography variant="body2">{s.glAccount || s.gl_account || 'Not set'}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} sm={6}>
                 <Typography variant="caption" color="text.secondary">Cost Center</Typography>
                 <Typography variant="body2">{s.costCenter || s.cost_center || 'Not set'}</Typography>
               </Grid>
@@ -830,11 +830,11 @@ const SettlementManagement = () => {
             Recording payment for: {selectedSettlement?.name}
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth label="Amount" type="number" value={payForm.amount}
                 onChange={(e) => setPayForm({ ...payForm, amount: parseFloat(e.target.value) || 0 })} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField select fullWidth label="Payment Type" value={payForm.paymentType}
                 onChange={(e) => setPayForm({ ...payForm, paymentType: e.target.value })}>
                 <MenuItem value="credit_note">Credit Note</MenuItem>
@@ -843,12 +843,12 @@ const SettlementManagement = () => {
                 <MenuItem value="offset">Offset</MenuItem>
               </TextField>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth label="Payment Date" type="date" value={payForm.paymentDate}
                 onChange={(e) => setPayForm({ ...payForm, paymentDate: e.target.value })}
                 InputLabelProps={{ shrink: true }} />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <TextField fullWidth label="Reference" value={payForm.reference}
                 onChange={(e) => setPayForm({ ...payForm, reference: e.target.value })} />
             </Grid>

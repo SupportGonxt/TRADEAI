@@ -752,25 +752,25 @@ const PnLManagement = () => {
           ) : detailReport ? (
             <Box>
               <Grid container spacing={2} sx={{ mb: 3 }}>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={12} sm={6} md={3}>
                   <Typography variant="caption" color="text.secondary">Gross Sales</Typography>
                   <Typography variant="h6" sx={{ fontWeight: 700, fontFamily: 'monospace' }}>
                     {formatCurrency(detailReport.grossSales || detailReport.gross_sales)}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={12} sm={6} md={3}>
                   <Typography variant="caption" color="text.secondary">Trade Spend</Typography>
                   <Typography variant="h6" sx={{ fontWeight: 700, fontFamily: 'monospace', color: '#DC2626' }}>
                     {formatCurrency(detailReport.tradeSpend || detailReport.trade_spend)}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={12} sm={6} md={3}>
                   <Typography variant="caption" color="text.secondary">Net Profit</Typography>
                   <Typography variant="h6" sx={{ fontWeight: 700, fontFamily: 'monospace', color: (detailReport.netProfit || detailReport.net_profit || 0) >= 0 ? '#059669' : '#DC2626' }}>
                     {formatCurrency(detailReport.netProfit || detailReport.net_profit)}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={12} sm={6} md={3}>
                   <Typography variant="caption" color="text.secondary">ROI</Typography>
                   <Typography variant="h6" sx={{ fontWeight: 700, fontFamily: 'monospace' }}>
                     {formatPct(detailReport.roi)}
@@ -779,27 +779,27 @@ const PnLManagement = () => {
               </Grid>
 
               <Grid container spacing={2} sx={{ mb: 3 }}>
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={12} sm={6} md={2}>
                   <Typography variant="caption" color="text.secondary">Net Sales</Typography>
                   <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>{formatCurrency(detailReport.netSales || detailReport.net_sales)}</Typography>
                 </Grid>
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={12} sm={6} md={2}>
                   <Typography variant="caption" color="text.secondary">COGS</Typography>
                   <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>{formatCurrency(detailReport.cogs)}</Typography>
                 </Grid>
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={12} sm={6} md={2}>
                   <Typography variant="caption" color="text.secondary">Gross Profit</Typography>
                   <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>{formatCurrency(detailReport.grossProfit || detailReport.gross_profit)}</Typography>
                 </Grid>
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={12} sm={6} md={2}>
                   <Typography variant="caption" color="text.secondary">Accruals</Typography>
                   <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>{formatCurrency(detailReport.accruals)}</Typography>
                 </Grid>
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={12} sm={6} md={2}>
                   <Typography variant="caption" color="text.secondary">Budget Amount</Typography>
                   <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>{formatCurrency(detailReport.budgetAmount || detailReport.budget_amount)}</Typography>
                 </Grid>
-                <Grid item xs={6} sm={2}>
+                <Grid item xs={12} sm={6} md={2}>
                   <Typography variant="caption" color="text.secondary">Budget Variance</Typography>
                   <Typography variant="body2" sx={{ fontFamily: 'monospace', color: (detailReport.budgetVariance || detailReport.budget_variance || 0) >= 0 ? '#059669' : '#DC2626' }}>
                     {formatCurrency(detailReport.budgetVariance || detailReport.budget_variance)}

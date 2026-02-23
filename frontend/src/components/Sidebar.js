@@ -1,84 +1,122 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Box,
-  IconButton,
   Tooltip,
   Avatar,
-  Divider,
+  Typography,
+  Collapse,
   alpha,
 } from '@mui/material';
 import {
   Home as HomeIcon,
-  Timeline as PlanIcon,
-  AccountBalance as BudgetsIcon,
-  AccountTree as AllocateIcon,
-  CalendarMonth as CalendarIcon,
-  Sensors as SignalsIcon,
-  Science as ScenariosIcon,
-  AutoFixHigh as OptimizerIcon,
   Campaign as PromotionsIcon,
-  ShoppingCart as ExecuteIcon,
-  AccountBalanceWallet as AccrueIcon,
-  Receipt as SettleIcon,
+  AccountBalance as BudgetsIcon,
   CheckCircle as ApprovalsIcon,
-  BarChart as  InsightsIcon,
-  Person as CustomerIcon,
-  Assessment as ReportingIcon,
-  TrendingUp as RGMIcon,
-  Speed as KpiIcon,
+  BarChart as InsightsIcon,
+  Receipt as ClaimsIcon,
   Storage as DataIcon,
   Settings as SettingsIcon,
   HelpOutline as HelpIcon,
   Logout as LogoutIcon,
-  Notifications as NotifIcon,
-  Description as DocsIcon,
-  Hub as HubIcon,
-  Security as RolesIcon,
-  AccountTree as WorkflowIcon,
+  ExpandMore as ExpandIcon,
+  ExpandLess as CollapseIcon,
 } from '@mui/icons-material';
 
-const SIDEBAR_WIDTH = 72;
+const SIDEBAR_WIDTH = 220;
 
-const navItems = [
-  { key: 'home', label: 'Home', icon: <HomeIcon />, path: '/dashboard' },
-  { key: 'plan', label: 'Plan', icon: <PlanIcon />, path: '/baselines' },
-  { key: 'budgets', label: 'Budget', icon: <BudgetsIcon />, path: '/budgets' },
-  { key: 'allocate', label: 'Allocate', icon: <AllocateIcon />, path: '/budget-allocations' },
-  { key: 'calendar', label: 'Calendar', icon: <CalendarIcon />, path: '/trade-calendar' },
-  { key: 'signals', label: 'Signals', icon: <SignalsIcon />, path: '/demand-signals' },
-  { key: 'scenarios', label: 'Scenarios', icon: <ScenariosIcon />, path: '/scenarios' },
-  { key: 'optimizer', label: 'Optimize', icon: <OptimizerIcon />, path: '/promotion-optimizer' },
-  { key: 'promotions', label: 'Promote', icon: <PromotionsIcon />, path: '/promotions' },
-  { key: 'execute', label: 'Execute', icon: <ExecuteIcon />, path: '/trade-spends' },
-  { key: 'accrue', label: 'Accrue', icon: <AccrueIcon />, path: '/accruals' },
-  { key: 'settle', label: 'Settle', icon: <SettleIcon />, path: '/settlements' },
-  { key: 'approvals', label: 'Approve', icon: <ApprovalsIcon />, path: '/approvals' },
-  { key: 'pnl', label: 'P&L', icon: <InsightsIcon />, path: '/pnl' },
-  { key: 'customer360', label: 'Customer 360', icon: <CustomerIcon />, path: '/customer-360' },
-  { key: 'reporting', label: 'Reports', icon: <ReportingIcon />, path: '/advanced-reporting' },
-  { key: 'rgm', label: 'RGM', icon: <RGMIcon />, path: '/revenue-growth' },
-  { key: 'kpi', label: 'KPIs', icon: <KpiIcon />, path: '/executive-kpi' },
-  { key: 'data', label: 'Master Data', icon: <DataIcon />, path: '/customers' },
-  { key: 'notifications', label: 'Alerts', icon: <NotifIcon />, path: '/notification-center' },
-  { key: 'docs', label: 'Documents', icon: <DocsIcon />, path: '/document-management' },
-  { key: 'integrations', label: 'Integrations', icon: <HubIcon />, path: '/integration-hub' },
-  { key: 'roles', label: 'Roles', icon: <RolesIcon />, path: '/role-management' },
-  { key: 'workflows', label: 'Workflows', icon: <WorkflowIcon />, path: '/workflow-engine' },
+const navGroups = [
+  {
+    key: 'home',
+    label: 'Home',
+    icon: <HomeIcon />,
+    path: '/dashboard',
+  },
+  {
+    key: 'promotions',
+    label: 'Promotions',
+    icon: <PromotionsIcon />,
+    children: [
+      { label: 'All Promotions', path: '/promotions' },
+      { label: 'Trade Calendar', path: '/trade-calendar' },
+      { label: 'Scenarios', path: '/scenarios' },
+      { label: 'Optimizer', path: '/promotion-optimizer' },
+    ],
+  },
+  {
+    key: 'budgets',
+    label: 'Budgets & Spend',
+    icon: <BudgetsIcon />,
+    children: [
+      { label: 'Budgets', path: '/budgets' },
+      { label: 'Allocations', path: '/budget-allocations' },
+      { label: 'Trade Spends', path: '/trade-spends' },
+      { label: 'Accruals', path: '/accruals' },
+      { label: 'Settlements', path: '/settlements' },
+    ],
+  },
+  {
+    key: 'approvals',
+    label: 'Approvals',
+    icon: <ApprovalsIcon />,
+    path: '/approvals',
+  },
+  {
+    key: 'claims',
+    label: 'Claims & Deductions',
+    icon: <ClaimsIcon />,
+    children: [
+      { label: 'Claims', path: '/claims' },
+      { label: 'Deductions', path: '/deductions' },
+    ],
+  },
+  {
+    key: 'insights',
+    label: 'Insights',
+    icon: <InsightsIcon />,
+    children: [
+      { label: 'P&L', path: '/pnl' },
+      { label: 'Customer 360', path: '/customer-360' },
+      { label: 'Reports', path: '/advanced-reporting' },
+      { label: 'RGM', path: '/revenue-growth' },
+      { label: 'KPIs', path: '/executive-kpi' },
+      { label: 'Demand Signals', path: '/demand-signals' },
+    ],
+  },
+  {
+    key: 'data',
+    label: 'Master Data',
+    icon: <DataIcon />,
+    children: [
+      { label: 'Customers', path: '/customers' },
+      { label: 'Products', path: '/products' },
+      { label: 'Baselines', path: '/baselines' },
+    ],
+  },
 ];
 
 const bottomItems = [
-  { key: 'sysconfig', label: 'System Config', icon: <SettingsIcon />, path: '/system-config' },
+  { key: 'settings', label: 'Settings', icon: <SettingsIcon />, path: '/system-config' },
   { key: 'help', label: 'Help', icon: <HelpIcon />, path: '/help' },
 ];
 
 const Sidebar = ({ user, onLogout }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [expanded, setExpanded] = useState({});
 
   const isActive = (path) => {
     if (path === '/dashboard') return location.pathname === '/dashboard' || location.pathname === '/';
     return location.pathname.startsWith(path);
+  };
+
+  const isGroupActive = (group) => {
+    if (group.path) return isActive(group.path);
+    return group.children?.some(c => isActive(c.path));
+  };
+
+  const toggleExpand = (key) => {
+    setExpanded(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
   const userInitial = user?.name?.[0] || user?.email?.[0] || 'U';
@@ -95,128 +133,228 @@ const Sidebar = ({ user, onLogout }) => {
         zIndex: 1200,
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
         bgcolor: '#FFFFFF',
         borderRight: '1px solid',
         borderColor: 'divider',
-        py: 2,
       }}
     >
       <Box
         sx={{
-          width: 40,
-          height: 40,
-          borderRadius: '12px',
-          bgcolor: '#7C3AED',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          mb: 3,
+          gap: 1.5,
+          px: 2.5,
+          py: 2.5,
           cursor: 'pointer',
         }}
         onClick={() => navigate('/dashboard')}
       >
         <Box
-          component="span"
           sx={{
-            color: '#fff',
-            fontWeight: 800,
-            fontSize: '1.1rem',
-            letterSpacing: '-0.03em',
+            width: 34,
+            height: 34,
+            borderRadius: '10px',
+            bgcolor: '#7C3AED',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
           }}
         >
-          T
+          <Typography sx={{ color: '#fff', fontWeight: 800, fontSize: '0.95rem' }}>T</Typography>
         </Box>
+        <Typography sx={{ fontWeight: 700, fontSize: '1rem', color: '#111827', letterSpacing: '-0.02em' }}>
+          TRADEAI
+        </Typography>
       </Box>
 
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 0.5, alignItems: 'center' }}>
-        {navItems.map((item) => {
-          const active = isActive(item.path);
-          return (
-            <Tooltip key={item.key} title={item.label} placement="right" arrow>
-              <IconButton
-                onClick={() => navigate(item.path)}
+      <Box sx={{ flex: 1, overflow: 'auto', px: 1.5, py: 0.5 }}>
+        {navGroups.map((group) => {
+          const active = isGroupActive(group);
+          const isOpen = expanded[group.key] !== undefined ? expanded[group.key] : active;
+
+          if (group.path) {
+            return (
+              <Box
+                key={group.key}
+                onClick={() => navigate(group.path)}
                 sx={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: '12px',
-                  color: active ? '#7C3AED' : '#6B7280',
-                  bgcolor: active ? (theme) => alpha(theme.palette.primary.main, 0.1) : 'transparent',
-                  transition: 'all 0.2s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1.5,
+                  px: 1.5,
+                  py: 1,
+                  mb: 0.25,
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  color: active ? '#7C3AED' : '#4B5563',
+                  bgcolor: active ? (theme) => alpha(theme.palette.primary.main, 0.08) : 'transparent',
+                  fontWeight: active ? 600 : 500,
+                  fontSize: '0.875rem',
+                  transition: 'all 0.15s ease',
                   '&:hover': {
-                    bgcolor: active
-                      ? (theme) => alpha(theme.palette.primary.main, 0.15)
-                      : '#F3F4F6',
+                    bgcolor: active ? (theme) => alpha(theme.palette.primary.main, 0.12) : '#F3F4F6',
                     color: '#7C3AED',
                   },
                 }}
               >
-                {React.cloneElement(item.icon, { sx: { fontSize: 22 } })}
-              </IconButton>
-            </Tooltip>
-          );
-        })}
-      </Box>
+                {React.cloneElement(group.icon, { sx: { fontSize: 20 } })}
+                <Typography sx={{ fontSize: '0.875rem', fontWeight: 'inherit', color: 'inherit' }}>
+                  {group.label}
+                </Typography>
+              </Box>
+            );
+          }
 
-      <Divider sx={{ width: 32, my: 1 }} />
-
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, alignItems: 'center', mb: 1 }}>
-        {bottomItems.map((item) => {
-          const active = isActive(item.path);
           return (
-            <Tooltip key={item.key} title={item.label} placement="right" arrow>
-              <IconButton
-                onClick={() => navigate(item.path)}
+            <Box key={group.key} sx={{ mb: 0.25 }}>
+              <Box
+                onClick={() => toggleExpand(group.key)}
                 sx={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: '12px',
-                  color: active ? '#7C3AED' : '#9CA3AF',
-                  bgcolor: active ? (theme) => alpha(theme.palette.primary.main, 0.1) : 'transparent',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1.5,
+                  px: 1.5,
+                  py: 1,
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  color: active ? '#7C3AED' : '#4B5563',
+                  bgcolor: active && !isOpen ? (theme) => alpha(theme.palette.primary.main, 0.08) : 'transparent',
+                  transition: 'all 0.15s ease',
                   '&:hover': {
                     bgcolor: '#F3F4F6',
                     color: '#7C3AED',
                   },
                 }}
               >
-                {React.cloneElement(item.icon, { sx: { fontSize: 20 } })}
-              </IconButton>
-            </Tooltip>
+                {React.cloneElement(group.icon, { sx: { fontSize: 20 } })}
+                <Typography sx={{ fontSize: '0.875rem', fontWeight: active ? 600 : 500, color: 'inherit', flex: 1 }}>
+                  {group.label}
+                </Typography>
+                {isOpen ? <CollapseIcon sx={{ fontSize: 18, opacity: 0.5 }} /> : <ExpandIcon sx={{ fontSize: 18, opacity: 0.5 }} />}
+              </Box>
+              <Collapse in={isOpen} timeout="auto">
+                <Box sx={{ pl: 4.5, py: 0.25 }}>
+                  {group.children.map((child) => {
+                    const childActive = isActive(child.path);
+                    return (
+                      <Box
+                        key={child.path}
+                        onClick={() => navigate(child.path)}
+                        sx={{
+                          py: 0.75,
+                          px: 1,
+                          borderRadius: '6px',
+                          cursor: 'pointer',
+                          fontSize: '0.8125rem',
+                          color: childActive ? '#7C3AED' : '#6B7280',
+                          fontWeight: childActive ? 600 : 400,
+                          bgcolor: childActive ? (theme) => alpha(theme.palette.primary.main, 0.06) : 'transparent',
+                          transition: 'all 0.15s ease',
+                          '&:hover': {
+                            bgcolor: '#F3F4F6',
+                            color: '#7C3AED',
+                          },
+                        }}
+                      >
+                        {child.label}
+                      </Box>
+                    );
+                  })}
+                </Box>
+              </Collapse>
+            </Box>
+          );
+        })}
+      </Box>
+
+      <Box sx={{ px: 1.5, pb: 1, borderTop: '1px solid', borderColor: 'divider', pt: 1 }}>
+        {bottomItems.map((item) => {
+          const active = isActive(item.path);
+          return (
+            <Box
+              key={item.key}
+              onClick={() => navigate(item.path)}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1.5,
+                px: 1.5,
+                py: 0.75,
+                borderRadius: '8px',
+                cursor: 'pointer',
+                color: active ? '#7C3AED' : '#9CA3AF',
+                fontSize: '0.8125rem',
+                fontWeight: active ? 600 : 500,
+                transition: 'all 0.15s ease',
+                '&:hover': { bgcolor: '#F3F4F6', color: '#7C3AED' },
+              }}
+            >
+              {React.cloneElement(item.icon, { sx: { fontSize: 18 } })}
+              <Typography sx={{ fontSize: '0.8125rem', fontWeight: 'inherit', color: 'inherit' }}>
+                {item.label}
+              </Typography>
+            </Box>
           );
         })}
 
-        <Tooltip title="Logout" placement="right" arrow>
-          <IconButton
-            onClick={onLogout}
-            sx={{
-              width: 44,
-              height: 44,
-              borderRadius: '12px',
-              color: '#9CA3AF',
-              '&:hover': { bgcolor: '#FEF2F2', color: '#DC2626' },
-            }}
-          >
-            <LogoutIcon sx={{ fontSize: 20 }} />
-          </IconButton>
-        </Tooltip>
+        <Box
+          onClick={onLogout}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1.5,
+            px: 1.5,
+            py: 0.75,
+            borderRadius: '8px',
+            cursor: 'pointer',
+            color: '#9CA3AF',
+            fontSize: '0.8125rem',
+            transition: 'all 0.15s ease',
+            '&:hover': { bgcolor: '#FEF2F2', color: '#DC2626' },
+          }}
+        >
+          <LogoutIcon sx={{ fontSize: 18 }} />
+          <Typography sx={{ fontSize: '0.8125rem', fontWeight: 500, color: 'inherit' }}>
+            Logout
+          </Typography>
+        </Box>
       </Box>
 
-      <Tooltip title={user?.name || user?.email || 'Profile'} placement="right" arrow>
-        <Avatar
-          sx={{
-            width: 36,
-            height: 36,
-            bgcolor: '#7C3AED',
-            fontSize: '0.85rem',
-            fontWeight: 600,
-            cursor: 'pointer',
-            '&:hover': { opacity: 0.85 },
-          }}
-          onClick={() => navigate('/settings')}
-        >
-          {userInitial.toUpperCase()}
-        </Avatar>
-      </Tooltip>
+      <Box sx={{ px: 2, pb: 2, pt: 1 }}>
+        <Tooltip title={user?.name || user?.email || 'Profile'} placement="right" arrow>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+              cursor: 'pointer',
+              '&:hover': { opacity: 0.85 },
+            }}
+            onClick={() => navigate('/settings')}
+          >
+            <Avatar
+              sx={{
+                width: 32,
+                height: 32,
+                bgcolor: '#7C3AED',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+              }}
+            >
+              {userInitial.toUpperCase()}
+            </Avatar>
+            <Box sx={{ minWidth: 0, flex: 1 }}>
+              <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#111827', lineHeight: 1.2 }} noWrap>
+                {user?.name || 'User'}
+              </Typography>
+              <Typography sx={{ fontSize: '0.7rem', color: '#9CA3AF', lineHeight: 1.2 }} noWrap>
+                {user?.email || ''}
+              </Typography>
+            </Box>
+          </Box>
+        </Tooltip>
+      </Box>
     </Box>
   );
 };
