@@ -41,8 +41,8 @@
     "yup": "^1.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.6",
-    "@babel/preset-env": "^7.28.6",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.0",
     "@babel/preset-react": "^7.27.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -53,11 +53,11 @@
     "@types/react": "^18.0.38",
     "@types/react-dom": "^18.0.11",
     "ajv": "^8.12.0",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.1",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-unused-imports": "^4.3.0",
+    "eslint-plugin-unused-imports": "^4.4.1",
     "tryer": "^1.0.1",
     "typescript": "^5.0.4"
   },
