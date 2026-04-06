@@ -80,7 +80,7 @@
     "lodash.clonedeep": "^4.5.0",
     "mathjs": "^14.8.2",
     "ml-regression": "^5.0.0",
-    "mongoose": "^7.8.8",
+    "mongoose": "^7.8.9",
     "mongoose-aggregate-paginate-v2": "^1.0.6",
     "mongoose-autopopulate": "^1.2.1",
     "mongoose-sequence": "^6.0.1",
