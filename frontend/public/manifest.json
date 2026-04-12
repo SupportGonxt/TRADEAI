@@ -1,16 +1,13 @@
 {
-  "name": "TRADEAI - Multi-Tenant Trading Platform",
+  "name": "TRADEAI - FMCG Trading Platform",
   "short_name": "TRADEAI",
-  "description": "Advanced multi-tenant trading platform with AI-powered analytics, real-time monitoring, and comprehensive business intelligence",
-  "start_url": "/",
+  "description": "Enterprise-grade FMCG trading platform with AI-powered analytics",
+  "start_url": "/dashboard",
   "display": "standalone",
-  "orientation": "portrait-primary",
-  "theme_color": "#1E40AF",
   "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
+  "orientation": "portrait-primary",
   "scope": "/",
-  "lang": "en-US",
-  "dir": "ltr",
-  "categories": ["business", "finance", "productivity", "analytics"],
   "icons": [
     {
       "src": "images/favicon.ico",
@@ -41,6 +38,7 @@
       "purpose": "any maskable"
     }
   ],
+  "categories": ["business", "finance", "productivity", "analytics"],
   "screenshots": [
     {
       "src": "/screenshots/desktop-dashboard.png",
@@ -98,13 +96,13 @@
       ]
     },
     {
-      "name": "Settings",
-      "short_name": "Settings",
-      "description": "Manage app settings",
-      "url": "/settings",
+      "name": "Budgets",
+      "short_name": "Budgets",
+      "description": "Manage your budgets",
+      "url": "/budgets",
       "icons": [
         {
-          "src": "/icons/shortcut-settings.png",
+          "src": "/icons/shortcut-budget.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -151,17 +149,5 @@
     "client_mode": "focus-existing"
   },
   "handle_links": "preferred",
-  "prefer_related_applications": false,
-  "related_applications": [
-    {
-      "platform": "play",
-      "url": "https://play.google.com/store/apps/details?id=com.tradeai.app",
-      "id": "com.tradeai.app"
-    },
-    {
-      "platform": "itunes",
-      "url": "https://apps.apple.com/app/tradeai/id123456789",
-      "id": "123456789"
-    }
-  ]
+  "prefer_related_applications": false
 }
