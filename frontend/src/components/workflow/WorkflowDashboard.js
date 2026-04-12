@@ -99,7 +99,7 @@ const WorkflowDashboard = () => {
 
   const startWorkflow = async (workflowId, data) => {
     try {
-      const response = await api.post(`/workflow-engine/${workflowId}/start`, data);
+      const response = await api.post('/workflow-engine/instances', { template_id: workflowId, ...data });
       loadWorkflowData(); // Refresh data
       return response.data;
     } catch (error) {

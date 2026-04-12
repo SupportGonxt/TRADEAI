@@ -61,10 +61,11 @@ admin.post('/cache/clear', async (c) => {
 admin.get('/security/events', async (c) => {
   try {
     const db = c.env.DB;
+    const companyId = getCompanyId(c);
     const limit = parseInt(c.req.query('limit') || '50');
     const results = await db.prepare(
-      'SELECT * FROM audit_trail ORDER BY created_at DESC LIMIT ?'
-    ).bind(limit).all().catch(() => ({ results: [] }));
+      'SELECT * FROM audit_trail WHERE company_id = ? ORDER BY created_at DESC LIMIT ?'
+    ).bind(companyId, limit).all().catch(() => ({ results: [] }));
     return c.json({ success: true, data: results.results || [] });
   } catch (error) {
     return apiError(c, error, 'admin.security');
@@ -75,9 +76,10 @@ admin.get('/security/events', async (c) => {
 admin.get('/security/stats', async (c) => {
   try {
     const db = c.env.DB;
+    const companyId = getCompanyId(c);
     const [loginCount, failedCount] = await Promise.all([
-      db.prepare("SELECT COUNT(*) as total FROM audit_trail WHERE action = 'login' AND created_at > datetime('now', '-24 hours')").first().catch(() => ({ total: 0 })),
-      db.prepare("SELECT COUNT(*) as total FROM audit_trail WHERE action = 'login_failed' AND created_at > datetime('now', '-24 hours')").first().catch(() => ({ total: 0 }))
+      db.prepare("SELECT COUNT(*) as total FROM audit_trail WHERE company_id = ? AND action = 'login' AND created_at > datetime('now', '-24 hours')").bind(companyId).first().catch(() => ({ total: 0 })),
+      db.prepare("SELECT COUNT(*) as total FROM audit_trail WHERE company_id = ? AND action = 'login_failed' AND created_at > datetime('now', '-24 hours')").bind(companyId).first().catch(() => ({ total: 0 }))
     ]);
     return c.json({
       success: true,
@@ -97,10 +99,11 @@ admin.get('/security/stats', async (c) => {
 admin.get('/performance/metrics', async (c) => {
   try {
     const db = c.env.DB;
+    const companyId = getCompanyId(c);
     const [userCount, promoCount, claimCount] = await Promise.all([
-      db.prepare('SELECT COUNT(*) as total FROM users').first().catch(() => ({ total: 0 })),
-      db.prepare('SELECT COUNT(*) as total FROM promotions').first().catch(() => ({ total: 0 })),
-      db.prepare('SELECT COUNT(*) as total FROM claims').first().catch(() => ({ total: 0 }))
+      db.prepare('SELECT COUNT(*) as total FROM users WHERE company_id = ?').bind(companyId).first().catch(() => ({ total: 0 })),
+      db.prepare('SELECT COUNT(*) as total FROM promotions WHERE company_id = ?').bind(companyId).first().catch(() => ({ total: 0 })),
+      db.prepare('SELECT COUNT(*) as total FROM claims WHERE company_id = ?').bind(companyId).first().catch(() => ({ total: 0 }))
     ]);
     return c.json({
       success: true,
